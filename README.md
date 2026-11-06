@@ -1,59 +1,55 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Habisin (repo: sedapur)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Web app mobile-first untuk mengelola kulkas bersama di rumah atau kos: pantau tanggal kedaluwarsa, habiskan bahan sebelum terbuang, dan lihat berapa uang yang terbuang setiap bulan.
 
-## About Laravel
+Kelompok 7 · Cloud Computing — Alvaro Grevi Kumesan, Hans Vere Liem, Joel Christopher Gerald Tjokrowiharjo.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Status
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [x] **Frontend** (Laravel Blade + Tailwind CSS v4) sesuai desain Figma: versi HP (bottom nav) dan desktop ≥ 1024 px (sidebar). Semua data masih contoh dari `app/Support/DemoData.php`.
+- [ ] Supabase (Auth, PostgreSQL + RLS, Storage, Realtime, Edge Functions + pg_cron)
+- [ ] Gemini API (Gemini 3.1 Flash-Lite) untuk scan struk, scan kulkas, resep, menu, ringkasan
+- [ ] FatSecret Platform API + tabel TKPI untuk data gizi
+- [ ] CloudPanel + GitHub Actions (deploy otomatis)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Menjalankan
 
-## Learning Laravel
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+npm install
+npm run build   # atau: npm run dev
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Dengan Laravel Herd, buka `http://sedapur.test`. Tanpa Herd: `composer run dev` lalu buka `http://localhost:8000`.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Halaman
 
-## Laravel Sponsors
+| URL | Layar |
+| --- | --- |
+| `/masuk`, `/daftar`, `/rumah/mulai` | Masuk, daftar, buat / gabung rumah |
+| `/` | Beranda |
+| `/kulkas`, `/kulkas/{id}` | Kulkas + detail bahan (panel kanan di desktop) |
+| `/scan`, `/scan/gagal`, `/scan/hasil`, `/bahan/manual` | Scan diproses, scan gagal, cek hasil scan, input manual |
+| `/menu`, `/resep`, `/resep/{id}` | Menu mingguan, daftar resep, detail resep + catat porsi |
+| `/belanja` | Daftar belanja bersama |
+| `/gizi` | Gizi & kalori (konsumsi saya / isi kulkas) |
+| `/food-waste` | Analitik food waste |
+| `/riwayat` | Riwayat aktivitas |
+| `/rumah` | Rumah & akun |
+| `/pratinjau/email-pengingat` | Pratinjau email pengingat harian |
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Struktur
 
-### Premium Partners
+- `app/Support/DemoData.php` — data contoh dengan bentuk mengikuti ERD (Food_Items, Recipes, Meal_Plans, dst.). Nanti diganti query Supabase.
+- `app/Http/Controllers/PageController.php` — satu controller untuk semua halaman tahap frontend.
+- `resources/views/components/layouts/` — layout `app` (sidebar + bottom nav) dan `guest` (halaman masuk).
+- `resources/css/app.css` — token warna dan komponen (tombol, input, chip, badge) dari UI kit.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Tes
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+php artisan test
+```

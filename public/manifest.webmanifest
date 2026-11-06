@@ -1,0 +1,14 @@
+{
+    "name": "Habisin",
+    "short_name": "Habisin",
+    "description": "Kelola kulkas bersama dan habiskan bahan sebelum kedaluwarsa.",
+    "lang": "id",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#4c610d",
+    "icons": [
+        { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+    ]
+}
