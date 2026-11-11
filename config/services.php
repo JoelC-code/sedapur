@@ -36,8 +36,8 @@ return [
     ],
 
     'fatsecret' => [
-        'client_id' => env('FATSECRET_CLIENT_IF'),
-        'client_secret' => env('FATSECRET_CLIENT_SECRET')
-    ]
+        'client_id' => env('FATSECRET_CLIENT_ID'),
+        'client_secret' => env('FATSECRET_CLIENT_SECRET'),
+    ],
 
 ];

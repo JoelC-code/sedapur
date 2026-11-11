@@ -18,8 +18,8 @@ class FatSecretService
      */
     public function __construct()
     {
-        $this->clientId = (string) env('FATSECRET_CLIENT_ID', '');
-        $this->clientSecret = (string) env('FATSECRET_CLIENT_SECRET', '');
+        $this->clientId = (string) config('services.fatsecret.client_id', '');
+        $this->clientSecret = (string) config('services.fatsecret.client_secret', '');
     }
 
     public function getAccessToken(): string
