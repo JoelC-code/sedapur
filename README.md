@@ -1,4 +1,4 @@
-# Habisin (repo: sedapur)
+# Sedapur
 
 Web app mobile-first untuk mengelola kulkas bersama di rumah atau kos: pantau tanggal kedaluwarsa, habiskan bahan sebelum terbuang, dan lihat berapa uang yang terbuang setiap bulan.
 

@@ -6,7 +6,7 @@
 @source '../**/*.js';
 @source '../../app/**/*.php';
 
-/* Token desain mengikuti UI kit Habisin (Figma). */
+/* Token desain mengikuti UI kit Sedapur (Figma). */
 @theme {
     --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji';
 
