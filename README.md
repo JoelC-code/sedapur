@@ -9,7 +9,7 @@ Kelompok 7 · Cloud Computing — Alvaro Grevi Kumesan, Hans Vere Liem, Joel Chr
 - [x] **Frontend** (Laravel Blade + Tailwind CSS v4) sesuai desain Figma: versi HP (bottom nav) dan desktop ≥ 1024 px (sidebar). Semua data masih contoh dari `app/Support/DemoData.php`.
 - [ ] Supabase (Auth, PostgreSQL + RLS, Storage, Realtime, Edge Functions + pg_cron)
 - [ ] Gemini API (Gemini 3.1 Flash-Lite) untuk scan struk, scan kulkas, resep, menu, ringkasan
-- [x] FatSecret Platform API + tabel TKPI untuk data gizi (tinggal data TKPI yang kurang)
+- [x] FatSecret Platform API + tabel TKPI untuk data gizi
 - [ ] CloudPanel + GitHub Actions (deploy otomatis)
 
 ## Menjalankan
