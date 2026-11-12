@@ -40,8 +40,8 @@
             <x-icon name="chevron-down" class="size-4 text-white/60" />
         </button>
 
-        <button type="button" data-open="add-item" class="mb-4 flex h-12 w-full items-center justify-center gap-2 rounded-full bg-olive-200 text-sm font-extrabold text-olive-700 hover:bg-olive-300">
-            <x-icon name="plus" class="size-4" /> Tambah bahan
+        <button type="button" data-open="add-item" class="relative mb-4 flex h-12 w-full items-center justify-center rounded-full bg-olive-200 px-12 text-sm font-extrabold text-olive-700 hover:bg-olive-300">
+            <x-icon name="plus" class="absolute left-5 size-4" /> Tambah bahan
         </button>
 
         <nav class="space-y-1 text-sm">

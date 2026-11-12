@@ -28,10 +28,17 @@ document.addEventListener('change', (event) => {
     }
 });
 
-// Kotak kode undangan: pindah otomatis ke kotak berikutnya.
+// Kotak kode undangan: pindah otomatis ke kotak berikutnya; kode yang di-paste dibagi ke semua kotak.
 document.querySelectorAll('[data-code-input]').forEach((group) => {
     const boxes = [...group.querySelectorAll('input')];
     boxes.forEach((box, i) => {
+        box.addEventListener('paste', (e) => {
+            const chars = (e.clipboardData?.getData('text') ?? '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+            if (chars.length < 2) return;
+            e.preventDefault();
+            boxes.slice(i).forEach((target, j) => { target.value = chars[j] ?? ''; });
+            boxes[Math.min(i + chars.length, boxes.length) - 1].focus();
+        });
         box.addEventListener('input', () => {
             box.value = box.value.toUpperCase().slice(-1);
             if (box.value && boxes[i + 1]) boxes[i + 1].focus();
