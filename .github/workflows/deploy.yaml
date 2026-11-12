@@ -60,13 +60,13 @@ jobs:
         php artisan migrate --env=testing
         php artisan test
       env:
-        DB_CONNECTION=pgsql
-        DB_HOST=aws-1-ap-southeast-1.pooler.supabase.com
-        DB_PORT=5432
-        DB_DATABASE=postgres
-        DB_USERNAME=postgres.rnflrwhztliyboqbhfvs
-        DB_PASSWORD=Q0Lo0BFBTfYlB4dE
-        DB_SSLMODE=require
+        DB_CONNECTION: pgsql
+        DB_HOST: ${{ secrets.DB_HOST }}
+        DB_PORT: 5432
+        DB_DATABASE: postgres
+        DB_USERNAME: ${{ secrets.DB_USERNAME }}
+        DB_PASSWORD: ${{secrets.DB_PASSWORD }}
+        DB_SSLMODE: require
 
     # Compile frontend production assets (Vite) so they are ready for deployment
     - name: Install NPM Dependencies & Build Assets
