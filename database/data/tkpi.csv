@@ -1,0 +1,1147 @@
+kode_bahan,nama_bahan,kelompok,kalori_100g,protein_100g,karbohidrat_100g,lemak_100g
+tkpi_0001,"Beras giling, mentah (Rice, raw)",Serealia,357.0,8.4,77.1,1.7
+tkpi_0002,"Beras giling var pelita, mentah (Rice, raw)",Serealia,369.0,9.5,77.1,1.4
+tkpi_0003,"Beras giling var rojolele, mentah (Rice. Raw)",Serealia,357.0,8.4,77.1,1.7
+tkpi_0004,"Beras hitam, mentah (Rice, raw)",Serealia,351.0,8.0,76.9,1.3
+tkpi_0005,"Beras jagung kuning, kering, mentah (Corn, yellow",Serealia,358.0,5.5,82.7,0.1
+tkpi_0006,"Beras jagung putih, kering, mentah (Corn, white, died, crushed, raw)",Serealia,307.0,4.8,71.8,0.1
+tkpi_0007,"Beras ketan hitam tumbuk, mentah (Glutinous rice, black, husk,raw)",Serealia,360.0,8.0,74.5,2.3
+tkpi_0008,"Beras ketan putih tumbuk, mentah (Glutinous rice, white, husk,raw)",Serealia,361.0,7.4,78.4,0.8
+tkpi_0009,"Beras ladang, mentah (Rice, raw)",Serealia,376.0,7.5,78.0,3.8
+tkpi_0010,"Beras menir, mentah (Rice, crushed, raw)",Serealia,362.0,7.7,73.0,4.4
+tkpi_0011,"Beras parboiled (Rice, parboiled)",Serealia,353.0,6.8,80.0,0.6
+tkpi_0012,"Beras tumbuk, mentah (Rice with husk, raw)",Serealia,354.0,7.8,79.9,0.4
+tkpi_0013,"Beras tumbuk merah, mentah (Rice, brown with husk, raw)",Serealia,352.0,7.3,76.2,0.9
+tkpi_0014,"Cantel, mentah (Sorghum, raw)",Serealia,366.0,11.0,73.0,3.3
+tkpi_0015,"Jagung muda, kuning, mentah (Corn,baby, yellow, raw)",Serealia,147.0,5.1,31.5,0.7
+tkpi_0016,"Jagung kuning pipil, kering, mentah (Corn, yellow, raw)",Serealia,366.0,9.8,69.1,7.3
+tkpi_0017,"Jagung pipil var. harapan, kering (Corn, dried, raw)",Serealia,367.0,6.2,76.2,5.1
+tkpi_0018,"Jagung pipil var. metro, kering (Corn, dried, raw)",Serealia,368.0,5.5,78.0,4.6
+tkpi_0019,"Jali, mentah (Job's tear/adlay, raw)",Serealia,324.0,11.0,61.0,4.0
+tkpi_0020,"Jawawut, mentah (Italian millet, raw)",Serealia,364.0,9.7,73.4,3.5
+tkpi_0021,"Jampang huma, mentah (Ragi millet, raw)",Serealia,350.0,6.2,78.2,1.4
+tkpi_0022,Nasi,Serealia,180.0,3.0,39.8,0.3
+tkpi_0023,"Nasi tim",Serealia,120.0,2.4,26.0,0.4
+tkpi_0024,"Tapai beras",Serealia,99.0,1.7,22.4,0.3
+tkpi_0025,"Tepung beras, mentah",Serealia,353.0,7.0,80.0,0.5
+tkpi_0026,"Nasi beras merah",Serealia,149.0,2.8,32.5,0.4
+tkpi_0027,"Bihun, mentah",Serealia,348.0,4.7,82.1,0.1
+tkpi_0028,"Bihun goreng instan",Serealia,381.0,6.1,80.3,3.9
+tkpi_0029,"Bihun Jagung, mentah",Serealia,354.0,0.5,87.4,0.3
+tkpi_0030,"Nasi jagung",Serealia,357.0,8.8,79.5,0.5
+tkpi_0031,"Jagung muda, rebus",Serealia,142.0,5.0,30.3,0.7
+tkpi_0032,"Jagung kuning, tepung",Serealia,355.0,9.2,73.7,3.9
+tkpi_0033,"Jagung kuning pipil, rebus",Serealia,154.0,3.8,28.4,3.5
+tkpi_0034,"Tepung jagung putih",Serealia,355.0,9.2,73.7,3.9
+tkpi_0035,"Ketupat ketan",Serealia,212.0,4.0,38.6,4.6
+tkpi_0036,"Ketan hitam, matang",Serealia,181.0,4.0,37.3,1.2
+tkpi_0037,"Tapai ketan hitam",Serealia,166.0,3.8,34.4,1.0
+tkpi_0038,"Ketan putih, matang",Serealia,163.0,3.0,35.7,0.4
+tkpi_0039,"Tapai ketan putih",Serealia,172.0,3.0,37.5,0.5
+tkpi_0040,"Maizena, tepung",Serealia,341.0,0.3,85.0,0.0
+tkpi_0041,"Makaroni, mentah",Serealia,353.0,8.7,78.7,0.4
+tkpi_0042,"Mi basah",Serealia,88.0,0.6,14.0,3.3
+tkpi_0043,"Mi kering",Serealia,339.0,10.0,6.3,1.7
+tkpi_0044,Misoa,Serealia,345.0,8.5,78.0,2.2
+tkpi_0045,"Roti putih",Serealia,248.0,8.0,50.0,1.2
+tkpi_0046,"Tepung terigu",Serealia,333.0,9.0,77.2,1.0
+tkpi_0047,"Amparan tatak",Serealia,191.0,1.3,34.0,5.5
+tkpi_0048,"Apang kukus, kue",Serealia,202.0,3.0,46.7,0.3
+tkpi_0049,"Apem, kue",Serealia,148.0,2.0,33.9,0.5
+tkpi_0050,Biskuit,Serealia,458.0,6.9,75.1,14.4
+tkpi_0051,"Bakpia, kue",Serealia,272.0,8.7,44.1,6.7
+tkpi_0052,Bakwan,Serealia,280.0,8.2,39.0,10.2
+tkpi_0053,Bantal,Serealia,190.0,3.3,43.5,0.3
+tkpi_0054,Baruasa,Serealia,417.0,6.5,79.3,8.2
+tkpi_0055,"Batar daan",Serealia,107.0,2.2,19.6,2.2
+tkpi_0056,"Bika ambon",Serealia,199.0,2.1,44.4,1.5
+tkpi_0057,Bingka,Serealia,273.0,5.3,39.1,10.6
+tkpi_0058,Bobengka,Serealia,225.0,5.3,45.2,2.6
+tkpi_0059,"Bolu peca",Serealia,197.0,3.3,35.6,4.6
+tkpi_0060,Brem,Serealia,249.0,3.4,58.0,0.4
+tkpi_0061,"Bubur tinotuan (Manado)",Serealia,156.0,2.3,15.6,0.2
+tkpi_0062,"Cake tape",Serealia,323.0,4.9,50.1,11.5
+tkpi_0063,Cangkuning,Serealia,204.0,2.8,31.4,7.5
+tkpi_0064,"Dodol bali",Serealia,298.0,3.7,65.9,2.1
+tkpi_0065,"Dodol galamai",Serealia,348.0,0.4,76.1,3.8
+tkpi_0066,"Dodol kedondong",Serealia,331.0,1.9,63.8,7.6
+tkpi_0067,"Dodol manado",Serealia,373.0,4.3,51.9,16.5
+tkpi_0068,"Emping beras",Serealia,403.0,10.6,85.3,2.2
+tkpi_0069,Gemblong,Serealia,274.0,1.7,55.5,5.4
+tkpi_0070,"Gendar goreng",Serealia,407.0,6.4,32.0,28.2
+tkpi_0071,"Intip goreng",Serealia,474.0,7.6,62.3,21.6
+tkpi_0072,"Jagung gerontol",Serealia,156.0,2.7,33.3,1.3
+tkpi_0073,"Jagung titi",Serealia,374.0,9.4,79.1,2.2
+tkpi_0074,Japilus,Serealia,500.0,1.2,67.3,25.1
+tkpi_0075,Kakicak,Serealia,296.0,3.4,36.7,15.1
+tkpi_0076,Kambose,Serealia,164.0,3.0,32.6,2.4
+tkpi_0077,Kapusa,Serealia,158.0,4.4,27.8,3.2
+tkpi_0078,"Keddo bodong",Serealia,290.0,4.6,55.2,5.7
+tkpi_0079,"Kelepon, kue",Serealia,215.0,3.7,41.8,3.7
+tkpi_0080,Kereput,Serealia,580.0,4.8,51.1,39.6
+tkpi_0081,Ketoprak,Serealia,153.0,7.9,13.0,7.7
+tkpi_0082,"Ketupat kandangan",Serealia,109.0,2.2,13.4,5.2
+tkpi_0083,Koya,Serealia,366.0,4.2,77.5,4.3
+tkpi_0084,"Koya mirasa",Serealia,370.0,8.0,82.2,1.0
+tkpi_0085,Koyabu,Serealia,241.0,3.4,47.2,4.3
+tkpi_0086,"Kue ali",Serealia,440.0,3.8,64.5,18.5
+tkpi_0087,"Kue bangen",Serealia,442.0,3.3,74.2,14.7
+tkpi_0088,"Kue gelang",Serealia,448.0,5.8,70.0,16.1
+tkpi_0089,"Kue jahe",Serealia,425.0,1.6,84.6,8.8
+tkpi_0090,"Kue kelapa",Serealia,591.0,5.6,47.5,42.1
+tkpi_0091,"Kue koa",Serealia,340.0,4.8,79.3,0.4
+tkpi_0092,"Kue ku temu",Serealia,214.0,3.5,49.6,0.2
+tkpi_0093,"Kue lumpur",Serealia,291.0,3.6,44.1,11.1
+tkpi_0094,"Kue pelita",Serealia,141.0,5.3,17.6,5.5
+tkpi_0095,"Kue putu cangkir",Serealia,304.0,5.3,54.9,7.0
+tkpi_0096,"Kue sus",Serealia,221.0,7.5,24.8,10.2
+tkpi_0097,"Kue timphan",Serealia,247.0,2.9,49.5,4.2
+tkpi_0098,"Laksa/Putu mayang",Serealia,121.0,1.7,21.1,3.4
+tkpi_0099,"Lapis legit",Serealia,389.0,6.6,55.5,15.7
+tkpi_0100,"Lupis ketan",Serealia,164.0,1.8,34.5,2.1
+tkpi_0101,"Manan samin",Serealia,379.0,3.4,50.6,18.1
+tkpi_0102,"Martabak india",Serealia,153.0,4.5,24.3,4.2
+tkpi_0103,"Martabak mesir",Serealia,278.0,5.1,45.0,8.6
+tkpi_0104,Masekat,Serealia,369.0,2.1,74.1,7.0
+tkpi_0105,"Mie aceh rebus",Serealia,113.0,3.0,18.1,3.2
+tkpi_0106,"Mie ayam",Serealia,102.0,6.2,10.5,3.9
+tkpi_0107,"Mie bakso",Serealia,114.0,5.3,16.4,3.0
+tkpi_0108,"Mie celon",Serealia,102.0,3.0,17.8,2.1
+tkpi_0109,"Mie pangsit basah",Serealia,105.0,5.9,9.4,4.9
+tkpi_0110,"Nasi gemuk",Serealia,192.0,3.8,24.4,8.8
+tkpi_0111,"Nasi gurih",Serealia,190.0,4.7,26.0,7.5
+tkpi_0112,"Nasi minyak",Serealia,207.0,3.5,37.1,5.0
+tkpi_0113,"Nasi rames",Serealia,155.0,10.3,19.1,4.2
+tkpi_0114,"Nopia spesial",Serealia,387.0,5.3,74.3,7.6
+tkpi_0115,Onde-onde,Serealia,336.0,4.0,57.9,9.8
+tkpi_0116,Padamaran,Serealia,171.0,3.9,18.8,8.9
+tkpi_0117,Pastel,Serealia,307.0,4.5,42.4,13.3
+tkpi_0118,Pulut,Serealia,216.0,2.6,44.4,3.1
+tkpi_0119,"Pundut nasi",Serealia,104.0,1.9,15.1,4.1
+tkpi_0120,"Putri hijau",Serealia,189.0,5.4,37.2,2.1
+tkpi_0121,"Putri selat",Serealia,163.0,2.2,23.8,6.5
+tkpi_0122,"Putu sopa",Serealia,215.0,3.3,41.1,4.1
+tkpi_0123,"Renggi goreng",Serealia,471.0,4.7,64.1,21.8
+tkpi_0124,"Roti boong",Serealia,341.0,5.5,43.3,16.2
+tkpi_0125,"Roti warna sawo matang",Serealia,249.0,7.9,49.7,1.5
+tkpi_0126,Sarimuka,Serealia,166.0,2.3,32.9,2.8
+tkpi_0127,Spaghetti,Serealia,139.0,7.4,22.6,2.1
+tkpi_0128,"Srikaya ketan",Serealia,265.0,2.7,49.1,6.4
+tkpi_0129,"Sunduk lawang",Serealia,181.0,1.9,32.4,1.3
+tkpi_0130,Suwir-suwir,Serealia,347.0,0.5,84.2,0.9
+tkpi_0131,Tipa-tipa,Serealia,355.0,6.2,79.8,1.2
+tkpi_0132,"Wajit camilan",Serealia,303.0,6.3,63.3,2.7
+tkpi_0133,Widaran,Serealia,424.0,1.3,80.7,10.7
+tkpi_0134,"Wingko babat",Serealia,355.0,3.2,51.4,15.1
+tkpi_0135,Yangko,Serealia,254.0,3.0,58.1,1.1
+tkpi_0136,"Arrowroot, segar (Arrowroot, fresh)","Umbi Berpati",102.0,1.0,24.1,0.2
+tkpi_0137,"Batatas gembili, segar (Lesser yam, fresh)","Umbi Berpati",76.0,1.1,16.0,0.9
+tkpi_0138,"Batatas kelapa, ubi, segar","Umbi Berpati",89.0,1.1,21.0,0.1
+tkpi_0139,"Belitung, talas, segar (Taro, belitung, steamed)","Umbi Berpati",145.0,1.2,34.2,0.4
+tkpi_0140,"Bengkuang, segar (Yam bean, fresh)","Umbi Berpati",59.0,1.4,12.8,0.2
+tkpi_0141,"Bentul (Komba), talas, segar (Taro, bentul, fresh)","Umbi Berpati",98.0,1.6,20.9,0.7
+tkpi_0142,"Gadeng/Gadung, kering (Asiatic bitter yam, fresh)","Umbi Berpati",322.0,2.4,76.6,0.6
+tkpi_0143,"Gadung, ubi, segar (Asiatic bitter yam, fresh)","Umbi Berpati",100.0,0.9,23.5,0.3
+tkpi_0144,"Ganyong, segar (Canna, fresh)","Umbi Berpati",77.0,0.6,18.4,0.2
+tkpi_0145,"Gembili, ubi, segar (Lesser yam, fresh)","Umbi Berpati",131.0,1.1,31.3,0.2
+tkpi_0146,"Hofa/Ubi hutan, segar","Umbi Berpati",127.0,1.2,29.5,0.5
+tkpi_0147,"Kaburan, ubi, segar (Lesser yam, fresh)","Umbi Berpati",133.0,1.0,32.2,0.2
+tkpi_0148,"Kentang, segar (Yam, fresh)","Umbi Berpati",62.0,2.1,13.5,0.2
+tkpi_0149,"Kentang hitam, segar (Madagascar potato, fresh)","Umbi Berpati",142.0,0.9,33.7,0.4
+tkpi_0150,"Keribang, ubi, segar","Umbi Berpati",137.0,1.3,29.8,1.1
+tkpi_0151,"Ketela pohon/ singkong, segar (Cassava, fresh)","Umbi Berpati",154.0,1.0,36.8,0.3
+tkpi_0152,"Lepok/Ubi rumput","Umbi Berpati",181.0,2.8,39.8,1.2
+tkpi_0153,"Sagu aren, kering (Sugar palm, dried)","Umbi Berpati",355.0,0.6,85.6,1.1
+tkpi_0154,"Sagu aren, segar (Sugar palm, fresh)","Umbi Berpati",231.0,0.6,56.6,0.2
+tkpi_0155,"Sagu kasbi segar (Cassava starch, fresh)","Umbi Berpati",230.0,0.6,56.5,0.2
+tkpi_0156,"Sagu lempeng (Sago palm)","Umbi Berpati",347.0,0.9,85.2,0.3
+tkpi_0157,"Sagu singkong, kering (Cassava, starch, dried)","Umbi Berpati",362.0,0.5,86.9,0.3
+tkpi_0158,"Sente, talas, segar (Giant taro, fresh)","Umbi Berpati",353.0,0.7,84.7,0.2
+tkpi_0159,"Suweg, talas, segar (Elephant yam)","Umbi Berpati",74.0,1.4,17.2,0.1
+tkpi_0160,"Talas bogor, segar (Taro, bogor, fresh)","Umbi Berpati",108.0,1.4,25.0,0.4
+tkpi_0161,"Talas pontianak, segar (Taro, pontianak, fresh)","Umbi Berpati",163.0,2.3,36.4,0.5
+tkpi_0162,"Talas viqueque, segar","Umbi Berpati",115.0,1.8,25.9,0.5
+tkpi_0163,"Ubi jalar, kuning, segar (Sweet potato, yellowish, fresh)","Umbi Berpati",119.0,0.5,25.1,0.4
+tkpi_0164,"Ubi jalar manis, segar (Cassava starch, fresh)","Umbi Berpati",83.0,1.5,18.8,0.2
+tkpi_0165,"Ubi jalar merah, segar (Sweet potato, redish, fresh)","Umbi Berpati",151.0,1.6,35.4,0.3
+tkpi_0166,"Ubi jalar putih, segar (Sweet potato, whitish, fresh)","Umbi Berpati",88.0,0.4,20.6,0.4
+tkpi_0167,"Ubi jalar tinta/ kemayung","Umbi Berpati",108.0,0.5,25.6,0.4
+tkpi_0168,"Umbi Uwi, segar","Umbi Berpati",120.0,2.8,82.3,0.5
+tkpi_0169,"Batatas kelapa, ubi, bakar","Umbi Berpati",110.0,1.4,23.4,1.1
+tkpi_0170,"Batatas kelapa, ubi, kukus","Umbi Berpati",92.0,1.2,21.0,0.3
+tkpi_0171,"Batatas tali, ubi, rebus","Umbi Berpati",182.0,2.4,42.2,0.4
+tkpi_0172,"Belitung, talas, kukus","Umbi Berpati",145.0,1.2,34.2,0.4
+tkpi_0173,"Bentul, talas, kukus","Umbi Berpati",71.0,2.3,15.4,0.3
+tkpi_0174,"Gadung, ubi, kukus","Umbi Berpati",88.0,0.6,20.9,0.3
+tkpi_0175,"Ganyong, rebus","Umbi Berpati",100.0,0.8,23.8,0.2
+tkpi_0176,"Ketela pohon/singkong kukus","Umbi Berpati",153.0,1.2,36.4,0.3
+tkpi_0177,"Suweg, talas, kukus","Umbi Berpati",93.0,1.5,21.9,0.1
+tkpi_0178,"Talas bogor, kukus","Umbi Berpati",120.0,1.5,28.2,0.3
+tkpi_0179,"Ubi jalar, kuning, kukus","Umbi Berpati",100.0,0.7,23.8,0.3
+tkpi_0180,"Ubi jalar tinta/ kemayung kukus","Umbi Berpati",165.0,0.9,39.8,0.2
+tkpi_0181,"Bagea kelapa asin","Umbi Berpati",450.0,3.2,78.1,13.9
+tkpi_0182,"Bagea kelapa manis","Umbi Berpati",452.0,1.3,80.6,13.8
+tkpi_0183,"Bagea kenari asin","Umbi Berpati",529.0,3.2,63.6,29.1
+tkpi_0184,"Bagea kenari manis","Umbi Berpati",523.0,3.2,64.2,28.2
+tkpi_0185,"Bagea kw 1","Umbi Berpati",416.0,6.5,76.3,9.4
+tkpi_0186,"Bagea kw 2","Umbi Berpati",382.0,0.3,87.2,3.5
+tkpi_0187,"Beras Cerdas","Umbi Berpati",350.0,2.7,82.3,1.1
+tkpi_0188,"Beras ganyong","Umbi Berpati",364.0,3.4,86.3,0.7
+tkpi_0189,"Beras Siger","Umbi Berpati",344.0,1.1,28.3,0.2
+tkpi_0190,"Biji nangka/Biji salak","Umbi Berpati",262.0,2.3,51.1,5.4
+tkpi_0191,"Bubur sagu","Umbi Berpati",167.0,0.2,33.0,4.0
+tkpi_0192,Cassavastick,"Umbi Berpati",460.0,0.8,17.2,18.7
+tkpi_0193,"Ceriping getuk singkong","Umbi Berpati",462.0,1.2,67.7,20.7
+tkpi_0194,Gatot,"Umbi Berpati",347.0,1.3,83.8,0.7
+tkpi_0195,Geblek,"Umbi Berpati",195.0,0.4,44.4,1.7
+tkpi_0196,"Getuk goreng","Umbi Berpati",360.0,1.3,74.3,6.4
+tkpi_0197,"Getuk singkong","Umbi Berpati",204.0,0.5,47.4,1.4
+tkpi_0198,Gurandil,"Umbi Berpati",218.0,0.5,48.5,2.5
+tkpi_0199,Kabuto,"Umbi Berpati",250.0,2.6,35.4,2.5
+tkpi_0200,Kapurung,"Umbi Berpati",41.0,2.0,7.8,0.3
+tkpi_0201,"Kecimpring singkong goreng","Umbi Berpati",464.0,1.2,73.0,18.6
+tkpi_0202,Keremes,"Umbi Berpati",475.0,1.6,64.4,25.2
+tkpi_0203,"Keripik gadung","Umbi Berpati",446.0,2.8,76.0,14.5
+tkpi_0204,"Keripik kentang","Umbi Berpati",448.0,2.7,67.1,18.8
+tkpi_0205,"Keripik singkong","Umbi Berpati",478.0,0.9,72.0,20.7
+tkpi_0206,"Keripik singkong berbumbu","Umbi Berpati",481.0,2.2,73.6,19.7
+tkpi_0207,"Keripik ubi","Umbi Berpati",486.0,0.2,67.6,23.9
+tkpi_0208,"Kerupuk cumi goreng","Umbi Berpati",444.0,6.9,71.3,14.6
+tkpi_0209,"Kerupuk kemplang (ikan) mentah","Umbi Berpati",325.0,1.8,78.5,0.4
+tkpi_0210,"Kerupuk kemplang goreng","Umbi Berpati",504.0,5.6,57.1,28.1
+tkpi_0211,"Kerupuk kemplang panggang","Umbi Berpati",356.0,9.7,76.9,1.1
+tkpi_0212,"Kerupuk mie kuning goreng","Umbi Berpati",476.0,0.1,71.3,21.1
+tkpi_0213,"Kerupuk udang goreng","Umbi Berpati",477.0,4.7,68.5,20.5
+tkpi_0214,"Kue bangket","Umbi Berpati",338.0,1.5,80.3,1.2
+tkpi_0215,"Kue putu singkong","Umbi Berpati",217.0,1.2,53.2,0.5
+tkpi_0216,"Lanting getuk","Umbi Berpati",422.0,0.9,80.4,10.8
+tkpi_0217,"Mi golosor","Umbi Berpati",71.0,0.2,15.9,0.8
+tkpi_0218,"Mie Bendo","Umbi Berpati",353.0,0.3,88.0,0.0
+tkpi_0219,"Mie Sagu","Umbi Berpati",190.0,0.2,46.5,0.4
+tkpi_0220,"Ongol-ongol sagu","Umbi Berpati",111.0,0.3,21.2,2.7
+tkpi_0221,Oyek,"Umbi Berpati",351.0,0.9,84.9,0.9
+tkpi_0222,Papeda,"Umbi Berpati",61.0,0.2,14.9,0.1
+tkpi_0223,"Rasbi (Beras Ubi)","Umbi Berpati",394.0,2.2,76.6,8.8
+tkpi_0224,"Rasi (Beras Singkong)","Umbi Berpati",350.0,0.9,85.7,0.4
+tkpi_0225,"Sagu forno","Umbi Berpati",291.0,0.5,63.4,4.0
+tkpi_0226,"Sagu Lemak (Kue Sagon)","Umbi Berpati",452.0,2.8,76.8,14.8
+tkpi_0227,"Sagu manis","Umbi Berpati",287.0,0.5,62.4,3.9
+tkpi_0228,"Sagu Rendang","Umbi Berpati",364.0,0.1,90.5,0.2
+tkpi_0229,"Sagu sinole","Umbi Berpati",354.0,0.8,68.9,8.3
+tkpi_0230,"Serimping talas kebumen","Umbi Berpati",478.0,2.5,69.2,21.2
+tkpi_0231,"Tapai singkong","Umbi Berpati",169.0,1.4,40.2,0.3
+tkpi_0232,"Tepung Arrowroot","Umbi Berpati",355.0,0.7,85.2,0.2
+tkpi_0233,"Tepung Ganyong","Umbi Berpati",353.0,0.8,83.6,1.7
+tkpi_0234,"Tepung Gaplek","Umbi Berpati",345.0,2.4,83.1,0.4
+tkpi_0235,"Tepung kentang, kering","Umbi Berpati",347.0,0.3,85.6,0.1
+tkpi_0236,"Tepung Mocaf","Umbi Berpati",350.0,1.2,85.0,0.6
+tkpi_0237,"Tepung Sente","Umbi Berpati",326.0,4.0,76.7,0.4
+tkpi_0238,"Tepung singkong/ Tapioka","Umbi Berpati",363.0,1.1,88.2,0.5
+tkpi_0239,"Tepung Tales Beneng","Umbi Berpati",332.0,5.7,76.1,0.6
+tkpi_0240,"Tepung Ubi Ungu","Umbi Berpati",354.0,2.8,84.4,0.6
+tkpi_0241,Tiwul,"Umbi Berpati",353.0,2.4,83.4,1.1
+tkpi_0242,"Tiwul Instan","Umbi Berpati",395.0,3.2,76.5,8.5
+tkpi_0243,"Ubi Cilembu","Umbi Berpati",186.0,1.9,44.3,0.2
+tkpi_0244,"Uli batatas","Umbi Berpati",150.0,1.1,27.4,4.0
+tkpi_0245,"Kacang arab, kering (Chick pea, raw)",Kacang-Kacangan,330.0,23.8,60.2,1.4
+tkpi_0246,"Kacang babi, kering (Broad bean, raw)",Kacang-Kacangan,341.0,30.4,51.3,3.2
+tkpi_0247,"Kacang belimbing (kecipir), kering (Winged bean, seed, raw)",Kacang-Kacangan,400.0,34.4,34.1,16.9
+tkpi_0248,"Kacang beracun, segar",Kacang-Kacangan,118.0,4.4,21.6,1.5
+tkpi_0249,"Kacang bogor, kering (Bambara groundnut, dried)",Kacang-Kacangan,370.0,16.0,65.0,6.0
+tkpi_0250,"Kacang bogor, segar (Bambara groundnut, fresh)",Kacang-Kacangan,165.0,7.7,27.4,3.1
+tkpi_0251,"Kacang endel, biji, kering",Kacang-Kacangan,331.0,25.0,58.0,1.0
+tkpi_0252,"Kacang ercis, segar (Pea)",Kacang-Kacangan,129.0,12.4,18.3,0.7
+tkpi_0253,"kacang galing, segar",Kacang-Kacangan,336.0,23.1,59.5,1.7
+tkpi_0254,"Kacang gude, biji, kering (Pigeon pea, fresh)",Kacang-Kacangan,316.0,20.7,58.0,1.0
+tkpi_0255,"Kacang gude, biji, segar (Pigeon pea, raw)",Kacang-Kacangan,114.0,7.0,20.8,0.6
+tkpi_0256,"Kacang hijau var. bakti, kering (Mung bean, raw)",Kacang-Kacangan,350.0,17.1,70.7,1.8
+tkpi_0257,"Kacang hijau var. siwalik, kering (Mung bean, raw)",Kacang-Kacangan,339.0,20.8,64.6,2.1
+tkpi_0258,"Kacang hijau, kering (Mung bean, raw)",Kacang-Kacangan,323.0,22.9,56.8,1.5
+tkpi_0259,"Kacang hitam, kering (Black turtle bean, raw)",Kacang-Kacangan,346.0,16.6,66.1,1.7
+tkpi_0260,"Kacang kapri, segar (Pea)",Kacang-Kacangan,98.0,6.7,17.7,0.4
+tkpi_0261,"Kacang kedelai, kering (Soya bean, dried)",Kacang-Kacangan,381.0,40.4,24.9,16.7
+tkpi_0262,"Kacang kedelai, segar (Soya bean, fresh)",Kacang-Kacangan,286.0,30.2,30.1,15.6
+tkpi_0263,"Kacang kincai, kering",Kacang-Kacangan,444.0,19.9,55.0,16.0
+tkpi_0264,"Kacang komak, segar (Hyacinth bean, fresh)",Kacang-Kacangan,327.0,16.4,55.8,4.3
+tkpi_0265,"Kacang kuning, kering (Soya bean)",Kacang-Kacangan,355.0,17.0,66.0,2.5
+tkpi_0266,"Kacang lebui /iris, kering (Pigeon pea, raw)",Kacang-Kacangan,346.0,16.5,66.6,1.5
+tkpi_0267,"Kacang mentega, kering (Peanut butter fruit, fresh)",Kacang-Kacangan,344.0,16.7,64.6,2.1
+tkpi_0268,"Kacang merah /banda, kering (Kidney bean, dried)",Kacang-Kacangan,350.0,13.9,66.9,3.0
+tkpi_0269,"Kacang merah tua, kering (Dark red kidney bean, dried)",Kacang-Kacangan,280.0,16.7,63.2,1.6
+tkpi_0270,"Kacang merah, kering (Kidney bean, kering)",Kacang-Kacangan,314.0,22.1,56.2,1.1
+tkpi_0271,"Kacang merah, segar (Kidney bean, fresh)",Kacang-Kacangan,171.0,11.0,28.0,2.2
+tkpi_0272,"Kacang mete/biji jambu monyet, segar (Cashew nut, mentah)",Kacang-Kacangan,616.0,16.3,28.7,48.4
+tkpi_0273,"Kacang panjang, biji, kering (Yardlong bean, seeded, dried)",Kacang-Kacangan,357.0,17.3,68.6,1.5
+tkpi_0274,"Kacang tanah sangan (Groundnut, baked)",Kacang-Kacangan,560.0,29.5,24.1,43.0
+tkpi_0275,"Kacang tanah sangan tanpa selaput (Groundnut, baked without husk)",Kacang-Kacangan,559.0,26.9,23.6,44.2
+tkpi_0276,"Kacang tanah, kering (Groundnut, dried)",Kacang-Kacangan,525.0,27.9,17.4,42.7
+tkpi_0277,"Kacang tolo / tunggak, kering (Cowpea, dried)",Kacang-Kacangan,331.0,24.4,56.6,1.9
+tkpi_0278,"Kacang tunis, kering",Kacang-Kacangan,351.0,12.2,72.9,1.2
+tkpi_0279,"Kacang uci, kering",Kacang-Kacangan,358.0,23.4,60.6,2.4
+tkpi_0280,"Kacang urei, kering (Rice bean )",Kacang-Kacangan,354.0,12.8,69.3,1.8
+tkpi_0281,"Kenari banda, kering (Walnut, banda, dried)",Kacang-Kacangan,616.0,13.9,13.7,56.2
+tkpi_0282,"Kenari, kering (Walnut, dried)",Kacang-Kacangan,657.0,15.0,13.0,66.0
+tkpi_0283,"Komak polong, segar (Hyacinth bean)",Kacang-Kacangan,99.0,3.3,21.2,0.1
+tkpi_0284,"Koro andong, kering (Jack bean, dried)",Kacang-Kacangan,356.0,20.5,61.6,4.1
+tkpi_0285,"Koro benguk, biji, kering (Hyacinth bean, seaded,dried)",Kacang-Kacangan,332.0,24.0,55.0,3.0
+tkpi_0286,"Koro kerupuk, biji, segar (Hyacinth bean, seeded, fresh)",Kacang-Kacangan,125.0,8.3,22.1,0.7
+tkpi_0287,"Koro loke, biji, segar",Kacang-Kacangan,33.0,2.7,7.9,0.2
+tkpi_0288,"Koro roay, kering (Lima bean, dried)",Kacang-Kacangan,344.0,12.5,69.4,2.1
+tkpi_0289,"Koro wedus, biji, kering (Hyacinth bean)",Kacang-Kacangan,338.0,22.2,61.0,1.5
+tkpi_0290,"Lamtoro biji, muda, segar (White leadtree, inmature, fresh)",Kacang-Kacangan,85.0,5.7,15.4,0.3
+tkpi_0291,"Lamtoro biji, tua, segar (White leadtree, mature, fresh)",Kacang-Kacangan,148.0,10.6,26.2,0.5
+tkpi_0292,"Lamtoro var. gung tanpa kulit (White leadtree)",Kacang-Kacangan,367.0,46.4,32.5,5.4
+tkpi_0293,"Lamtoro var. lokal dengan kulit (White leadtree)",Kacang-Kacangan,336.0,23.8,59.7,1.2
+tkpi_0294,"Nangka, biji, segar (Jackfruit, seed, fresh)",Kacang-Kacangan,165.0,4.2,36.7,0.1
+tkpi_0295,"Saga merah terkupas, kering (Red sandalwood, peeled)",Kacang-Kacangan,449.0,30.6,31.9,25.5
+tkpi_0296,"Wijen, kering (Sesame seed)",Kacang-Kacangan,568.0,19.3,18.1,51.1
+tkpi_0297,"Kacang belimbing, rebus",Kacang-Kacangan,204.0,16.9,17.5,8.8
+tkpi_0298,"Kacang bogor, goreng",Kacang-Kacangan,479.0,12.7,58.9,23.2
+tkpi_0299,"Kacang bogor, rebus",Kacang-Kacangan,161.0,7.7,27.1,2.8
+tkpi_0300,"Kacang gude, rebus",Kacang-Kacangan,147.0,9.0,27.5,0.5
+tkpi_0301,"kacang hijau, rebus",Kacang-Kacangan,109.0,8.7,18.3,0.5
+tkpi_0302,"Kacang kedelai, goreng",Kacang-Kacangan,521.0,32.2,22.9,37.7
+tkpi_0303,"Kacang kedelai, rebus",Kacang-Kacangan,189.0,20.2,12.7,8.2
+tkpi_0304,"Kacang merah kering, rebus",Kacang-Kacangan,158.0,10.3,28.2,0.9
+tkpi_0305,"Kacang merah segar, rebus",Kacang-Kacangan,144.0,10.0,24.7,1.0
+tkpi_0306,"Kacang mete/biji jambu monyet, goreng",Kacang-Kacangan,629.0,20.4,19.8,56.3
+tkpi_0307,"Kacang tanah rebus dg kulit",Kacang-Kacangan,360.0,13.5,12.8,31.2
+tkpi_0308,"Kacang tanah, goreng",Kacang-Kacangan,564.0,25.5,25.5,44.4
+tkpi_0309,"Kacang tanah, rebus",Kacang-Kacangan,220.0,10.6,8.0,18.0
+tkpi_0310,"Kacang tolo, rebus",Kacang-Kacangan,138.0,10.7,22.6,1.1
+tkpi_0311,"Ampas kacang hijau",Kacang-Kacangan,96.0,3.7,19.1,0.6
+tkpi_0312,"Ampas tahu, mentah",Kacang-Kacangan,67.0,5.0,8.1,2.1
+tkpi_0313,"Ampas tahu kukus",Kacang-Kacangan,75.0,4.1,10.7,2.1
+tkpi_0314,"Ampas tahu, kering",Kacang-Kacangan,414.0,26.6,41.3,18.3
+tkpi_0315,"Pepea oncom ampas tahu",Kacang-Kacangan,76.0,5.2,10.6,1.8
+tkpi_0316,"Bungkil biji karet",Kacang-Kacangan,333.0,29.3,50.0,3.3
+tkpi_0317,"Bungkil kacang tanah",Kacang-Kacangan,336.0,37.4,30.5,13.0
+tkpi_0318,"Bungkil kelapa",Kacang-Kacangan,368.0,23.0,40.0,15.0
+tkpi_0319,"Dodol banjarmasin",Kacang-Kacangan,368.0,2.6,70.0,8.6
+tkpi_0320,"Emping (kerupuk melinjo)",Kacang-Kacangan,345.0,12.0,71.5,1.5
+tkpi_0321,"Emping komak",Kacang-Kacangan,355.0,17.8,60.7,4.6
+tkpi_0322,"Enting-enting gepuk hello kity",Kacang-Kacangan,538.0,13.6,52.6,30.3
+tkpi_0323,"Enting-enting gepuk kacang tanah",Kacang-Kacangan,524.0,13.3,52.0,29.2
+tkpi_0324,"Enting-enting wijen",Kacang-Kacangan,565.0,18.2,36.8,38.4
+tkpi_0325,Geplak,Kacang-Kacangan,350.0,1.4,53.6,14.4
+tkpi_0326,"Geplak jahe",Kacang-Kacangan,462.0,3.1,57.7,24.4
+tkpi_0327,"Kacang atom",Kacang-Kacangan,533.0,27.8,28.8,38.1
+tkpi_0328,"Kacang goyang",Kacang-Kacangan,516.0,14.7,44.4,31.1
+tkpi_0329,"Kacang negara",Kacang-Kacangan,480.0,18.4,58.5,19.1
+tkpi_0330,"Kacang sukro",Kacang-Kacangan,484.0,8.8,57.7,26.1
+tkpi_0331,"Kacang tanah sari",Kacang-Kacangan,561.0,25.5,26.0,43.8
+tkpi_0332,"Keju kacang tanah (peanut butter)",Kacang-Kacangan,590.0,27.0,20.9,49.0
+tkpi_0333,"Kembang tahu",Kacang-Kacangan,380.0,48.9,23.3,13.8
+tkpi_0334,"Kembang tahu rebus",Kacang-Kacangan,90.0,10.7,4.7,4.0
+tkpi_0335,"Keripik oncom",Kacang-Kacangan,598.0,8.3,42.6,43.8
+tkpi_0336,"Keripik tempe",Kacang-Kacangan,581.0,12.1,41.7,40.6
+tkpi_0337,"Keripik tempe abadi besar",Kacang-Kacangan,556.0,15.8,39.8,37.1
+tkpi_0338,"Keripik tempe abadi murni",Kacang-Kacangan,542.0,40.3,11.6,42.4
+tkpi_0339,"Keripik tempe abadi sedang",Kacang-Kacangan,510.0,12.3,52.4,27.9
+tkpi_0340,"Keripik tempe abadi telur",Kacang-Kacangan,529.0,20.8,40.2,31.7
+tkpi_0341,"Kerupik tempe abadi prima",Kacang-Kacangan,540.0,16.7,42.0,33.9
+tkpi_0342,Kwaci,Kacang-Kacangan,515.0,30.6,13.8,42.1
+tkpi_0343,"Melinjo emping tebal goreng manis",Kacang-Kacangan,439.0,10.0,65.7,16.4
+tkpi_0344,"Melinjo emping tebal, goreng asin",Kacang-Kacangan,431.0,11.1,63.0,16.2
+tkpi_0345,"Melinjo emping tipis goreng",Kacang-Kacangan,485.0,11.5,59.1,24.5
+tkpi_0346,"Moon tahu",Kacang-Kacangan,128.0,8.0,1.3,10.0
+tkpi_0347,Oncom,Kacang-Kacangan,187.0,13.0,22.6,6.0
+tkpi_0348,"Oncom ampas kacang hijau",Kacang-Kacangan,376.0,14.9,65.7,6.0
+tkpi_0349,"Oncom kacang hijau + singkong",Kacang-Kacangan,351.0,11.0,65.9,5.3
+tkpi_0350,"Oncom kacang tanah pepes",Kacang-Kacangan,132.0,12.7,13.7,3.8
+tkpi_0351,"Rempeyek kacang tanah",Kacang-Kacangan,513.0,17.5,44.3,32.5
+tkpi_0352,"Rempeyek kacang tolo",Kacang-Kacangan,451.0,11.2,59.7,20.2
+tkpi_0353,"Rempeyek kacang uci",Kacang-Kacangan,497.0,17.0,50.8,27.6
+tkpi_0354,"Sayur lebui",Kacang-Kacangan,64.0,2.1,12.5,0.6
+tkpi_0355,"Saridele, bubuk",Kacang-Kacangan,344.0,30.0,43.0,20.0
+tkpi_0356,"Susu kedelai",Kacang-Kacangan,41.0,3.5,5.0,2.5
+tkpi_0357,"Tahu, mentah",Kacang-Kacangan,80.0,10.9,0.8,4.7
+tkpi_0358,"Tahu goreng",Kacang-Kacangan,115.0,9.7,2.5,8.5
+tkpi_0359,"Tahu telur",Kacang-Kacangan,328.0,12.6,24.6,19.9
+tkpi_0360,Takwa,Kacang-Kacangan,148.0,13.8,4.0,8.5
+tkpi_0361,Tauco,Kacang-Kacangan,184.0,11.4,22.2,5.5
+tkpi_0362,"Tauco cap beruang, cake",Kacang-Kacangan,347.0,7.4,67.6,5.2
+tkpi_0363,"Tauco cap DAS, cake",Kacang-Kacangan,358.0,7.5,70.4,4.3
+tkpi_0364,"Tauco cap meong",Kacang-Kacangan,159.0,7.4,21.3,4.9
+tkpi_0365,"Tauji cap singa",Kacang-Kacangan,277.0,9.1,49.6,4.7
+tkpi_0366,"Tempe bongkrek",Kacang-Kacangan,119.0,4.4,18.3,3.5
+tkpi_0367,"Tempe gembus P3G",Kacang-Kacangan,73.0,5.7,10.3,1.3
+tkpi_0368,"Tempe gembus yogya",Kacang-Kacangan,76.0,6.8,10.6,0.7
+tkpi_0369,"Tempe kacang babi",Kacang-Kacangan,139.0,12.5,21.9,0.8
+tkpi_0370,"Tempe kacang belimbing",Kacang-Kacangan,212.0,17.5,12.9,10.0
+tkpi_0371,"Tempe kedelai + jagung",Kacang-Kacangan,143.0,12.0,11.4,5.5
+tkpi_0372,"Tempe kedelai murni, goreng",Kacang-Kacangan,350.0,24.5,10.4,26.6
+tkpi_0373,"Tempe kedelai murni, mentah",Kacang-Kacangan,201.0,20.8,13.5,8.8
+tkpi_0374,"Tempe koro benguk",Kacang-Kacangan,141.0,10.2,23.2,1.3
+tkpi_0375,"Tempe lamtoro",Kacang-Kacangan,128.0,10.7,21.3,0.5
+tkpi_0376,"Tempe lamtoro var. gung dengan kulit",Kacang-Kacangan,146.0,11.7,19.6,2.3
+tkpi_0377,"Tempe lamtoro var. gung tanpa kulit",Kacang-Kacangan,131.0,18.0,13.0,0.8
+tkpi_0378,"Tempe pasar",Kacang-Kacangan,150.0,14.0,9.1,7.7
+tkpi_0379,"Tempe pasar goreng",Kacang-Kacangan,336.0,20.0,7.8,28.0
+tkpi_0380,"Tepung hunkwe (pati kacang ijo)",Kacang-Kacangan,364.0,4.5,83.5,1.0
+tkpi_0381,"Tepung Jalejo",Kacang-Kacangan,388.0,19.0,61.2,7.5
+tkpi_0382,"Tepung kacang kedelai",Kacang-Kacangan,347.0,35.9,29.9,20.6
+tkpi_0383,"Akar tonjong, segar (Lotus root, fresh)",Sayuran,45.0,1.1,10.8,0.4
+tkpi_0384,"Ale,toge, segar",Sayuran,37.0,4.4,3.8,0.5
+tkpi_0385,"Andaliman, segar",Sayuran,99.0,4.6,18.0,1.0
+tkpi_0386,"Andewi, segar (Endive, fresh)",Sayuran,226.0,1.6,5.3,0.2
+tkpi_0387,"Bakung, segar (Welsh onion, fresh)",Sayuran,27.0,2.0,4.2,0.2
+tkpi_0388,"Baligo, segar (Wax gourd)",Sayuran,15.0,0.4,3.0,0.2
+tkpi_0389,"Bawang bombay, segar (Onion, fresh)",Sayuran,43.0,1.4,10.3,0.2
+tkpi_0390,"Bayam, segar (Spinach, fresh)",Sayuran,16.0,0.9,2.9,0.4
+tkpi_0391,"Bayam merah, segar (Spinach, red, fresh)",Sayuran,41.0,2.2,6.3,0.8
+tkpi_0392,"Bit, segar (Beet, fresh)",Sayuran,41.0,1.6,9.6,0.1
+tkpi_0393,"Buah kelor (West Indian bean, fruit)",Sayuran,38.0,1.5,7.5,0.2
+tkpi_0394,"Buah merah (Red fruit)",Sayuran,87.0,2.6,13.1,2.7
+tkpi_0395,"Buncis, segar (Green bean, fresh)",Sayuran,34.0,2.4,7.2,0.3
+tkpi_0396,"Bunga pepaya, segar (Papaya, flower, fresh)",Sayuran,45.0,2.6,8.1,0.3
+tkpi_0397,"Bunga turi, segar (Hummingbird tree)",Sayuran,42.0,2.0,6.1,1.1
+tkpi_0398,"Caisin, segar (Caisin, fresh)",Sayuran,20.0,1.7,3.4,0.4
+tkpi_0399,"Daun bangun-bangun, segar",Sayuran,27.0,1.3,4.0,0.6
+tkpi_0400,"Daun bawang merah, segar (Shallot, leaf, fresh)",Sayuran,41.0,2.0,7.8,0.3
+tkpi_0401,"Daun bebuas, segar",Sayuran,41.0,2.7,7.3,1.0
+tkpi_0402,"Daun belem, segar",Sayuran,50.0,4.4,7.8,1.4
+tkpi_0403,"Daun bluntas, segar",Sayuran,44.0,1.8,9.4,0.5
+tkpi_0404,"Daun gandaria, segar (Gandaria, leaf, fresh)",Sayuran,63.0,3.1,14.0,0.3
+tkpi_0405,"Daun gedi besar, segar (Aibika, sunset hibiscus, big, fresh)",Sayuran,58.0,2.9,10.0,0.7
+tkpi_0406,"Daun gedi kecil, segar (Aibika, sunset hibiscus, small, fresh)",Sayuran,61.0,3.2,10.4,0.7
+tkpi_0407,"Daun gelang, segar (Purslane, leaf, fresh)",Sayuran,30.0,1.3,5.8,0.7
+tkpi_0408,"Daun gunda bali, segar",Sayuran,50.0,4.6,7.0,0.9
+tkpi_0409,"Daun gunda serang, segar",Sayuran,62.0,4.2,9.2,0.9
+tkpi_0410,"Daun jambu mete muda, segar (Cashew Leaf, young, fresh)",Sayuran,78.0,4.6,16.2,0.5
+tkpi_0411,"Daun jampang, segar",Sayuran,34.0,3.8,5.3,0.5
+tkpi_0412,"Daun jawaw seluang, segar",Sayuran,93.0,5.0,15.3,1.3
+tkpi_0413,"Daun jonghe, segar (Sow thistle, fresh)",Sayuran,27.0,2.1,4.4,0.7
+tkpi_0414,"Daun kacang ma, segar",Sayuran,36.0,2.9,6.8,0.6
+tkpi_0415,"Daun kacang panjang, segar (Yard-long bean, leaf, fresh)",Sayuran,30.0,3.1,5.8,0.3
+tkpi_0416,"Daun kasbi/singkong karet, segar (Ceara rubber tree,fresh)",Sayuran,92.0,4.0,10.9,3.6
+tkpi_0417,"Daun katuk, segar (Star goose berry, leaf, fresh)",Sayuran,59.0,6.4,9.9,1.0
+tkpi_0418,"Daun kecipir, segar (Winged bean, leaf, fresh)",Sayuran,52.0,5.0,8.5,0.5
+tkpi_0419,"Daun kedondong, segar (Ambarella, leaf, fresh)",Sayuran,59.0,3.5,13.4,0.3
+tkpi_0420,"Daun kelor, segar (Drumstick tree, leaf, fresh)",Sayuran,92.0,5.1,14.3,1.6
+tkpi_0421,"Daun kemang, segar (Kemang, leaf, fresh)",Sayuran,43.0,5.5,7.5,0.3
+tkpi_0422,"Daun kenikir, segar (Cosmos, leaf, fresh)",Sayuran,45.0,3.7,6.6,0.5
+tkpi_0423,"Daun kesum, segar (Garlic, leaf, fresh)",Sayuran,48.0,4.5,9.1,0.8
+tkpi_0424,"Daun kol sawi, segar (Indian mustard, fresh)",Sayuran,22.0,2.1,3.6,0.5
+tkpi_0425,"Daun koro, segar",Sayuran,23.0,3.0,3.7,0.3
+tkpi_0426,"Daun kubis, segar (Cabbage, fresh)",Sayuran,51.0,2.5,8.0,1.1
+tkpi_0427,"Daun kumak, segar (hyacinthbean, leaf, fresh)",Sayuran,14.0,1.3,2.3,0.3
+tkpi_0428,"Daun labu siam, segar (Chayote, fresh)",Sayuran,34.0,4.0,4.7,0.4
+tkpi_0429,"Daun labu waluh/kuning, segar (Pumkin, fresh)",Sayuran,34.0,3.6,4.5,0.6
+tkpi_0430,"Daun lamtoro, segar (Leucaena, leaf, fresh)",Sayuran,87.0,8.3,14.4,1.8
+tkpi_0431,"Daun leilem, segar",Sayuran,76.0,2.8,15.8,0.2
+tkpi_0432,"Daun leunca, segar (Glossy nightshde, fresh)",Sayuran,49.0,4.7,8.1,0.5
+tkpi_0433,"Daun lobak, segar (Radish, leaf, fresh)",Sayuran,30.0,2.3,5.8,0.4
+tkpi_0434,"Daun lompong talas, segar (Taro, leaf, fresh)",Sayuran,44.0,3.0,7.4,0.8
+tkpi_0435,"Daun mangkokan, segar",Sayuran,57.0,3.7,11.8,0.3
+tkpi_0436,"Daun matel ambon, segar",Sayuran,71.0,6.8,11.5,1.6
+tkpi_0437,"Daun melinjo, segar (Spanish joint fir, leaf, fresh)",Sayuran,104.0,5.0,21.3,1.3
+tkpi_0438,"Daun mengkudu, segar (Noni, leaf, fresh)",Sayuran,65.0,4.0,11.4,1.7
+tkpi_0439,"Daun ndusuk, segar",Sayuran,166.0,1.7,38.8,0.5
+tkpi_0440,"Daun oyong, segar (Angled loofah, leaf, fresh)",Sayuran,22.0,1.0,5.3,0.1
+tkpi_0441,"Daun pakis, segar (Fern, leaf, fresh)",Sayuran,39.0,4.5,6.9,0.4
+tkpi_0442,"Daun pakis longgiho, segar (Fern,longiho, leaf, fresh)",Sayuran,54.0,2.2,3.1,3.6
+tkpi_0443,"Daun pakis wambateu, segar (Fern, wambateu, leaf fresh)",Sayuran,53.0,3.4,7.2,1.2
+tkpi_0444,"Daun paku, segar (Fern, paku, leaf fresh)",Sayuran,29.0,3.4,6.5,0.1
+tkpi_0445,"Daun pangi,segar (Kepayang (Malay), leaf, fresh)",Sayuran,104.0,3.9,17.9,0.6
+tkpi_0446,"Daun pare, segar (Bitter guard, leaf, fresh)",Sayuran,49.0,2.7,8.4,1.0
+tkpi_0447,"Daun pepaya, segar (Papaya, leaf, fresh)",Sayuran,87.0,8.0,11.9,2.0
+tkpi_0448,"Daun pohpohan, segar (Pilea, leaf, fresh)",Sayuran,37.0,2.5,6.9,0.8
+tkpi_0449,"Daun selasih, segar (Hoary basil, leaf, fresh)",Sayuran,62.0,4.0,10.5,0.5
+tkpi_0450,"Daun semanggi, segar",Sayuran,45.0,4.4,8.5,0.5
+tkpi_0451,"Daun simpur, segar",Sayuran,53.0,3.2,7.6,2.5
+tkpi_0452,"Daun singkil, segar",Sayuran,68.0,2.0,15.2,1.0
+tkpi_0453,"Daun singkong, segar (Casava, leaf, fresh)",Sayuran,50.0,6.2,7.1,1.1
+tkpi_0454,"Daun singkong ambon, segar (Casava, ambon, leaf, fresh)",Sayuran,144.0,12.7,25.2,1.2
+tkpi_0455,"Daun singkong ampenan, segar (Casava, ampenan, leaf, fresh)",Sayuran,50.0,6.2,7.1,1.1
+tkpi_0456,"Daun singkong kopang, segar (Casava, kopang, leaf, fresh)",Sayuran,74.0,6.3,10.7,0.7
+tkpi_0457,"Daun sintrong, segar",Sayuran,36.0,2.6,6.1,0.9
+tkpi_0458,"Daun talas, segar (Taro, leaf, fresh)",Sayuran,59.0,3.0,13.5,0.4
+tkpi_0459,"Daun tespong, segar (Water dropwort, fresh)",Sayuran,70.0,2.9,13.9,0.3
+tkpi_0460,"Daun ubi kuning, segar (Sweet potato, yeallowish, leaf, fresh)",Sayuran,62.0,3.7,11.1,0.3
+tkpi_0461,"Daun ubi merah, segar (Sweet potato, redish, leaf, freah)",Sayuran,48.0,3.0,10.8,0.3
+tkpi_0462,"Daun ubi putih, segar (Sweet potato, whitish, leaf, fresh)",Sayuran,46.0,2.8,8.2,0.2
+tkpi_0463,"Daun ubi tinta, segar (Sweet potato, purpleish, leaf, fresh)",Sayuran,55.0,1.7,11.9,0.1
+tkpi_0464,"Eceng, segar",Sayuran,19.0,1.0,3.8,0.2
+tkpi_0465,"Gambas (oyong), segar (Angled loofah, fresh)",Sayuran,19.0,0.8,4.1,0.2
+tkpi_0466,"Genjer, segar (Sawah lettuce, fresh)",Sayuran,35.0,1.7,7.7,0.2
+tkpi_0467,"Jagung muda / semi, segar (Baby corn, fresh)",Sayuran,35.0,2.2,7.4,0.1
+tkpi_0468,"Jamur encik",Sayuran,296.0,9.4,62.0,1.1
+tkpi_0469,"Jamur kuping, kering (fungus, earwood, dried)",Sayuran,294.0,16.0,64.6,0.9
+tkpi_0470,"Jamur kuping, segar (fungus, earwod, fresh)",Sayuran,21.0,3.8,0.9,0.6
+tkpi_0471,"Jamur merang, segar (Straw mushroom)",Sayuran,30.0,3.5,4.0,0.2
+tkpi_0472,"Jamur tiram, segar (Oyster mushroom)",Sayuran,30.0,1.9,5.5,0.1
+tkpi_0473,"Jamur sagu",Sayuran,48.0,1.9,2.8,3.2
+tkpi_0474,"Jantung pisang, segar (Banana, flower, fresh)",Sayuran,32.0,1.2,7.1,0.3
+tkpi_0475,"Jengkol, segar (Dogfruit, fresh)",Sayuran,192.0,5.4,40.7,0.3
+tkpi_0476,"Jotang, segar",Sayuran,34.0,1.9,7.1,0.3
+tkpi_0477,"Kabau, segar",Sayuran,130.0,6.7,25.2,0.3
+tkpi_0478,"Kacang mekah, polong, segar (Sword bean, fresh)",Sayuran,22.0,1.1,3.4,1.0
+tkpi_0479,"Kacang panjang, segar (Yard-long bean, fresh)",Sayuran,31.0,2.3,5.3,0.1
+tkpi_0480,"Kacang ranti polong",Sayuran,37.0,3.1,7.9,0.2
+tkpi_0481,"Kalakai, segar",Sayuran,38.0,2.4,6.6,0.2
+tkpi_0482,"Kangkung, segar (Kangkong, fresh)",Sayuran,28.0,3.4,3.9,0.7
+tkpi_0483,"Kangkung tondano (Kangkong, (tondano), fresh)",Sayuran,43.0,1.8,8.4,0.2
+tkpi_0484,"Kapri muda, segar (Pease, fresh)",Sayuran,45.0,3.3,9.0,0.2
+tkpi_0485,Karawila,Sayuran,25.0,2.3,3.5,0.2
+tkpi_0486,"Kecipir muda, segar (Winged bean, fresh)",Sayuran,32.0,2.9,5.8,0.2
+tkpi_0487,"Kecombrang, segar (Red ginger lily, fresh)",Sayuran,34.0,0.9,6.7,1.0
+tkpi_0488,"Kelawi,kluwih, segar (Breadfruit, fresh)",Sayuran,118.0,1.5,27.2,0.3
+tkpi_0489,"Kembang turi, segar",Sayuran,51.0,1.8,9.6,0.6
+tkpi_0490,"Kerokot, segar",Sayuran,26.0,1.7,3.8,0.4
+tkpi_0491,"Ketimun, segar (Cucumber, fresh)",Sayuran,8.0,0.2,1.4,0.2
+tkpi_0492,"Ketimun krai, segar (Cucumber (krai), fresh)",Sayuran,10.0,0.5,2.0,0.2
+tkpi_0493,"Ketimun madura, segar (Cucumber (madura), fresh)",Sayuran,9.0,0.5,1.9,0.1
+tkpi_0494,"Komak, segar (Hyacinth bean, fresh)",Sayuran,99.0,3.3,21.2,0.1
+tkpi_0495,"Kool kembang (Cauliflower, fresh/white headed cabbage, fresh)",Sayuran,25.0,2.4,4.9,0.2
+tkpi_0496,"Kool merah,kool putih (Cabbage, fresh)",Sayuran,29.0,1.4,5.3,0.2
+tkpi_0497,"Koro kerupuk, polong (Lablab, hyacinth bean)",Sayuran,128.0,8.3,22.1,0.7
+tkpi_0498,"Koro wedus, polong",Sayuran,46.0,3.0,7.9,0.3
+tkpi_0499,"Kucai, segar (Chinese chives, fresh)",Sayuran,45.0,2.2,10.3,0.3
+tkpi_0500,"Kucai muda (Lokio), segar (Rakkyo, fresh)",Sayuran,42.0,3.8,7.8,0.6
+tkpi_0501,"Kulit melinjo (spanish joint fir, peel, fresh )",Sayuran,111.0,4.5,20.7,1.1
+tkpi_0502,"Kundur, segar (Wax gourd, fresh)",Sayuran,22.0,0.4,4.7,0.2
+tkpi_0503,"Labu air, segar (Bottle gourd, fresh)",Sayuran,19.0,0.6,3.8,0.2
+tkpi_0504,"Labu kuning, segar (Pumpkin, fresh)",Sayuran,51.0,1.7,10.0,0.5
+tkpi_0505,"Labu siam, segar (Chayote, fresh)",Sayuran,30.0,0.6,6.7,0.1
+tkpi_0506,"Labu waluh, segar (Pumpkin, fresh)",Sayuran,32.0,1.1,6.6,0.1
+tkpi_0507,"Lantar, segar",Sayuran,34.0,2.2,5.5,0.3
+tkpi_0508,"Lobak, segar (Turnip, fresh)",Sayuran,21.0,0.9,4.2,0.1
+tkpi_0509,"Lumai/Leunca, segar (Glossy nightshade, fresh)",Sayuran,38.0,1.1,7.6,0.3
+tkpi_0510,"Melinjo, segar (spanish joint fir, fresh)",Sayuran,66.0,5.0,13.3,0.7
+tkpi_0511,"Mostarda metan -sawi (Indian mustard, fresh)",Sayuran,33.0,2.3,4.7,0.5
+tkpi_0512,"Nangka muda, segar (Jackfruit, young, fresh)",Sayuran,57.0,2.0,11.3,0.4
+tkpi_0513,"Paria putih, segar (Bitter guard, fresh)",Sayuran,19.0,1.0,3.6,0.4
+tkpi_0514,"Pepare ular, segar (Snake gourd, fresh)",Sayuran,19.0,0.6,3.9,0.1
+tkpi_0515,"Pepaya muda, segar (Papaya, unripe, fresh)",Sayuran,29.0,2.1,4.9,0.1
+tkpi_0516,"Petai, segar (Stinky bean, fresh)",Sayuran,92.0,5.4,15.2,1.1
+tkpi_0517,"Peterseli, segar (Parsley, fresh)",Sayuran,53.0,3.7,9.0,1.0
+tkpi_0518,"Pucuk lumai/daun leunca, segar (Glossy nightshade, fresh)",Sayuran,33.0,4.5,2.8,0.4
+tkpi_0519,"Putri malu, segar",Sayuran,76.0,3.6,14.6,0.3
+tkpi_0520,"Rebung, segar (Bamboo shoot, fresh)",Sayuran,25.0,0.8,5.3,0.1
+tkpi_0521,"Rimbang, segar (Devil�ss fig, plate brush)",Sayuran,75.0,1.6,15.8,0.6
+tkpi_0522,"Rumput laut (Seaweed)",Sayuran,41.0,1.4,8.1,0.3
+tkpi_0523,"Sawi, segar (Chinese mustard, fresh)",Sayuran,28.0,2.3,4.0,0.3
+tkpi_0524,"Sawi putih / pecai, segar (Pak choi, fresh)",Sayuran,9.0,1.0,1.7,0.1
+tkpi_0525,"Sawi taiwan, segar",Sayuran,30.0,1.9,4.4,0.5
+tkpi_0526,"Sawi tanah, segar",Sayuran,19.0,1.3,2.9,0.2
+tkpi_0527,"Selada, segar (Lettuce)",Sayuran,18.0,1.2,2.9,0.2
+tkpi_0528,"Selada air, segar (Watercress, fresh)",Sayuran,17.0,3.1,2.2,0.2
+tkpi_0529,"Seledri, segar (Celery, fresh)",Sayuran,23.0,1.0,4.6,0.1
+tkpi_0530,"Taoge, segar (Mung bean, sprout, fresh)",Sayuran,34.0,3.7,4.3,1.2
+tkpi_0531,"Taoge kacang kedelai, segar (Soya bean, sprout, fresh)",Sayuran,76.0,9.0,6.4,2.6
+tkpi_0532,"Taoge kacang tunggak, segar (southern pea, fresh)",Sayuran,40.0,5.0,5.8,0.2
+tkpi_0533,"Tebu terubuk (lilin), segar",Sayuran,30.0,4.6,3.0,0.4
+tkpi_0534,"Tekokak, segar (Devil�s fig,fresh)",Sayuran,34.0,2.0,7.9,0.1
+tkpi_0535,"Tekokak, kering (Devil�s fig, dried)",Sayuran,302.0,8.3,72.6,1.7
+tkpi_0536,"Terong, segar (Eggplant, fresh)",Sayuran,28.0,1.1,5.5,0.2
+tkpi_0537,"Terong asam, segar",Sayuran,37.0,2.0,6.3,0.4
+tkpi_0538,"Terung belanda, segar (Tamarillo, fresh)",Sayuran,52.0,2.1,8.6,1.1
+tkpi_0539,"Terung bengkulu, segar",Sayuran,52.0,1.1,11.2,0.4
+tkpi_0540,"Terong hintalo, segar",Sayuran,45.0,1.9,7.5,0.8
+tkpi_0541,"Terung panjang (Eggplant, fresh)",Sayuran,25.0,2.1,5.3,0.1
+tkpi_0542,"Tomat, air (sari), segar (Tomato, juice, fresh)",Sayuran,20.0,1.0,3.5,0.2
+tkpi_0543,"Tomat merah, segar (Tomato, red, fresh)",Sayuran,24.0,1.3,4.7,0.5
+tkpi_0544,"Tomat muda, segar (Tomato, green, fresh)",Sayuran,24.0,2.0,3.3,0.7
+tkpi_0545,"Uceng/ bunga melinjo, segar (Spanish joint fir, flower, fresh)",Sayuran,82.0,5.8,11.7,1.3
+tkpi_0546,"Umbut kelapa, segar",Sayuran,39.0,2.0,7.2,0.2
+tkpi_0547,"Umbut rotan (Rattan, young shoot)",Sayuran,34.0,2.4,5.5,0.3
+tkpi_0548,"Wortel, segar (Carrot, fresh)",Sayuran,36.0,1.0,7.9,0.6
+tkpi_0549,"Bayam, kukus",Sayuran,30.0,1.3,5.8,0.7
+tkpi_0550,"Bayam ,rebus",Sayuran,23.0,1.2,3.7,0.6
+tkpi_0551,"Buncis, rebus",Sayuran,30.0,2.2,6.4,0.2
+tkpi_0552,"Daun kacang panjang, kukus",Sayuran,40.0,3.7,8.0,0.3
+tkpi_0553,"Daun katuk, rebus",Sayuran,53.0,5.3,9.1,0.9
+tkpi_0554,"Daun kelor, rebus",Sayuran,61.0,6.1,10.0,0.9
+tkpi_0555,"Daun mengkudu, kukus",Sayuran,63.0,3.8,11.5,1.5
+tkpi_0556,"Daun singkong, rebus",Sayuran,31.0,3.7,4.8,0.6
+tkpi_0557,"Daun talas, rebus",Sayuran,27.0,1.3,5.9,0.2
+tkpi_0558,"Daun ubi merah, kukus",Sayuran,56.0,3.1,13.0,0.3
+tkpi_0559,"Kacang panjang ,kukus",Sayuran,39.0,3.0,7.6,0.6
+tkpi_0560,"Kacang panjang, rebus",Sayuran,30.0,2.3,5.8,0.4
+tkpi_0561,"Kangkung, kukus",Sayuran,30.0,3.2,4.7,0.7
+tkpi_0562,"Kangkung, rebus",Sayuran,22.0,2.5,3.1,0.6
+tkpi_0563,"Paria putih, kukus",Sayuran,16.0,0.8,3.4,0.2
+tkpi_0564,"Selada, rebus",Sayuran,19.0,2.7,2.9,0.2
+tkpi_0565,"Taoge, goreng",Sayuran,88.0,3.2,14.0,2.1
+tkpi_0566,"Taoge, seduh",Sayuran,28.0,3.0,4.0,0.8
+tkpi_0567,"Terung panjang, kukus",Sayuran,23.0,1.8,4.9,0.1
+tkpi_0568,"Wortel, rebus",Sayuran,28.0,0.7,6.3,0.5
+tkpi_0569,"Wortel, kukus",Sayuran,37.0,1.0,8.3,0.6
+tkpi_0570,"Asinan Bogor, sayuran",Sayuran,98.0,3.9,14.8,2.6
+tkpi_0571,"Anyang, sayur",Sayuran,126.0,3.4,10.3,7.9
+tkpi_0572,"Ares, sayur",Sayuran,113.0,0.9,11.2,7.2
+tkpi_0573,"Arwan sirsir",Sayuran,277.0,2.4,10.7,25.0
+tkpi_0574,Beberuk,Sayuran,65.0,1.1,3.5,5.2
+tkpi_0575,"Botok lamtoro",Sayuran,186.0,11.7,13.0,9.7
+tkpi_0576,"Buntil daun talas",Sayuran,141.0,4.4,8.0,10.2
+tkpi_0577,Cammetutu,Sayuran,102.0,3.2,8.7,6.0
+tkpi_0578,"Cap cai, sayur",Sayuran,97.0,5.8,4.2,6.3
+tkpi_0579,Gado-gado,Sayuran,137.0,6.1,21.0,3.2
+tkpi_0580,"Gudeg, sayur",Sayuran,160.0,3.3,16.0,9.2
+tkpi_0581,"Gulai pakis",Sayuran,143.0,4.0,6.0,11.4
+tkpi_0582,"Gulai pliek",Sayuran,176.0,7.3,3.2,14.9
+tkpi_0583,"Kadada katembe",Sayuran,110.0,4.5,7.1,6.9
+tkpi_0584,"Kaparende, sayur",Sayuran,38.0,2.4,2.6,2.0
+tkpi_0585,"Karedok, sayur",Sayuran,92.0,2.2,14.1,3.3
+tkpi_0586,"Keripik bayam",Sayuran,586.0,4.9,50.2,40.6
+tkpi_0587,"Kotiu hinela tawang nggole",Sayuran,46.0,2.2,6.0,1.5
+tkpi_0588,"Lema/ Rebung asam",Sayuran,15.0,1.0,1.9,0.4
+tkpi_0589,"Lilin bungkus gedi",Sayuran,79.0,2.3,5.8,5.2
+tkpi_0590,Olah-olah,Sayuran,9.0,2.1,7.1,6.0
+tkpi_0591,"Paku hinela wulelenggapaya",Sayuran,77.0,3.5,5.4,4.6
+tkpi_0592,"Pelecing kangkung",Sayuran,75.0,2.5,10.0,2.8
+tkpi_0593,Purundawa,Sayuran,25.0,1.5,3.6,0.5
+tkpi_0594,"Rujak cingur",Sayuran,153.0,11.3,8.0,8.4
+tkpi_0595,"Sayur asem",Sayuran,29.0,0.7,5.0,0.6
+tkpi_0596,"Sayur bunga pepaya",Sayuran,49.0,1.7,9.8,0.3
+tkpi_0597,"Sayur garu",Sayuran,178.0,2.6,10.6,13.9
+tkpi_0598,"Sayur kohu-kohu",Sayuran,133.0,7.3,11.2,6.6
+tkpi_0599,"Sayur lilin-terubuk",Sayuran,36.0,2.7,4.8,0.7
+tkpi_0600,"Sayur ndusuk",Sayuran,49.0,3.1,3.6,2.5
+tkpi_0601,"Sayur sop",Sayuran,27.0,1.3,1.0,2.0
+tkpi_0602,"Sayur umbut kelapa",Sayuran,67.0,5.2,5.1,2.9
+tkpi_0603,"Sayur umbut rotan",Sayuran,57.0,5.4,3.1,2.6
+tkpi_0604,Shabu-shabu,Sayuran,88.0,3.2,0.8,8.0
+tkpi_0605,"Semur jengkol",Sayuran,212.0,6.0,29.1,10.0
+tkpi_0606,"Tinira ninahu nggaluku",Sayuran,33.0,1.2,4.1,1.3
+tkpi_0607,"Tumis bayam bersantan",Sayuran,48.0,1.4,2.6,4.2
+tkpi_0608,"Waluh balamak",Sayuran,45.0,0.8,8.1,0.9
+tkpi_0609,"Woku ubi",Sayuran,143.0,3.1,15.0,7.8
+tkpi_0610,"Alpukat, segar (Avocado, fresh)",Buah,85.0,0.9,7.7,6.5
+tkpi_0611,"Anggur hutan, segar",Buah,30.0,0.5,6.8,0.2
+tkpi_0612,"Apel malang, segar (Apel, green, fresh)",Buah,57.0,0.5,12.8,0.4
+tkpi_0613,"Apel, segar",Buah,58.0,0.3,14.9,0.4
+tkpi_0614,"Arbai, segar (Arbein, fresh)",Buah,37.0,0.8,8.3,0.5
+tkpi_0615,"Belimbing, segar (Starfruit, fresh)",Buah,36.0,0.4,8.8,0.4
+tkpi_0616,"Biwah, segar (Loquat, fresh)",Buah,51.0,0.3,12.1,0.1
+tkpi_0617,"Buah atung, segar",Buah,23.0,0.8,5.2,0.2
+tkpi_0618,"Buah kelenting, segar",Buah,110.0,1.4,21.4,2.1
+tkpi_0619,"Buah kom, segar",Buah,264.0,4.0,59.6,1.1
+tkpi_0620,"Buah mentega (Bisbul), segar (Persimmons, japanese, fresh)",Buah,39.0,0.7,9.7,0.2
+tkpi_0621,"Buah Naga Merah, segar",Buah,71.0,1.7,9.1,3.1
+tkpi_0622,"Buah Naga Putih, segar",Buah,56.0,0.8,10.9,1.0
+tkpi_0623,"Buah negri, segar (Passion-fruit (granadilla), fresh)",Buah,55.0,1.2,12.2,0.1
+tkpi_0624,"Buah nona, segar (Sugarapple, fresh)",Buah,101.0,1.7,25.2,0.6
+tkpi_0625,"Buah rotan, segar",Buah,78.0,0.6,18.2,0.3
+tkpi_0626,"Buah rukam, segar (Rukam, fresh)",Buah,113.0,0.8,26.8,0.3
+tkpi_0627,"Buah ruruhi, segar",Buah,29.0,2.1,3.6,0.7
+tkpi_0628,"Buah tuppa, segar",Buah,67.0,0.4,15.9,0.2
+tkpi_0629,"Carica papaya, segar (Papaya)",Buah,24.0,1.9,3.7,0.2
+tkpi_0630,"Cempedak, segar (Chempedak)",Buah,116.0,3.0,28.6,0.4
+tkpi_0631,"Duku, segar",Buah,63.0,1.0,16.1,0.2
+tkpi_0632,"Durian, segar (Durian, fresh)",Buah,134.0,2.5,28.0,3.0
+tkpi_0633,"Duwet, segar (Jambolan, fresh)",Buah,80.0,0.5,18.2,0.6
+tkpi_0634,"Embacang, segar (Kuwini, fresh)",Buah,98.0,1.4,25.4,0.2
+tkpi_0635,"Encung asam, segar (Tamarillo, fresh)",Buah,122.0,3.5,17.5,4.5
+tkpi_0636,"Erbis, segar (Passion-fruit (granadilla), fresh)",Buah,70.0,0.6,18.9,0.0
+tkpi_0637,"Gandaria masak (Kundang)",Buah,68.0,0.7,18.0,0.1
+tkpi_0638,"Gatep, segar (Chestnut, fresh)",Buah,191.0,4.5,39.7,1.5
+tkpi_0639,"Jambu air, segar (Roseapple, fresh)",Buah,46.0,0.6,11.8,0.2
+tkpi_0640,"Jambu biji (Guava, fresh)",Buah,49.0,0.9,12.2,0.3
+tkpi_0641,"Jambu bj putih tdk brbj (Guava, white, seedles, fresh)",Buah,61.0,0.9,15.4,0.3
+tkpi_0642,"Jambu bol, segar (Malay Apple, fresh)",Buah,49.0,2.3,9.6,0.2
+tkpi_0643,"Jambu monyet, segar (Cashew apple, fresh)",Buah,64.0,0.7,15.8,0.6
+tkpi_0644,"Jeruk bali, segar (Pummelo, fresh)",Buah,48.0,0.6,12.4,0.2
+tkpi_0645,"Jeruk banjar, segar (Orange (banjar), fresh)",Buah,61.0,0.8,14.1,0.2
+tkpi_0646,"Jeruk garut-keprok (Mandarin)",Buah,44.0,0.8,10.9,0.3
+tkpi_0647,"Jeruk Kalamansi, segar",Buah,39.0,0.3,8.9,0.3
+tkpi_0648,"Jeruk manis, segar (orange, fresh)",Buah,45.0,0.9,11.2,0.2
+tkpi_0649,"Jeruk nipis, segar (Lime, fresh)",Buah,44.0,0.5,10.0,0.2
+tkpi_0650,"Jeruk ragi, segar",Buah,49.0,0.7,11.1,0.2
+tkpi_0651,"Kawista, segar (Wood apple, fresh)",Buah,120.0,3.5,20.8,2.5
+tkpi_0652,"Kedondong masak, segar (Ambarella, fresh)",Buah,46.0,1.0,10.3,0.1
+tkpi_0653,"Kedondong, segar (Ambarella, fresh)",Buah,47.0,0.5,10.4,0.2
+tkpi_0654,"Kelapa hutan, kering",Buah,623.0,2.0,36.5,52.1
+tkpi_0655,"Kelapa muda, daging, segar (Coconut, flesh, Young, fresh )",Buah,68.0,1.0,14.0,0.9
+tkpi_0656,"Kemang, segar (Kemang, fresh)",Buah,48.0,1.0,11.9,0.2
+tkpi_0657,"Kesemek, segar (Persimmons, fresh)",Buah,78.0,0.8,20.0,0.4
+tkpi_0658,"Kokosan, segar (Langsat, fresh)",Buah,86.0,1.6,13.0,0.2
+tkpi_0659,"Kranji, segar (Sweet inga, fresh)",Buah,315.0,2.1,73.5,1.4
+tkpi_0660,"Langsat, segar (Langsat, fresh)",Buah,56.0,0.9,14.3,0.2
+tkpi_0661,"Lemon, segar (Lemon, fresh)",Buah,34.0,0.5,6.2,0.8
+tkpi_0662,"Lontar, segar (Palmyra palm, fresh)",Buah,27.0,0.4,6.0,0.2
+tkpi_0663,"Mangga, segar (Mango, fresh)",Buah,52.0,0.7,12.3,0.0
+tkpi_0664,"Mangga benggala, segar (Mango, benggala, fresh)",Buah,63.0,2.4,12.4,0.4
+tkpi_0665,"Mangga gedung, segar (Mango, gedung, fresh)",Buah,44.0,0.7,11.2,0.2
+tkpi_0666,"Mangga golek, segar (Mango, golek, fresh)",Buah,63.0,0.5,16.7,0.2
+tkpi_0667,"Mangga harumanis, segar (Mango, harumanis, fresh)",Buah,46.0,0.4,11.9,0.2
+tkpi_0668,"Mangga indramayu, segar (Mango, indramayu, fresh)",Buah,72.0,0.8,18.7,0.2
+tkpi_0669,"Mangga kopek, segar (Mango, kopek, fresh)",Buah,56.0,0.4,14.6,0.2
+tkpi_0670,"Mangga kwini, segar (Mango, kwini, fresh)",Buah,86.0,0.7,19.8,0.5
+tkpi_0671,"Mangga manalagi, segar (Mango, manalagi, fresh)",Buah,133.0,1.0,32.1,0.1
+tkpi_0672,"Mangga muda, segar (Mango, unripe, fresh)",Buah,59.0,0.5,15.1,0.4
+tkpi_0673,"Manggis, segar (Mangosteen, fresh)",Buah,63.0,0.6,15.6,0.6
+tkpi_0674,"Markisa, segar (Giant Granadilla, fresh)",Buah,144.0,3.5,29.8,1.2
+tkpi_0675,"Matoa, segar (Matoa, fresh)",Buah,90.0,1.2,21.1,0.1
+tkpi_0676,"Melon, segar",Buah,37.0,0.6,7.8,0.4
+tkpi_0677,"Menteng, segar (Kepundung, fresh)",Buah,65.0,1.7,16.1,0.3
+tkpi_0678,"Nanas palembang, segar (Pineapple,palembang, fresh)",Buah,58.0,0.7,13.3,0.2
+tkpi_0679,"Nanas, segar (Pineapple, fresh)",Buah,40.0,0.6,9.9,0.3
+tkpi_0680,"Nangka masak pohon, segar (Jack fruit, fresh)",Buah,106.0,1.2,27.6,0.3
+tkpi_0681,"Pala, daging, segar (Nutmeg, flesh, fresh)",Buah,42.0,0.3,10.9,0.2
+tkpi_0682,"Pepaya, segar (Papaya, fresh)",Buah,46.0,0.5,12.2,0.1
+tkpi_0683,"Pisang ambon, segar (Banana, fresh)",Buah,108.0,1.0,24.3,0.8
+tkpi_0684,"Pisang angleng (pisang ampyang), segar (Banana, ampyang, fresh)",Buah,68.0,1.3,17.2,0.2
+tkpi_0685,"Pisang ayam, segar (Banana, ayam, fresh)",Buah,120.0,1.1,26.8,0.2
+tkpi_0686,"Pisang gapi, segar (Banana, gapi, fresh)",Buah,131.0,1.6,31.1,0.1
+tkpi_0687,"Pisang goroho, segar (Banana, goroho, fresh)",Buah,119.0,1.5,27.9,0.2
+tkpi_0688,"Pisang hijau, segar (Banana, hijau, fresh)",Buah,121.0,1.0,28.9,0.1
+tkpi_0689,"Pisang kayu, segar (Banana, kayu, fresh)",Buah,100.0,1.4,23.6,0.5
+tkpi_0690,"Pisang kepok, segar (Banana, kepok, fresh)",Buah,109.0,0.8,26.3,0.5
+tkpi_0691,"Pisang ketip, segar (Banana, ketip, fresh)",Buah,145.0,1.1,34.5,0.3
+tkpi_0692,"Pisang kidang, segar (Banana, kidang, fresh)",Buah,96.0,1.0,22.5,0.2
+tkpi_0693,"Pisang lampung, segar (Banana, lamoung, fresh)",Buah,99.0,1.3,25.6,0.2
+tkpi_0694,"Pisang mas bali ampenan, segar (Banana, mas bali ampenan, fresh)",Buah,92.0,1.4,21.0,0.2
+tkpi_0695,"Pisang mas bali kopang, segar (Banana, mas bali, fresh)",Buah,127.0,1.4,31.8,0.2
+tkpi_0696,"Pisang mas, segar (Banana, mas, fresh)",Buah,127.0,1.4,33.6,0.2
+tkpi_0697,"Pisang raja sereh, segar (Banana raja sereh, fresh)",Buah,108.0,1.3,28.2,0.3
+tkpi_0698,"Pisang raja, segar (Banana raja, fresh)",Buah,120.0,1.2,31.8,0.2
+tkpi_0699,"Pisang rotan, segar (Banana, rotan, fresh)",Buah,98.0,1.3,20.5,1.2
+tkpi_0700,"Pisang talas, segar (Banana, talas, fresh)",Buah,113.0,1.2,26.7,0.2
+tkpi_0701,"Pisang tujuh bulan (Banana)",Buah,94.0,0.6,22.5,0.2
+tkpi_0702,"Pisang ua, segar (Banana, ua. Fresh)",Buah,128.0,0.8,30.2,0.5
+tkpi_0703,"Pisang uli, segar (Banana, uli, fresh)",Buah,134.0,1.1,35.5,0.5
+tkpi_0704,"Purut, segar (Lime, wild (Purut))",Buah,76.0,4.1,15.2,1.1
+tkpi_0705,"Rambutan binjai, segar (Rambutan)",Buah,76.0,0.5,18.0,0.2
+tkpi_0706,"Rambutan, segar (Rambutan)",Buah,69.0,0.9,18.1,0.1
+tkpi_0707,"Salak bali, segar (snake fruit, bali,fresh)",Buah,57.0,0.5,13.6,0.1
+tkpi_0708,"Salak medan, segar (snake fruit, medan, fresh)",Buah,55.0,0.4,12.8,0.2
+tkpi_0709,"Salak pondoh, segar (snake fruit, pondoh, fresh)",Buah,87.0,0.8,20.1,0.4
+tkpi_0710,"Salak, segar (snake fruit, fresh)",Buah,77.0,0.4,20.9,0
+tkpi_0711,"Sawo duren, segar (Sapodilla, fresh)",Buah,64.0,1.0,8.0,3.1
+tkpi_0712,"Sawo kecik, segar (Sapodilla, fresh)",Buah,111.0,0.9,21.6,2.3
+tkpi_0713,"Sawo Manila, segar (Sapodilla, manila, fresh)",Buah,92.0,0.5,22.4,1.1
+tkpi_0714,"Semangka, segar (Water melon, fresh)",Buah,28.0,0.5,6.9,0.2
+tkpi_0715,"Sirsak, segar (Soursop, fresh)",Buah,65.0,1.0,16.3,0.3
+tkpi_0716,"Sowa, segar",Buah,48.0,1.6,9.1,0.6
+tkpi_0717,"Srikaya, segar (Sugar apple,fresh)",Buah,63.0,1.1,13.9,0.5
+tkpi_0718,"Sukun muda, segar (Breadfruit, young, fresh)",Buah,119.0,1.4,28.1,0.2
+tkpi_0719,"Sukun tua, segar (Breadfruit, fresh)",Buah,126.0,1.6,24.5,0.2
+tkpi_0720,"Vigus, segar",Buah,44.0,2.4,8.3,0.1
+tkpi_0721,"Wani, segar",Buah,74.0,0.8,17.1,0.3
+tkpi_0722,Barongko,Buah,159.0,3.1,23.5,5.8
+tkpi_0723,"Dodol nanas",Buah,338.0,1.5,80.3,1.2
+tkpi_0724,"Getuk pisang",Buah,144.0,1.1,34.1,0.4
+tkpi_0725,"Keripik lampung",Buah,485.0,1.7,69.7,22.2
+tkpi_0726,"Ledre pisang",Buah,405.0,4.8,84.9,5.1
+tkpi_0727,"Lempog durian",Buah,320.0,3.5,63.7,5.7
+tkpi_0728,"Loka anjoro",Buah,163.0,1.1,30.0,4.3
+tkpi_0729,"Rica-rica taipa",Buah,49.0,1.6,10.0,0.3
+tkpi_0730,"Rujak aceh",Buah,82.0,0.4,19.7,0.3
+tkpi_0731,"Sale kesemek",Buah,296.0,1.1,71.4,0.6
+tkpi_0732,"Sale pisang siam",Buah,281.0,2.4,66.1,0.7
+tkpi_0733,"Sale pisang, cilacap",Buah,295.0,2.3,66.9,2.1
+tkpi_0734,"Sanggara belanda",Buah,242.0,6.4,38.2,7.1
+tkpi_0735,"Tepung Pisang",Buah,338.0,2.9,80.6,0.4
+tkpi_0736,"Tepung Sukun",Buah,353.0,2.9,84.4,0.5
+tkpi_0737,"Abon haruwan",Buah,513.0,23.7,21.3,37.0
+tkpi_0738,"Anak sapi, daging, gemuk, segar (Veal, meat, high fat, fresh)",Daging,184.0,18.8,0.0,14.0
+tkpi_0739,"Anak sapi, daging, kurus, segar (Veal, meat, high fat, fresh)",Daging,174.0,19.6,0.0,10.0
+tkpi_0740,"Anak sapi, daging, sedang, segar (Veal, meat, fresh)",Daging,190.0,19.1,0.0,12.0
+tkpi_0741,"Angsa, daging, segar (Goose, meat, fresh)",Daging,349.0,16.4,0.0,31.5
+tkpi_0742,"Ayam, daging, segar (Chicken, meat, fresh)",Daging,298.0,18.2,0.0,25.0
+tkpi_0743,"Ayam, dideh/darah, segar (Black puding (chicken blood), fresh)",Daging,75.0,13.8,0.7,1.9
+tkpi_0744,"Ayam, hati, segar (Chicken liver, raw)",Daging,261.0,27.4,1.6,16.1
+tkpi_0745,"Babi, daging, gemuk,segar (Pork, medium fat, fresh)",Daging,453.0,11.9,0.0,45.0
+tkpi_0746,"Babi, daging, kurus, segar (Pork, lean, fresh)",Daging,371.0,14.1,0.0,35.0
+tkpi_0747,"Babi, ginjal, segar (Kidney, pork, fresh)",Daging,110.0,16.3,0.8,4.6
+tkpi_0748,"Babi, hati, segar (Liver, pork, fresh)",Daging,129.0,19.7,1.7,4.8
+tkpi_0749,"Bebek (itik), daging, segar (Duck, meat, fresh)",Daging,321.0,16.0,0.0,28.6
+tkpi_0750,"Bebek alabio, daging, segar (Duck, alabio, meat, fresh)",Daging,303.0,11.3,3.7,27.0
+tkpi_0751,"Belibis, daging, segar (Whistling duck, meat, fresh)",Daging,131.0,20.2,2.8,4.3
+tkpi_0752,"Burung, sarang, segar",Daging,281.0,37.5,32.1,0.3
+tkpi_0753,"Domba, daging, gemuk, segar (Lamb, meat, high fat, fresh)",Daging,317.0,15.7,0.0,27.7
+tkpi_0754,"Domba, daging, kurus, segar (Lamb, meat, low fat, fresh)",Daging,202.0,17.1,0.0,14.8
+tkpi_0755,"Domba, ginjal, segar (Kidney, lamb, fresh)",Daging,100.0,16.6,1.0,3.3
+tkpi_0756,"Kambing, daging, segar (Goat, meat, fresh)",Daging,149.0,16.6,0.0,9.2
+tkpi_0757,"Kelinci, daging, segar (Rabbit, meat, fresh)",Daging,142.0,16.9,0.0,7.8
+tkpi_0758,"Kerbau, daging, segar (Buffalo, meat, fresh)",Daging,79.0,18.7,0.0,0.5
+tkpi_0759,"Kuda, daging, segar (Horse, meat, fresh)",Daging,113.0,18.1,0.9,4.1
+tkpi_0760,"Sapi, babat, segar (Tripe, fresh)",Daging,108.0,17.6,0.0,4.2
+tkpi_0761,"Sapi, daging, gemuk, segar (Beef, high fat, fresh)",Daging,273.0,17.5,0.0,22.0
+tkpi_0762,"Sapi, daging, kurus, segar (Beef, low fat, fresh)",Daging,174.0,19.6,0.0,10.0
+tkpi_0763,"Sapi, daging, lemak sedang, segar (Beef, medium fat, fresh)",Daging,201.0,18.8,0.0,14.0
+tkpi_0764,"Sapi, daleman, segar (Offal, beef, fresh)",Daging,183.0,12.0,1.4,14.4
+tkpi_0765,"Sapi, dideh/darah (Black puding (cow's blood), fresh)",Daging,98.0,21.9,0.0,1.1
+tkpi_0766,"Sapi, ginjal, segar (Kidney, beef, fresh)",Daging,137.0,15.0,0.9,8.1
+tkpi_0767,"Sapi, keleponan, segar (Tripe, beef, fresh)",Daging,84.0,10.5,0.2,4.6
+tkpi_0768,"Sapi, liver, segar (Liver, beef, fresh)",Daging,132.0,19.7,6.0,3.2
+tkpi_0769,"Sapi, otak, segar (Brain, beef, fresh)",Daging,123.0,10.4,0.8,8.6
+tkpi_0770,"Sapi, usus, segar",Daging,126.0,14.0,1.5,7.2
+tkpi_0771,"Ulat sagu segar (Caterpillar, sago palm, fresh)",Daging,241.0,5.8,5.8,21.6
+tkpi_0772,"Ayam, ampela, goreng",Daging,270.0,32.3,9.9,11.2
+tkpi_0773,"Ayam, usus, goreng",Daging,473.0,45.2,13.9,26.3
+tkpi_0774,"Bebek, daging, goreng",Daging,300.0,24.0,4.5,20.7
+tkpi_0775,"Buaya, daging, dendeng, mentah",Daging,365.0,49.6,30.8,4.8
+tkpi_0776,Ham,Daging,384.0,16.9,0.3,35.0
+tkpi_0777,"Itik alabio, daging, dendeng, mentah",Daging,496.0,30.3,18.4,33.5
+tkpi_0778,"Kerupuk urat",Daging,588.0,53.7,1.2,40.9
+tkpi_0779,"Menjangan, daging, dendeng, mentah",Daging,322.0,55.8,22.7,2.0
+tkpi_0780,"Punai, daging, goreng",Daging,224.0,26.2,4.4,11.3
+tkpi_0781,"Rusa, daging, dendeng, mentah",Daging,536.0,40.5,0.0,41.5
+tkpi_0782,"Sapi, abon",Daging,212.0,18.0,59.3,10.6
+tkpi_0783,"Sapi, abon, asli",Daging,358.0,14.6,38.6,16.1
+tkpi_0784,"Sapi, daging, asap",Daging,182.0,32.0,0.0,6.0
+tkpi_0785,"Sapi, daging, dendeng, mentah",Daging,301.0,55.0,0.0,9.0
+tkpi_0786,"Sapi, daging, kornet",Daging,289.0,16.0,0.0,25.0
+tkpi_0787,"Sapi, daging, sosis (Worst)",Daging,448.0,14.5,2.3,42.3
+tkpi_0788,"Sapi, hati, sosis (liverworst)",Daging,274.0,16.0,3.0,22.0
+tkpi_0789,"Sapi, paru, dendeng, mentah",Daging,360.0,57.3,19.2,6.0
+tkpi_0790,"Sapi, paru, goreng",Daging,268.0,23.9,14.5,12.7
+tkpi_0791,"Ulat sagu, panggang",Daging,380.0,11.9,14.9,30.3
+tkpi_0792,"Ayam goreng church texas, dada",Daging,338.0,35.2,0.4,20.6
+tkpi_0793,"Ayam goreng church,texas paha",Daging,287.0,31.0,1.7,15.7
+tkpi_0794,"Ayam goreng church texas, sayap",Daging,295.0,34.0,1.5,16.0
+tkpi_0795,"Ayam goreng kalasan, paha",Daging,275.0,37.4,1.3,12.2
+tkpi_0796,"Ayam goreng kentucky, dada",Daging,298.0,34.2,0.1,16.8
+tkpi_0797,"Ayam goreng Kentucky, paha",Daging,286.0,32.1,1.1,16.1
+tkpi_0798,"Ayam goreng Kentucky,sayap",Daging,297.0,35.9,1.6,15.2
+tkpi_0799,"Ayam goreng mbok berek dada",Daging,295.0,39.2,1.0,13.6
+tkpi_0800,"Ayam goreng pasundan, dada",Daging,246.0,37.9,0.7,9.0
+tkpi_0801,"Ayam goreng pasundan, paha",Daging,245.0,33.1,0.3,11.4
+tkpi_0802,"Ayam goreng pioneer, dada",Daging,295.0,37.4,0.6,14.7
+tkpi_0803,"Ayam goreng sukabumi, dada",Daging,244.0,36.7,1.0,9.2
+tkpi_0804,"Ayam goreng sukabumi, paha",Daging,283.0,35.7,0.5,14.3
+tkpi_0805,"Ayam taliwang, masakan",Daging,264.0,18.2,2.7,20.1
+tkpi_0806,"Babi hutan masak rica, masakan",Daging,491.0,24.6,0.2,16.3
+tkpi_0807,"Beef burger",Daging,258.0,10.6,32.5,9.5
+tkpi_0808,"Beef teriyaki, masakan",Daging,151.0,8.6,22.3,3.1
+tkpi_0809,"Beef yakiniku, masakan",Daging,132.0,9.8,20.7,1.1
+tkpi_0810,Brongkos,Daging,141.0,15.3,12.6,3.3
+tkpi_0811,"Bulgogi, masakan",Daging,72.0,11.4,1.4,4.9
+tkpi_0812,"Chicken teriyaki, masakan",Daging,168.0,13.0,7.5,9.6
+tkpi_0813,"Chikiniku, masakan",Daging,143.0,9.8,22.8,1.4
+tkpi_0814,"Coto mangkasara, kuda, masakan",Daging,96.0,6.8,3.8,5.9
+tkpi_0815,"Coto mangkasara, sapi, masakan",Daging,84.0,6.0,1.4,6.0
+tkpi_0816,"Djibokum, masakan",Daging,248.0,10.0,40.9,2.3
+tkpi_0817,"Empal (daging) Goreng, masakan",Daging,248.0,36.2,10.1,6.9
+tkpi_0818,"Gulai kambing",Daging,126.0,4.2,6.2,9.4
+tkpi_0819,"Jangang bintatoeng, masakan",Daging,107.0,5.3,16.5,2.2
+tkpi_0820,"Kalio ayam, masakan",Daging,203.0,16.0,4.4,13.5
+tkpi_0821,"Kalio jeroan, masakan",Daging,163.0,16.5,4.1,9.0
+tkpi_0822,"Kalio kikil (tunjang), masakan",Daging,122.0,13.8,3.9,5.7
+tkpi_0823,"Kalio otak, masakan",Daging,157.0,8.1,11.4,8.8
+tkpi_0824,"Lawar babi, masakan",Daging,174.0,17.0,3.0,10.0
+tkpi_0825,"Lawar penyu, masakan",Daging,141.0,23.0,7.6,1.5
+tkpi_0826,"Lawara jangang, masakan",Daging,159.0,5.0,10.1,10.9
+tkpi_0827,"Naan maran sapi, masakan",Daging,478.0,38.3,5.1,33.9
+tkpi_0828,"Nasu likku, masakan",Daging,196.0,14.5,15.9,8.3
+tkpi_0829,"Oramu ninahu ndawa olaho, masakan",Daging,117.0,13.7,4.3,5.0
+tkpi_0830,"Paniki masak santan, masakan",Daging,460.0,28.5,7.2,35.2
+tkpi_0831,"Pelolah manuk, masakan",Daging,219.0,19.7,4.4,13.6
+tkpi_0832,"Rawon, masakan",Daging,60.0,5.4,4.0,2.5
+tkpi_0833,"Rendang sapi, masakan",Daging,193.0,22.6,7.8,7.9
+tkpi_0834,"RW, anjing, masakan",Daging,198.0,24.6,0.9,10.7
+tkpi_0835,"Sate, penyu, masakan",Daging,179.0,22.5,13.3,3.5
+tkpi_0836,"Sate pusut, masakan",Daging,274.0,12.9,13.6,18.6
+tkpi_0837,"Penyu, serapah, masakan",Daging,174.0,13.1,2.2,12.2
+tkpi_0838,"Sie reuboh, masakan",Daging,474.0,11.2,11.7,42.5
+tkpi_0839,"Sop buntut, masakan",Daging,71.0,7.5,2.2,3.6
+tkpi_0840,"Sop daging sapi, masakan",Daging,49.0,5.8,5.3,0.5
+tkpi_0841,"Sop kaki sapi, masakan",Daging,68.0,9.0,3.7,1.9
+tkpi_0842,"Sop kambing, masakan",Daging,34.0,5.5,1.1,0.8
+tkpi_0843,"Sop konro, masakan",Daging,71.0,7.4,4.5,2.6
+tkpi_0844,"Sop saudara, masakan",Daging,89.0,7.2,3.9,5.0
+tkpi_0845,"Soto bandung, masakan",Daging,42.0,3.9,2.8,1.7
+tkpi_0846,"Soto banjar, masakan",Daging,110.0,2.9,3.2,9.5
+tkpi_0847,"Soto betawi, masakan",Daging,135.0,2.5,11.5,8.8
+tkpi_0848,"Soto jeroan, masakan",Daging,92.0,11.8,1.4,4.3
+tkpi_0849,"Soto kudus, masakan",Daging,38.0,2.6,1.8,2.3
+tkpi_0850,"Soto madura, masakan",Daging,60.0,3.5,1.3,4.5
+tkpi_0851,"Soto padang, masakan",Daging,127.0,5.9,11.0,6.6
+tkpi_0852,"Soto pekalongan, masakan",Daging,94.0,3.0,5.1,6.8
+tkpi_0853,"Soto pemalang, masakan",Daging,75.0,3.6,3.5,5.2
+tkpi_0854,"Soto sukaraja, masakan",Daging,80.0,3.2,9.0,3.5
+tkpi_0855,"Soto sulung, masakan",Daging,86.0,2.3,0.0,8.5
+tkpi_0856,"Sukiyaki, masakan",Daging,75.0,5.6,12.2,0.4
+tkpi_0857,"Tedong pallu basa, masakan",Daging,83.0,10.4,2.8,3.4
+tkpi_0858,"Tikus rica, masakan",Daging,257.0,18.8,3.8,18.5
+tkpi_0859,"Tinoransa, masakan",Daging,516.0,17.7,0.0,49.5
+tkpi_0860,"Belut, segar (Asian swamp eel, fresh)","Ikan/Kerang/Udang dll",70.0,14.6,1.0,0.8
+tkpi_0861,"Belut,laut, segar (Eel, fresh)","Ikan/Kerang/Udang dll",93.0,12.8,6.1,1.5
+tkpi_0862,"Cumi-cumi, segar (Squid, fresh)","Ikan/Kerang/Udang dll",75.0,16.1,0.1,0.7
+tkpi_0863,"Ikan bader, segar (Silver barb, fresh)","Ikan/Kerang/Udang dll",193.0,19.0,0.0,13.0
+tkpi_0864,"Ikan balong, segar","Ikan/Kerang/Udang dll",107.0,16.5,1.5,3.9
+tkpi_0865,"Ikan bambangan, segar (Humphead Snapper, fresh)","Ikan/Kerang/Udang dll",112.0,20.0,3.7,1.3
+tkpi_0866,"Ikan bandeng, segar (Milkfish, raw)","Ikan/Kerang/Udang dll",123.0,20.0,0.0,4.8
+tkpi_0867,"Ikan banjar, segar","Ikan/Kerang/Udang dll",111.0,19.4,4.8,0.9
+tkpi_0868,"Ikan baronang, segar (Golden-lined spinefoot, fresh)","Ikan/Kerang/Udang dll",78.0,14.5,3.7,0.6
+tkpi_0869,"Ikan batung, segar (Indonesian-Shortfin Eel)","Ikan/Kerang/Udang dll",115.0,14.5,4.2,4.6
+tkpi_0870,"Ikan baung, segar (Asian river catfish, fresh)","Ikan/Kerang/Udang dll",123.0,15.1,3.3,5.5
+tkpi_0871,"Ikan bawal, segar (Silver Pomfret, fresh)","Ikan/Kerang/Udang dll",91.0,19.0,0.0,1.7
+tkpi_0872,"Ikan Belida, segar (Indonesian featherback, fresh)","Ikan/Kerang/Udang dll",80.0,14.7,2.2,1.4
+tkpi_0873,"Ikan beunteur, segar (Spotted Barb, fresh)","Ikan/Kerang/Udang dll",109.0,17.0,0.0,4.0
+tkpi_0874,"Ikan biawan, segar (Kissing goorami, fresh)","Ikan/Kerang/Udang dll",90.0,14.9,2.1,2.5
+tkpi_0875,"Ikan bili, segar (Minnows, fresh)","Ikan/Kerang/Udang dll",88.0,14.2,6.2,0.7
+tkpi_0876,"Ikan bubara, segar","Ikan/Kerang/Udang dll",100.0,14.7,4.9,2.4
+tkpi_0877,"Ikan bulan-bulan, segar (Indo-Pacifik Tarpon, fresh)","Ikan/Kerang/Udang dll",134.0,25.5,5.0,1.3
+tkpi_0878,"Ikan cakalang, segar (Scipjack tuna, fresh)","Ikan/Kerang/Udang dll",107.0,19.6,5.5,0.7
+tkpi_0879,"Ikan cakalang, hati, segar (Scipjack tuna, fresh)","Ikan/Kerang/Udang dll",120.0,11.3,10.0,3.9
+tkpi_0880,"Ikan cakalang, jantung, segar (Scipjack tuna, fresh)","Ikan/Kerang/Udang dll",116.0,11.2,10.2,1.2
+tkpi_0881,"Ikan cakalang, perut, segar (Scipjack tuna, fresh)","Ikan/Kerang/Udang dll",86.0,10.2,8.7,1.1
+tkpi_0882,"Ikan daun, segar (Leaffish, fresh)","Ikan/Kerang/Udang dll",101.0,11.5,4.6,4.1
+tkpi_0883,"Ikan ekor kuning, segar (Yellowtail, fish, fresh)","Ikan/Kerang/Udang dll",108.0,22.3,2.1,1.2
+tkpi_0884,"Ikan gabus, segar (Asian snakehead, fresh)","Ikan/Kerang/Udang dll",80.0,16.2,2.6,0.5
+tkpi_0885,"Ikan heu, segar","Ikan/Kerang/Udang dll",81.0,10.0,6.6,1.6
+tkpi_0886,"Ikan hitam, segar (Black Sharkminnow, fresh)","Ikan/Kerang/Udang dll",101.0,10.3,6.7,3.7
+tkpi_0887,"Ikan hiu, segar (Fish, shark, fresh)","Ikan/Kerang/Udang dll",57.0,10.7,2.2,0.3
+tkpi_0888,"Ikan kacangan, segar","Ikan/Kerang/Udang dll",77.0,15.6,1.6,0.9
+tkpi_0889,"Ikan kakap, segar","Ikan/Kerang/Udang dll",92.0,20.0,0.0,0.7
+tkpi_0890,"Ikan kakatua, segar","Ikan/Kerang/Udang dll",82.0,11.4,6.4,1.2
+tkpi_0891,"Ikan kalaban, segar (Minnows, fresh)","Ikan/Kerang/Udang dll",77.0,16.4,1.3,0.7
+tkpi_0892,"Ikan kamera (kakap merah), segar","Ikan/Kerang/Udang dll",86.0,19.7,0.0,0.8
+tkpi_0893,"Ikan kapar, segar (Malay Combtail, fresh)","Ikan/Kerang/Udang dll",132.0,17.0,0.8,6.7
+tkpi_0894,"Ikan kawalinya, segar (Indian mackerel, fresh)","Ikan/Kerang/Udang dll",110.0,12.6,5.4,4.2
+tkpi_0895,"Ikan keru-keru, segar (Puffers, fresh)","Ikan/Kerang/Udang dll",93.0,16.5,0.8,2.1
+tkpi_0896,"Ikan kima, segar (Clam, shell, fresh)","Ikan/Kerang/Udang dll",70.0,10.8,5.2,0.7
+tkpi_0897,"Ikan lais, segar (Sheatfish, fresh)","Ikan/Kerang/Udang dll",161.0,11.9,2.4,11.5
+tkpi_0898,"Ikan layang, segar (Indian scad, fresh)","Ikan/Kerang/Udang dll",109.0,22.0,0.0,1.7
+tkpi_0899,"Ikan layur, segar (Hairtail, fresh)","Ikan/Kerang/Udang dll",82.0,18.0,0.4,1.0
+tkpi_0900,"Ikan lehoma, segar (Indian mackerel, fresh)","Ikan/Kerang/Udang dll",90.0,20.4,0.0,0.9
+tkpi_0901,"Ikan lemuru, segar (Bali sardinella, fresh)","Ikan/Kerang/Udang dll",112.0,20.0,0.0,3.0
+tkpi_0902,"Ikan lidah, segar (Flatfishes, fresh)","Ikan/Kerang/Udang dll",104.0,15.6,2.0,3.2
+tkpi_0903,"Ikan malalugis, segar","Ikan/Kerang/Udang dll",99.0,20.6,0.9,1.4
+tkpi_0904,"Ikan mamar merah, segar","Ikan/Kerang/Udang dll",115.0,15.3,4.4,4.0
+tkpi_0905,"Ikan mas, segar (Common carp, fresh)","Ikan/Kerang/Udang dll",86.0,16.0,0.0,2.0
+tkpi_0906,"Ikan mayong, segar","Ikan/Kerang/Udang dll",97.0,17.9,0.4,2.0
+tkpi_0907,"Ikan mujahir, segar (Mozambique tilapia, fresh)","Ikan/Kerang/Udang dll",89.0,18.7,0.0,1.0
+tkpi_0908,"Ikan nasu metti, segar","Ikan/Kerang/Udang dll",154.0,16.8,10.5,5.0
+tkpi_0909,"Ikan oci, kembung, segar (Indian mackerels, fresh)","Ikan/Kerang/Udang dll",125.0,21.3,2.2,3.4
+tkpi_0910,"Ikan paling, segar","Ikan/Kerang/Udang dll",303.0,14.0,0.0,27.0
+tkpi_0911,"Ikan papuyu/ betok, segar (Climbing perch, fresh)","Ikan/Kerang/Udang dll",120.0,14.3,4.6,4.9
+tkpi_0912,"Ikan patin, segar (Striped catfish, fresh)","Ikan/Kerang/Udang dll",132.0,17.0,1.1,6.6
+tkpi_0913,"Ikan pomo, segar","Ikan/Kerang/Udang dll",147.0,22.5,2.6,5.2
+tkpi_0914,"Ikan puntin, segar (Bagrdi catfish, fresh)","Ikan/Kerang/Udang dll",76.0,14.4,2.2,1.1
+tkpi_0915,"Ikan saluang, segar (Rasboras fish, fresh)","Ikan/Kerang/Udang dll",113.0,13.9,3.4,4.9
+tkpi_0916,"Ikan sarden, segar (Herrings, fresh)","Ikan/Kerang/Udang dll",109.0,19.9,3.4,1.8
+tkpi_0917,"Ikan selar, segar (Scadfish, fresh)","Ikan/Kerang/Udang dll",100.0,18.8,0.0,2.2
+tkpi_0918,"Ikan sepat, segar (Snakeskin gourami, fresh)","Ikan/Kerang/Udang dll",84.0,15.2,4.7,0.6
+tkpi_0919,"Ikan sidat, segar (Shortfin Eel, fresh)","Ikan/Kerang/Udang dll",81.0,11.4,3.8,1.9
+tkpi_0920,"Ikan sunu, segar (Leopard coralgrouper, fresh)","Ikan/Kerang/Udang dll",111.0,13.3,6.7,3.4
+tkpi_0921,"Ikan tahuman, segar","Ikan/Kerang/Udang dll",88.0,15.9,4.1,0.9
+tkpi_0922,"Ikan tarmon, segar","Ikan/Kerang/Udang dll",96.0,19.5,2.0,1.1
+tkpi_0923,"Ikan telan, segar (spiny eel, fresh)","Ikan/Kerang/Udang dll",95.0,15.8,6.5,0.7
+tkpi_0924,"Ikan tembang, segar (Bonga shad, fresh)","Ikan/Kerang/Udang dll",204.0,16.0,0.0,15.0
+tkpi_0925,"Ikan tempahas, segar","Ikan/Kerang/Udang dll",101.0,15.1,1.0,4.1
+tkpi_0926,"Ikan terbang, segar (Flyingfishes, fresh)","Ikan/Kerang/Udang dll",98.0,19.6,1.0,1.7
+tkpi_0927,"Ikan teri, segar (Anchovies, fresh)","Ikan/Kerang/Udang dll",74.0,10.3,4.1,1.4
+tkpi_0928,"Ikan titang, segar (Spotted scat,fresh)","Ikan/Kerang/Udang dll",82.0,17.4,2.3,0.4
+tkpi_0929,"Ikan tongkol, segar (Tuna, fresh)","Ikan/Kerang/Udang dll",100.0,13.7,8.0,1.5
+tkpi_0930,"Ikan turi, segar","Ikan/Kerang/Udang dll",96.0,19.2,0.2,2.0
+tkpi_0931,"Keong, segar (Snail, fresh)","Ikan/Kerang/Udang dll",64.0,12.0,2.0,1.0
+tkpi_0932,"Kepiting, segar (Crab, fresh)","Ikan/Kerang/Udang dll",151.0,13.8,14.1,3.8
+tkpi_0933,"Kerang, segar","Ikan/Kerang/Udang dll",101.0,14.4,3.9,2.6
+tkpi_0934,"Kodok, segar (Frog, fresh)","Ikan/Kerang/Udang dll",73.0,16.4,0.0,0.3
+tkpi_0935,"Kura-kura, segar (Turtles, fresh)","Ikan/Kerang/Udang dll",83.0,19.1,0.0,0.2
+tkpi_0936,"Kuro, segar (Threadfin, fresh)","Ikan/Kerang/Udang dll",87.0,16.0,1.0,2.2
+tkpi_0937,"Lokan, segar","Ikan/Kerang/Udang dll",217.0,11.0,5.1,1.7
+tkpi_0938,"Rajungan, segar","Ikan/Kerang/Udang dll",76.0,12.1,2.4,2.0
+tkpi_0939,"Rebon, udang kecil, segar","Ikan/Kerang/Udang dll",81.0,16.2,0.7,1.2
+tkpi_0940,Rusip,"Ikan/Kerang/Udang dll",110.0,11.5,11.7,2.0
+tkpi_0941,"Udang galah, segar (Giant river prawn, fresh)","Ikan/Kerang/Udang dll",81.0,16.5,3.0,0.3
+tkpi_0942,"Udang, besar, segar (Tiger prawn, fresh)","Ikan/Kerang/Udang dll",56.0,11.4,1.2,0.6
+tkpi_0943,"Udang, segar (Shrimp, fresh)","Ikan/Kerang/Udang dll",91.0,21.0,0.1,0.2
+tkpi_0944,"Bekicot, dendeng, mentah","Ikan/Kerang/Udang dll",441.0,48.7,15.8,20.3
+tkpi_0945,"Belut, goreng (Asian swamp eel, fresh)","Ikan/Kerang/Udang dll",417.0,25.9,32.0,19.4
+tkpi_0946,"Cumi-cumi, goreng (Squid, fried)","Ikan/Kerang/Udang dll",265.0,40.6,0.0,10.1
+tkpi_0947,"Ikan asin, kering","Ikan/Kerang/Udang dll",193.0,42.0,0.0,1.5
+tkpi_0948,"Ikan bandeng presto, masakan","Ikan/Kerang/Udang dll",296.0,17.1,11.3,20.3
+tkpi_0949,"Ikan baung bakar (Asian river catfish, fresh)","Ikan/Kerang/Udang dll",144.0,17.8,5.2,5.8
+tkpi_0950,"Ikan Belida bakar (Indonesian featherback, fresh)","Ikan/Kerang/Udang dll",128.0,18.0,7.2,3.0
+tkpi_0951,"Ikan cakalang asap, mentah (Skipjack tuna, fish,smoked, raw)","Ikan/Kerang/Udang dll",204.0,34.2,1.9,5.6
+tkpi_0952,"Ikan cakalang asin, mentah (Skipjack tuna,fish, salted, raw)","Ikan/Kerang/Udang dll",198.0,36.5,5.5,2.2
+tkpi_0953,"Ikan calo/ peda, mentah","Ikan/Kerang/Udang dll",81.0,11.4,3.8,1.9
+tkpi_0954,"Ikan Gabus asap, mentah (Asian snakehead, fish, smoked)","Ikan/Kerang/Udang dll",261.0,38.1,21.9,2.3
+tkpi_0955,"Ikan Gabus, kering (Asian snakehead, fish, dried)","Ikan/Kerang/Udang dll",268.0,58.0,0.0,4.0
+tkpi_0956,"Ikan gete, goreng","Ikan/Kerang/Udang dll",267.0,23.1,0.2,19.4
+tkpi_0957,"Ikan hiu, kering (Shark, fish, dried)","Ikan/Kerang/Udang dll",298.0,46.3,20.2,3.6
+tkpi_0958,"Ikan katombo, asin (Pargy, fish, salted)","Ikan/Kerang/Udang dll",162.0,31.7,0.3,2.8
+tkpi_0959,"Ikan kayu, kering","Ikan/Kerang/Udang dll",302.0,70.7,0.4,1.9
+tkpi_0960,"Ikan Lais bakar","Ikan/Kerang/Udang dll",147.0,17.5,5.4,6.5
+tkpi_0961,"Ikan lomak asin, mentah","Ikan/Kerang/Udang dll",258.0,40.3,18.9,2.3
+tkpi_0962,"Ikan Mas pepes","Ikan/Kerang/Udang dll",209.0,15.2,11.8,11.3
+tkpi_0963,"Ikan mujahir goreng","Ikan/Kerang/Udang dll",416.0,46.9,0.0,23.9
+tkpi_0964,"Ikan Mujahir pepes","Ikan/Kerang/Udang dll",121.0,21.7,0.8,2.8
+tkpi_0965,"Ikan mujahir, dendeng, mentah","Ikan/Kerang/Udang dll",582.0,68.3,37.2,15.2
+tkpi_0966,"Ikan Papuyu, bakar","Ikan/Kerang/Udang dll",152.0,17.6,6.7,6.1
+tkpi_0967,"Ikan Patin, bakar","Ikan/Kerang/Udang dll",144.0,17.5,4.3,6.3
+tkpi_0968,"Ikan peda banjar, mentah","Ikan/Kerang/Udang dll",156.0,28.0,2.0,4.0
+tkpi_0969,"Ikan pepetek, mentah (Ponyfish, fresh)","Ikan/Kerang/Udang dll",176.0,32.0,2.0,4.4
+tkpi_0970,"Ikan Pindang banjar, mentah","Ikan/Kerang/Udang dll",157.0,28.0,1.8,4.2
+tkpi_0971,"Ikan Pindang benggol, mentah","Ikan/Kerang/Udang dll",170.0,31.0,0.0,4.2
+tkpi_0972,"Ikan Pindang layang, mentah","Ikan/Kerang/Udang dll",153.0,30.0,0.0,2.8
+tkpi_0973,"Ikan Pindang selar, mentah","Ikan/Kerang/Udang dll",142.0,27.0,0.0,3.0
+tkpi_0974,"Ikan sale, mentah","Ikan/Kerang/Udang dll",534.0,40.2,4.9,39.3
+tkpi_0975,"Ikan sale lais, mentah (Sheatfish)","Ikan/Kerang/Udang dll",415.0,61.3,2.9,17.6
+tkpi_0976,"Ikan saluang, kering, mentah (Rasborafish)","Ikan/Kerang/Udang dll",284.0,34.1,14.6,9.9
+tkpi_0977,"Ikan sanggang, masakan","Ikan/Kerang/Udang dll",240.0,21.7,20.7,7.7
+tkpi_0978,"Ikan selar kuning, cue, mentah (Black-banded trevally)","Ikan/Kerang/Udang dll",138.0,27.0,0.0,3.3
+tkpi_0979,"Ikan selar, kering, mentah (Trevally yellow-banded)","Ikan/Kerang/Udang dll",194.0,38.0,0.0,3.5
+tkpi_0980,"Ikan sepat, kering, mentah (Siamese gourami)","Ikan/Kerang/Udang dll",289.0,38.0,0.0,14.0
+tkpi_0981,"Ikan sunu, asin, mentah (Coral trout)","Ikan/Kerang/Udang dll",199.0,34.1,7.1,3.8
+tkpi_0982,"Ikan, tepung, mentah","Ikan/Kerang/Udang dll",316.0,60.1,22.4,6.5
+tkpi_0983,"Ikan Teri nasi, kering, mentah","Ikan/Kerang/Udang dll",144.0,32.5,0.0,0.6
+tkpi_0984,"Ikan Teri, bubuk, mentah","Ikan/Kerang/Udang dll",277.0,60.0,1.8,2.3
+tkpi_0985,"Ikan teri, kering, mentah (Anchovy)","Ikan/Kerang/Udang dll",170.0,33.4,0.0,3.0
+tkpi_0986,"Ikan Teri, kering, tawar, mentah","Ikan/Kerang/Udang dll",331.0,68.7,0.0,4.2
+tkpi_0987,"Ikan Teri, tepung, mentah","Ikan/Kerang/Udang dll",347.0,48.8,19.6,6.4
+tkpi_0988,"Kerang, asap, mentah","Ikan/Kerang/Udang dll",393.0,38.9,29.4,13.3
+tkpi_0989,"Kerang, dendeng, mentah","Ikan/Kerang/Udang dll",357.0,41.1,25.6,10.0
+tkpi_0990,"Rebon, kering, mentah","Ikan/Kerang/Udang dll",299.0,59.4,3.2,3.6
+tkpi_0991,"Rebung laut, mentah","Ikan/Kerang/Udang dll",320.0,7.2,63.3,4.2
+tkpi_0992,"Sardines dalam kaleng","Ikan/Kerang/Udang dll",338.0,21.1,1.0,27.0
+tkpi_0993,"Teripang, dendeng, mentah","Ikan/Kerang/Udang dll",462.0,39.1,3.5,32.4
+tkpi_0994,"Udang kering, mentah","Ikan/Kerang/Udang dll",278.0,62.6,2.2,4.1
+tkpi_0995,"Udang papay, mentah","Ikan/Kerang/Udang dll",273.0,47.8,12.5,3.8
+tkpi_0996,"Abon ikan","Ikan/Kerang/Udang dll",435.0,27.2,36.1,20.2
+tkpi_0997,"Betok wadi, masakan (Climbing gouramy)","Ikan/Kerang/Udang dll",145.0,16.3,4.1,7.0
+tkpi_0998,"Bou ninahu ndamate, masakan","Ikan/Kerang/Udang dll",79.0,6.3,1.1,1.0
+tkpi_0999,"Bouiki ninahu nggaluku, masakan","Ikan/Kerang/Udang dll",94.0,7.8,10.8,2.2
+tkpi_1000,"Cakalang asar (asap)","Ikan/Kerang/Udang dll",155.0,20.1,10.2,3.8
+tkpi_1001,"Dendeng belut, goreng, masakan","Ikan/Kerang/Udang dll",382.0,55.7,8.0,14.1
+tkpi_1002,"Dendeng mujahir, goreng, masakan","Ikan/Kerang/Udang dll",598.0,74.3,9.2,26.9
+tkpi_1003,"Fillet o-fish","Ikan/Kerang/Udang dll",270.0,12.3,19.3,15.9
+tkpi_1004,"Gete kuah asam, masakan","Ikan/Kerang/Udang dll",75.0,8.2,6.0,2.0
+tkpi_1005,"Gulai asam keueung, masakan","Ikan/Kerang/Udang dll",52.0,10.0,1.8,0.5
+tkpi_1006,"Gulai ikan, masakan","Ikan/Kerang/Udang dll",106.0,16.5,2.5,3.3
+tkpi_1007,"Gulai ikan paya, masakan","Ikan/Kerang/Udang dll",148.0,10.0,5.0,9.8
+tkpi_1008,"Gulai keumamah, masakan","Ikan/Kerang/Udang dll",110.0,5.9,3.2,8.2
+tkpi_1009,"Gulai tiram, masakan","Ikan/Kerang/Udang dll",132.0,9.0,7.8,7.2
+tkpi_1010,"Gurame asem manis, masakan","Ikan/Kerang/Udang dll",192.0,12.7,12.7,10.1
+tkpi_1011,"Ikan asar merah, masakan","Ikan/Kerang/Udang dll",146.0,17.7,5.6,5.9
+tkpi_1012,"Jambal goreng, masakan","Ikan/Kerang/Udang dll",286.0,48.5,2.3,9.2
+tkpi_1013,"Jukku pallu kaloa, masakan","Ikan/Kerang/Udang dll",15.0,15.2,8.8,4.3
+tkpi_1014,"Kaholeo, masakan","Ikan/Kerang/Udang dll",413.0,28.7,29.8,19.8
+tkpi_1015,"Lawara penjah","Ikan/Kerang/Udang dll",207.0,7.4,9.6,15.4
+tkpi_1016,"Model, masakan","Ikan/Kerang/Udang dll",79.0,2.2,8.6,4.0
+tkpi_1017,"Mujahir acar kuning, masakan","Ikan/Kerang/Udang dll",330.0,17.8,12.1,23.4
+tkpi_1018,"Parede baleh, masakan","Ikan/Kerang/Udang dll",87.0,10.5,5.5,2.5
+tkpi_1019,"Pempek adaan, masakan","Ikan/Kerang/Udang dll",162.0,4.9,27.8,3.0
+tkpi_1020,"Pempek belida, masakan","Ikan/Kerang/Udang dll",156.0,4.2,31.6,1.4
+tkpi_1021,"Pempek kapal selam, masakan","Ikan/Kerang/Udang dll",152.0,4.5,28.2,2.3
+tkpi_1022,"Pempek kelesan, masakan","Ikan/Kerang/Udang dll",211.0,12.3,26.6,6.1
+tkpi_1023,"Pempek kulit, masakan","Ikan/Kerang/Udang dll",243.0,5.2,39.1,7.3
+tkpi_1024,"Pempek telur, masakan","Ikan/Kerang/Udang dll",156.0,4.7,28.3,2.7
+tkpi_1025,"Pempek tenggiri, masakan","Ikan/Kerang/Udang dll",173.0,7.2,33.4,1.2
+tkpi_1026,"Pencok lele, masakan","Ikan/Kerang/Udang dll",372.0,7.8,3.5,36.3
+tkpi_1027,Pinda,"Ikan/Kerang/Udang dll",107.0,15.9,0.4,0.6
+tkpi_1028,"Pindang kenari, masakan","Ikan/Kerang/Udang dll",124.0,9.5,0.0,9.6
+tkpi_1029,"Saboko gurita, masakan","Ikan/Kerang/Udang dll",87.0,15.7,2.6,1.5
+tkpi_1030,"Saboko saltan, masakan","Ikan/Kerang/Udang dll",113.0,17.1,3.0,3.6
+tkpi_1031,"Saboko sardin, masakan","Ikan/Kerang/Udang dll",110.0,12.9,4.9,4.3
+tkpi_1032,"Sate Bandeng","Ikan/Kerang/Udang dll",283.0,12.1,20.9,16.8
+tkpi_1033,"Sepi, masakan","Ikan/Kerang/Udang dll",88.0,7.9,10.6,1.6
+tkpi_1034,"Tekwan, masakan","Ikan/Kerang/Udang dll",53.0,1.9,9.4,0.9
+tkpi_1035,"Teri belado, masakan","Ikan/Kerang/Udang dll",365.0,23.7,17.5,22.3
+tkpi_1036,"Tumis bandeng, masakan","Ikan/Kerang/Udang dll",189.0,11.3,0.6,15.7
+tkpi_1037,"Tumis keumamah","Ikan/Kerang/Udang dll",300.0,14.5,15.5,20.0
+tkpi_1038,"Telur ayam kampung, segar (Feral chicken, egg, fresh)",Telur,174.0,10.8,1.2,14.0
+tkpi_1039,"Telur ayam ras, segar (Domestic chicken, egg, fresh)",Telur,154.0,12.4,0.7,10.8
+tkpi_1040,"Telur ayam ras, bagian kuning, segar (Domestic chicken, egg, yolk, raw)",Telur,355.0,16.3,0.7,31.9
+tkpi_1041,"Telur aAyam ras, bagian putih, segar (Domestic chicken, egg, white, raw)",Telur,50.0,10.8,0.8,0.0
+tkpi_1042,"Telur bebek alabio, segar (Duck, alabio, egg, fresh)",Telur,187.0,11.8,3.0,14.2
+tkpi_1043,"Telur bebek, bagian kuning, segar (Duck, egg, yolk, fresh)",Telur,386.0,17.0,0.8,35.0
+tkpi_1044,"Telur bebek, bagian putih, segar (Duck, egg, white, fresh)",Telur,54.0,11.0,0.8,0.0
+tkpi_1045,"Telur bebek tambak, segar (Domestic duck, egg, fresh)",Telur,187.0,10.9,7.9,12.4
+tkpi_1046,"Telur burung maleo, segar (Maleo, bird, egg , fresh)",Telur,436.0,26.5,0.4,36.3
+tkpi_1047,"Telur penyu, segar (Turtle, egg)",Telur,136.0,8.6,2.7,10.1
+tkpi_1048,"Telur burung puyuh, segar (Quail, egg, fress)",Telur,116.0,10.7,1.6,7.0
+tkpi_1049,"Telur ayam, dadar, masakan",Telur,251.0,16.3,1.4,19.4
+tkpi_1050,"Telur bebek, asin, mentah (Duck, egg, salted, raw)",Telur,179.0,13.6,4.4,13.3
+tkpi_1051,"Telur bebek, dadar, masakan",Telur,301.0,20.0,0.0,23.7
+tkpi_1052,"Ikan, telur, asin, mentah (Roe, (fish egg), fresh)",Telur,358.0,20.7,9.4,26.4
+tkpi_1053,"Bayau mi balu, masakan",Telur,313.0,6.0,44.8,12.2
+tkpi_1054,"Cucuru bayau, masakan",Telur,349.0,6.8,38.3,18.7
+tkpi_1055,"Kalio telur, masakan",Telur,193.0,10.6,9.7,12.4
+tkpi_1056,"Kepala susu - krim, segar",Susu,204.0,2.6,4.0,20.0
+tkpi_1057,"Susu ibu - ASI",Susu,62.0,1.5,7.0,3.2
+tkpi_1058,"Susu kambing, segar",Susu,64.0,4.3,6.6,2.3
+tkpi_1059,"Susu kerbau, segar",Susu,160.0,6.3,7.1,12.0
+tkpi_1060,"Susu kuda, segar",Susu,40.0,2.0,5.4,1.1
+tkpi_1061,"Susu sapi, segar",Susu,61.0,3.2,4.3,3.5
+tkpi_1062,"Es krim",Susu,210.0,4.0,20.6,12.5
+tkpi_1063,Hangop,Susu,65.0,10.0,3.5,1.0
+tkpi_1064,Keju,Susu,326.0,22.8,13.1,20.3
+tkpi_1065,"Kwark (Quark)",Susu,242.0,19.0,3.0,17.0
+tkpi_1066,"Susu asam untuk bayi, bubuk",Susu,418.0,19.0,65.5,9.0
+tkpi_1067,"Susu bubuk",Susu,513.0,24.6,36.2,30.0
+tkpi_1068,"Susu kental manis",Susu,343.0,8.2,55.0,10.0
+tkpi_1069,"Susu kental tak manis",Susu,138.0,7.0,9.9,7.9
+tkpi_1070,"Susu skim, bubuk",Susu,359.0,35.6,52.0,1.0
+tkpi_1071,"Susu skim, segar",Susu,36.0,3.5,5.1,0.1
+tkpi_1072,"Yoghurt, segar",Susu,52.0,3.3,4.0,2.5
+tkpi_1073,"Kelapa setengah tua, daging, segar (Coconut flesh, half mature, fresh)",Minyak/Lemak,180.0,4.0,10.0,15.0
+tkpi_1074,"Kelapa tua, daging, segar (Coconut, flesh, old, fresh)",Minyak/Lemak,359.0,3.4,14.0,34.7
+tkpi_1075,"Lemak babi (lard) (pork, fat, lord)",Minyak/Lemak,902.0,0.0,0.0,100.0
+tkpi_1076,"Lemak babi (bacon) (pork, fat, bacon)",Minyak/Lemak,626.0,9.1,1.1,65.0
+tkpi_1077,"Lemak ikan (Fish, fat)",Minyak/Lemak,372.0,12.0,14.4,29.4
+tkpi_1078,"Lemak kerbau (lemak sapi) (fat, buffalo)",Minyak/Lemak,818.0,1.5,0.0,90.0
+tkpi_1079,"Minyak hiu, hati (shark, fish, liver, oil)",Minyak/Lemak,902.0,0.0,0.0,100.0
+tkpi_1080,"Minyak ikan (Fish, oil)",Minyak/Lemak,902.0,0.0,0.0,100.0
+tkpi_1081,"Minyak kacang tanah (Peanut oil)",Minyak/Lemak,902.0,0.0,0.0,100.0
+tkpi_1082,"Minyak kedelai (Soybean oil)",Minyak/Lemak,883.0,0.0,0.0,99.9
+tkpi_1083,"Minyak kelapa (Coconut oil)",Minyak/Lemak,870.0,1.0,0.0,98.0
+tkpi_1084,"Minyak kelapa sawit (Palm oil)",Minyak/Lemak,884.0,0.0,0.0,100.0
+tkpi_1085,"Minyak wijen (Sesame oil)",Minyak/Lemak,881.0,0.2,0.0,99.7
+tkpi_1086,"Minyak Zaitun (Olive oil)",Minyak/Lemak,884.0,0.0,0.0,100.0
+tkpi_1087,"Margarin (Butter)",Minyak/Lemak,720.0,0.6,0.4,81.0
+tkpi_1088,"Mentega (Margarine)",Minyak/Lemak,742.0,0.5,1.4,81.6
+tkpi_1089,"Santan (dengan air) (Coconut milk mixed with water)",Minyak/Lemak,122.0,2.0,7.6,10.0
+tkpi_1090,"Santan murni (Coconut milk, pured)",Minyak/Lemak,324.0,4.2,5.6,34.3
+tkpi_1091,"Coklat manis, batang (Chocolate, bar)",Konfeksioneri,527.0,2.0,62.7,29.8
+tkpi_1092,"Coklat pahit,batang (Chocolate,dark, bar)",Konfeksioneri,615.0,5.5,29.2,42.6
+tkpi_1093,"Coklat susu, batang (Chocolate, dairy milk, bar)",Konfeksioneri,565.0,9.0,53.6,35.0
+tkpi_1094,"Coklat bubuk (Cacao, powder)",Konfeksioneri,311.0,8.0,48.9,4.0
+tkpi_1095,"Gula aren (Sugar, palm)",Konfeksioneri,368.0,0.0,92.0,0.0
+tkpi_1096,"Gula kelapa",Konfeksioneri,386.0,3.0,76.0,10.0
+tkpi_1097,"Gula putih (Sugar cane)",Konfeksioneri,394.0,0.0,94.0,0.0
+tkpi_1098,"Jam, selai (Jam)",Konfeksioneri,239.0,0.5,64.5,0.6
+tkpi_1099,"Kopi bubuk instant (Coffee, instant)",Konfeksioneri,129.0,12.3,35.0,0.5
+tkpi_1100,"Madu (Honey)",Konfeksioneri,294.0,0.3,79.5,0.0
+tkpi_1101,"Markisa squash",Konfeksioneri,217.0,2.5,49.6,1.0
+tkpi_1102,"Markisa squash, BD (Squash, markisa)",Konfeksioneri,104.0,1.2,23.7,0.5
+tkpi_1103,Melase,Konfeksioneri,276.0,0,71.0,0.1
+tkpi_1104,"Sirup (syrup)",Konfeksioneri,213.0,0.0,55.0,0.0
+tkpi_1105,"Sirup pirous (syrup, pirous)",Konfeksioneri,228.0,0.2,55.9,0.4
+tkpi_1106,"Teh hijau daun kering (Tea, leaf, green, dried)",Konfeksioneri,300.0,28.3,53.6,4.8
+tkpi_1107,"Teh hitam daun kering (tea, leaf, black, dried)",Konfeksioneri,293.0,24.5,58.8,2.8
+tkpi_1108,"Teh melati daun kering (Tea, jasmine, black, dried)",Konfeksioneri,299.0,24.1,59.0,3.5
+tkpi_1109,"Asam arang coklat, segar",Bumbu,130.0,0.5,30.9,1.1
+tkpi_1110,"Asam arang merah, segar (Mysore Gamboge, fresh)",Bumbu,99.0,0.8,20.3,1.6
+tkpi_1111,"Asan kandis, kering (Mysore Gamboge, dry)",Bumbu,261.0,0.9,63.3,1.6
+tkpi_1112,"Asam kandis, segar (Mysore Gamboge, fresh)",Bumbu,75.0,0.2,16.1,1.1
+tkpi_1113,"Asam masak pohon, segar (Tamarind, fresh)",Bumbu,267.0,2.8,62.5,0.6
+tkpi_1114,"Asam payak, segar (Asam paya/ kelubi/ kuwai-kuwai)",Bumbu,135.0,0.8,32.1,0.4
+tkpi_1115,"Bawang merah, segar (Shallot)",Bumbu,46.0,1.5,9.2,0.3
+tkpi_1116,"Bawang putih, segar (Garlic)",Bumbu,112.0,4.5,23.1,0.2
+tkpi_1117,"Boros kunci, segar (Rhizomes / Kaemper / Chinesedey)",Bumbu,40.0,1.0,7.2,0.8
+tkpi_1118,"Boros laja (lengkuas), segar (Rhizomes / Galanga)",Bumbu,26.0,1.0,4.7,0.3
+tkpi_1119,"Cabai gembor merah, segar (Chili papper)",Bumbu,38.0,1.6,6.3,0.8
+tkpi_1120,"Cabai hijau, segar (Chili papper)",Bumbu,26.0,0.7,5.2,0.3
+tkpi_1121,"Cabai merah, kering (Chili papper)",Bumbu,367.0,15.9,61.8,6.2
+tkpi_1122,"Cabai merah, segar (Chili papper)",Bumbu,36.0,1.0,7.3,0.3
+tkpi_1123,"Cabai rawit, segar (Chili papper)",Bumbu,120.0,4.7,19.9,2.4
+tkpi_1124,"Cengkeh, kering (Cloves, dried)",Bumbu,330.0,5.2,57.4,8.9
+tkpi_1125,"Daun salam, bubuk (Bay-leaf)",Bumbu,301.0,14.2,49.0,10.9
+tkpi_1126,"Jahe, segar (Ginger, root)",Bumbu,51.0,1.5,10.1,1.0
+tkpi_1127,"Kemiri (Candle nut)",Bumbu,675.0,19.0,8.0,63.0
+tkpi_1128,"Ketumbar, kering (Coriander, seed)",Bumbu,418.0,14.1,54.2,16.1
+tkpi_1129,"Kluwek (Pucungmit)",Bumbu,310.0,10.0,13.5,24.0
+tkpi_1130,"Kunyit, segar (Turmeric)",Bumbu,69.0,2.0,9.1,2.7
+tkpi_1131,"Merica, kering (Pepper)",Bumbu,365.0,11.5,64.4,6.8
+tkpi_1132,"Pala, biji, kering (Nutmeg)",Bumbu,518.0,7.5,40.1,36.4
+tkpi_1133,"Balichong (Tiny shrimp fermented)",Bumbu,152.0,13.2,22.9,0.8
+tkpi_1134,"Bekasam (Tiny shrimp fermented)",Bumbu,116.0,11.9,6.1,4.9
+tkpi_1135,"Bekasang (Fermented fish)",Bumbu,78.0,11.4,3.6,2.0
+tkpi_1136,"Cuka (vinegar)",Bumbu,21.0,0.1,5.0,0.1
+tkpi_1137,"Kecap (Soyabean sauce)",Bumbu,71.0,5.7,9.0,1.3
+tkpi_1138,"Petis ikan (fish,fermented, paste (petis))",Bumbu,165.0,20.0,20.8,0.2
+tkpi_1139,"Petis udang kering (shrimp, fermented, dried (petis))",Bumbu,345.0,23.8,59.3,1.4
+tkpi_1140,"Petis udang pasta (shrimp, fermented, paste (petis))",Bumbu,220.0,15.0,38.0,0.9
+tkpi_1141,"Saos tomat (Tomato, sauce)",Bumbu,110.0,2.0,24.5,0.4
+tkpi_1142,"Tempoya (durian, fermented)",Bumbu,110.0,1.7,21.9,1.3
+tkpi_1143,"Terasi (Fish, fermented, paste (terasi))",Bumbu,155.0,22.3,9.9,2.9
+tkpi_1144,"Terasi dobo",Bumbu,191.0,33.1,6.6,3.6
+tkpi_1145,"Terasi merah",Bumbu,174.0,30.0,5.6,3.5
+tkpi_1146,"Kelapa muda, air, segar (Coconut, young, water, fresh)","Minuman Non Alkohol",17.0,0.2,3.8,0.1

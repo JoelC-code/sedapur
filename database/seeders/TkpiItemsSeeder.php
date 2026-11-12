@@ -2,51 +2,80 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use RuntimeException;
 
+/**
+ * Mengisi tabel tkpi_items dengan Tabel Komposisi Pangan Indonesia (nilai per 100 g).
+ *
+ * Sumber nilai gizi: Tabel Komposisi Pangan Indonesia, Kementerian Kesehatan RI (https://www.panganku.org).
+ * Hasil scraping dan pembersihan oleh tim riset Jatim Melaju 2026 (UPNVJT):
+ * https://github.com/intanypurbasari/food-nutrition, berkas data_clean/tkpi_clean.csv
+ * (nilai terukur, bukan hasil imputasi). Lisensi MIT repo itu hanya untuk kodenya; nilai TKPI
+ * tetap tunduk pada ketentuan Kemenkes, dipakai di sini untuk keperluan akademik non-komersial.
+ * Berkas itu dipangkas menjadi database/data/tkpi.csv (hanya kolom yang dipakai tabel ini).
+ *
+ * Dataset tidak memuat BDD (berat dapat dimakan), jadi kolom bdd memakai default 100.
+ * Dua nilai kosong di sumber (lemak "Salak, segar", protein "Melase") disimpan sebagai 0.
+ * Seeder ini mengganti seluruh isi tabel, aman dijalankan berulang kali.
+ */
 class TkpiItemsSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+    private const CSV_PATH = 'data/tkpi.csv';
+
+    private const CHUNK_SIZE = 200;
+
     public function run(): void
     {
-        $items = [
-            // [kode, nama_bahan, kelompok, kalori, protein, karbo, lemak, bdd]
-            ['AR001', 'Nasi Putih Konvensional', 'Serealia', 180.0, 3.0, 39.8, 0.3, 100],
-            ['AR002', 'Beras Merah Mentah', 'Serealia', 352.0, 7.5, 76.2, 1.9, 100],
-            ['DY001', 'Daging Ayam Kampung', 'Daging', 246.0, 18.2, 0.0, 18.7, 58],
-            ['DY002', 'Daging Sapi Murni', 'Daging', 201.0, 18.8, 0.0, 14.0, 100],
-            ['IK001', 'Ikan Lele Segar', 'Ikan', 84.0, 14.8, 0.0, 2.3, 78],
-            ['IK002', 'Ikan Bandeng Segar', 'Ikan', 129.0, 20.0, 0.0, 4.8, 80],
-            ['OL001', 'Tempe Kedelai Murni', 'Olahan Kedelai', 201.0, 20.8, 13.5, 8.8, 100],
-            ['OL002', 'Tahu Putih Segar', 'Olahan Kedelai', 80.0, 10.9, 0.8, 4.7, 100],
-            ['SY001', 'Kangkung Segar', 'Sayuran', 28.0, 3.4, 3.9, 0.7, 70],
-            ['SY002', 'Bayam Segar', 'Sayuran', 16.0, 0.9, 2.9, 0.4, 71],
-            ['SY003', 'Daun Singkong', 'Sayuran', 50.0, 6.2, 7.1, 1.1, 87],
-            ['BU001', 'Pisang Ambon', 'Buah', 108.0, 1.0, 24.3, 0.8, 75],
-            ['BU002', 'Alpukat Segar', 'Buah', 85.0, 0.9, 7.7, 6.5, 61],
-            ['SP001', 'Minyak Kelapa Sawit', 'Minyak', 902.0, 0.0, 0.0, 100.0, 100],
-            ['SP002', 'Santan Kelapa Perah', 'Serba-serbi', 123.0, 2.0, 5.6, 10.0, 100],
-        ];
+        $rows = $this->readCsv(database_path(self::CSV_PATH));
+        $now = now();
 
-        foreach ($items as $item) {
-            DB::table('tkpi_items')->updateOrInsert(
-                ['kode_bahan' => $item[0]],
-                [
-                    'nama_bahan' => $item[1],
-                    'kelompok' => $item[2],
-                    'kalori_100g' => $item[3],
-                    'protein_100g' => $item[4],
-                    'karbohidrat_100g' => $item[5],
-                    'lemak_100g' => $item[6],
-                    'bdd' => $item[7],
-                    'updated_at' => now(),
-                    'created_at' => now(),
-                ]
-            );
+        DB::transaction(function () use ($rows, $now): void {
+            DB::table('tkpi_items')->delete();
+
+            foreach (array_chunk($rows, self::CHUNK_SIZE) as $chunk) {
+                DB::table('tkpi_items')->insert(array_map(fn (array $row): array => [
+                    ...$row,
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ], $chunk));
+            }
+        });
+
+        $this->command?->info(count($rows).' bahan TKPI dimasukkan.');
+    }
+
+    /**
+     * @return list<array{kode_bahan: string, nama_bahan: string, kelompok: string, kalori_100g: float, protein_100g: float, karbohidrat_100g: float, lemak_100g: float}>
+     */
+    private function readCsv(string $path): array
+    {
+        $handle = fopen($path, 'r');
+
+        if ($handle === false) {
+            throw new RuntimeException("File TKPI tidak ditemukan: {$path}");
         }
+
+        $header = fgetcsv($handle, escape: '');
+        $rows = [];
+
+        while (($values = fgetcsv($handle, escape: '')) !== false) {
+            $row = array_combine($header, $values);
+
+            $rows[] = [
+                'kode_bahan' => $row['kode_bahan'],
+                'nama_bahan' => $row['nama_bahan'],
+                'kelompok' => $row['kelompok'],
+                'kalori_100g' => (float) $row['kalori_100g'],
+                'protein_100g' => (float) $row['protein_100g'],
+                'karbohidrat_100g' => (float) $row['karbohidrat_100g'],
+                'lemak_100g' => (float) $row['lemak_100g'],
+            ];
+        }
+
+        fclose($handle);
+
+        return $rows;
     }
 }
