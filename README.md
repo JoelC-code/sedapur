@@ -54,8 +54,6 @@ npm install
 npm run build
 ```
 
-Fill in `.env`: `DB_*` (Supabase session pooler, port 5432), `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY` (ask the team through private chat) and `FATSECRET_*` (from your own FatSecret account, with your IP added to its IP restrictions).
-
 The shared Supabase database is already migrated and seeded, so `php artisan migrate` only reports "Nothing to migrate". Never run `migrate:fresh` against it: it deletes every table. For a new, empty Supabase project:
 
 ```bash
