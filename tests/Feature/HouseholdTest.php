@@ -4,6 +4,7 @@ use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 
 beforeEach(function () {
+    $this->withoutVite();
     config([
         'services.supabase.url' => 'https://test.supabase.co',
         'services.supabase.publishable_key' => 'sb_publishable_test',
