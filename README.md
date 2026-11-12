@@ -1,78 +1,108 @@
 # Sedapur
 
-Web app mobile-first untuk mengelola kulkas bersama di rumah atau kos: pantau tanggal kedaluwarsa, habiskan bahan sebelum terbuang, dan lihat berapa uang yang terbuang setiap bulan.
+A mobile-first web app for a fridge shared by a household or boarding house (kos): track expiry dates, use ingredients before they go to waste, and see how much money is thrown away each month.
 
-Kelompok 7 · Cloud Computing — Alvaro Grevi Kumesan, Hans Vere Liem, Joel Christopher Gerald Tjokrowiharjo.
+Group 7\
+Cloud Computing\
+Alvaro Grevi Kumesan\
+Hans Vere Liem\
+Joel Christopher Gerald Tjokrowiharjo
 
-## Progres fitur
+## Feature progress
 
-Semua layar sudah dibuat sesuai desain Figma (versi HP dan desktop). Layar masih memakai data contoh dari `app/Support/DemoData.php` sampai backend tiap fitur tersambung.
+Every screen is built from the Figma design (phone and desktop layouts). Sign-in, sign-up and the household (create or join) are connected to Supabase. The other screens still show sample data from `app/Support/DemoData.php` until each feature's backend is connected. Ingredients are shown as text with a category label (no emoji), because Unicode food emoji only cover about 59% of the 1,146 TKPI ingredients.
 
-| # | Fitur | Tampilan (UI) | Backend / data |
+| # | Feature | UI | Backend / data |
 | --- | --- | --- | --- |
-| 1 | Kulkas bersama + kode undangan | Selesai | Sebagian: tabel `households`, `household_members`, `food_items` di Supabase dengan RLS dan kode undangan otomatis. Realtime belum. |
-| 2 | Scan struk (Gemini Vision) | Selesai | Belum, menunggu Gemini API |
-| 3 | Scan isi kulkas (Gemini Vision) | Selesai | Belum, menunggu Gemini API |
-| 4 | Input manual + autocomplete bahan | Selesai | Sebagian: API pencarian gizi `/api/nutrition/search` (FatSecret + TKPI). Belum disambungkan ke form. |
-| 5 | Pemantauan kedaluwarsa + pengingat email | Selesai (termasuk template email) | Belum (Edge Function + pg_cron) |
-| 6 | Resep + rencana menu mingguan AI | Selesai | Belum, menunggu Gemini API |
-| 7 | Daftar belanja bersama | Selesai | Belum |
-| 8 | Kalori dan gizi | Selesai | Sebagian: sumber data gizi FatSecret + TKPI sudah ada. Perhitungan total dan catatan konsumsi belum. |
-| 9 | Riwayat aktivitas | Selesai | Belum |
-| 10 | Analitik food waste + ringkasan AI | Selesai | Belum |
+| 1 | Sign up, sign in, sign out | Done | Done: email + password through Supabase Auth, session refresh, route protection. Google sign-in not yet. |
+| 2 | Shared fridge + invite code | Done | Partly: `households`, `household_members` and `food_items` tables in Supabase with Row Level Security. Creating a household and joining with an invite code work (`join_household` function called through the Data API). Fridge items and Realtime sync not yet. |
+| 3 | Receipt scan (Gemini Vision) | Done | Not yet, waiting for the Gemini API |
+| 4 | Fridge photo scan (Gemini Vision) | Done | Not yet, waiting for the Gemini API |
+| 5 | Manual input + ingredient autocomplete | Done | Partly: nutrition search API `/api/nutrition/search` (FatSecret, then TKPI). Not yet wired to the form. |
+| 6 | Expiry tracking + email reminder | Done (including the email template) | Not yet (Edge Function + pg_cron) |
+| 7 | Recipes + weekly AI meal plan | Done | Not yet, waiting for the Gemini API |
+| 8 | Shared shopping list | Done | Not yet |
+| 9 | Calories and nutrition | Done | Partly: nutrition sources FatSecret + full TKPI table (1,146 ingredients). Totals and consumption logging not yet. |
+| 10 | Activity history | Done | Not yet |
+| 11 | Food waste analytics + AI summary | Done | Not yet |
 
-## Teknologi
+## Tech Stack
 
-- [x] Frontend Laravel Blade + Tailwind CSS v4, PWA manifest
-- [x] Supabase PostgreSQL + Row Level Security
-- [ ] Supabase Auth
+- [x] Frontend: Laravel 12 Blade + Tailwind CSS v4, PWA manifest
+- [x] Supabase PostgreSQL + Row Level Security (policies, helper functions in a private schema, column-level grants)
+- [x] Supabase Auth (email + password)
+- [x] Supabase Data API (REST + RPC with the user's access token, so RLS applies)
 - [ ] Supabase Storage
 - [ ] Supabase Realtime
 - [ ] Supabase Edge Functions + pg_cron
-- [ ] Gemini API (Gemini 3.1 Flash-Lite) untuk scan struk, scan kulkas, resep, menu, ringkasan
-- [x] FatSecret Platform API + tabel TKPI untuk data gizi
-- [ ] CloudPanel + GitHub Actions (deploy otomatis)
+- [ ] Gemini API (Gemini 3.1 Flash-Lite) for receipt scan, fridge scan, recipes, menu and summaries
+- [x] FatSecret Platform API + TKPI table (Kemenkes) for nutrition data
+- [ ] CloudPanel + GitHub Actions (automatic deploy)
 
-## Menjalankan
+## How to run
 
 ```bash
 composer install
 cp .env.example .env
 php artisan key:generate
-php artisan migrate
 npm install
 npm run build
 ```
 
-Dengan Laravel Herd, buka `http://sedapur.test`. 
+Fill in `.env`: `DB_*` (Supabase session pooler, port 5432), `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY` (ask the team through private chat) and `FATSECRET_*` (from your own FatSecret account, with your IP added to its IP restrictions).
 
-## Halaman
-
-| URL | Layar |
-| --- | --- |
-| `/masuk`, `/daftar`, `/rumah/mulai` | Masuk, daftar, buat / gabung rumah |
-| `/` | Beranda |
-| `/kulkas`, `/kulkas/{id}` | Kulkas + detail bahan (panel kanan di desktop) |
-| `/scan`, `/scan/gagal`, `/scan/hasil`, `/bahan/manual` | Scan diproses, scan gagal, cek hasil scan, input manual |
-| `/menu`, `/resep`, `/resep/{id}` | Menu mingguan, daftar resep, detail resep + catat porsi |
-| `/belanja` | Daftar belanja bersama |
-| `/gizi` | Gizi & kalori (konsumsi saya / isi kulkas) |
-| `/food-waste` | Analitik food waste |
-| `/riwayat` | Riwayat aktivitas |
-| `/rumah` | Rumah & akun |
-| `/pratinjau/email-pengingat` | Pratinjau email pengingat harian |
-
-## Struktur
-
-- `app/Support/DemoData.php` — data contoh dengan bentuk mengikuti ERD (Food_Items, Recipes, Meal_Plans, dst.). Nanti diganti query Supabase.
-- `app/Http/Controllers/PageController.php` — satu controller untuk semua halaman tahap frontend.
-- `app/Http/Controllers/NutritionController.php`, `app/Services/FatSecretService.php`, `app/Services/TkpiService.php` — pencarian data gizi.
-- `database/migrations/` — tabel Laravel, `tkpi_items`, tabel rumah dan kulkas, serta RLS untuk Supabase.
-- `resources/views/components/layouts/` — layout `app` (sidebar + bottom nav) dan `guest` (halaman masuk).
-- `resources/css/app.css` — token warna dan komponen (tombol, input, chip, badge) dari UI kit.
-
-## Tes
+The shared Supabase database is already migrated and seeded, so `php artisan migrate` only reports "Nothing to migrate". Never run `migrate:fresh` against it: it deletes every table. For a new, empty Supabase project:
 
 ```bash
+php artisan migrate
+php artisan db:seed --class=TkpiItemsSeeder
+```
+
+With Laravel Herd, open `http://sedapur.test`. Without Herd (for example on Windows when `php artisan serve` fails), run these in two terminals and open `http://127.0.0.1:8000`:
+
+```bash
+php -S 127.0.0.1:8000 -t public
+npm run dev
+```
+
+For local development, `SESSION_DRIVER=file` and `CACHE_STORE=file` keep each page load from depending on the connection to the database.
+
+## Pages
+
+| URL | Screen |
+| --- | --- |
+| `/masuk`, `/daftar`, `/rumah/mulai` | Sign in, sign up, create or join a household |
+| `/` | Home |
+| `/kulkas`, `/kulkas/{id}` | Fridge + item detail (right panel on desktop) |
+| `/scan`, `/scan/gagal`, `/scan/hasil`, `/bahan/manual` | Scan in progress, scan failed, review scan results, manual input |
+| `/menu`, `/resep`, `/resep/{id}` | Weekly menu, recipe list, recipe detail + log portions |
+| `/belanja` | Shared shopping list |
+| `/gizi` | Nutrition & calories (my intake / fridge contents) |
+| `/food-waste` | Food waste analytics |
+| `/riwayat` | Activity history |
+| `/rumah` | Household & account |
+| `/pratinjau/email-pengingat` | Preview of the daily reminder email |
+
+## Structure
+
+- `app/Services/SupabaseService.php` — Supabase Auth (`/auth/v1`) and Data API (`/rest/v1`) calls, always with the publishable key and the user's access token.
+- `app/Services/HouseholdService.php`, `app/Http/Controllers/HouseholdController.php` — create a household, join with an invite code, load the active household.
+- `app/Http/Controllers/AuthController.php`, `app/Http/Requests/` — sign in, sign up, sign out, and form validation.
+- `app/Http/Middleware/` — `supabase.auth` (signed in + token refresh), `supabase.guest`, `household` (has a household).
+- `app/Support/SupabaseSession.php` — the user's Supabase session stored server-side in the Laravel session.
+- `app/Http/Controllers/NutritionController.php`, `app/Services/FatSecretService.php`, `app/Services/TkpiService.php` — nutrition lookup.
+- `app/Support/DemoData.php` — sample data shaped like the ERD; replaced by Supabase queries feature by feature.
+- `app/Http/Controllers/PageController.php` — the pages that still use sample data.
+- `database/migrations/` — Laravel tables, `tkpi_items`, household and fridge tables with RLS, and the `join_household` function.
+- `database/data/tkpi.csv`, `database/seeders/TkpiItemsSeeder.php` — 1,146 TKPI ingredients (Kemenkes, via the cleaned dataset of the Jatim Melaju 2026 research team).
+- `resources/views/components/layouts/` — `app` layout (sidebar + bottom nav) and `guest` layout (sign-in pages).
+- `resources/css/app.css` — colour tokens and components (buttons, inputs, chips, badges) from the UI kit.
+
+## Tests
+
+```bash
+npm run build
 php artisan test
 ```
+
+Tests run on an in-memory SQLite database and fake every call to Supabase and FatSecret, so they never touch the shared database. `npm run build` is needed first, otherwise page tests fail with `ViteManifestNotFoundException`.
