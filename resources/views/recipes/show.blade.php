@@ -7,10 +7,7 @@
 
     <div class="lg:grid lg:grid-cols-[1fr_380px] lg:gap-8">
         <div>
-            <div class="relative -mx-5 -mt-5 grid h-56 place-items-center text-8xl lg:mx-0 lg:mt-0 lg:h-64 lg:rounded-3xl {{ $recipe['bg'] }}">
-                <a href="{{ route('recipes.index') }}" class="absolute top-5 left-5 grid size-10 place-items-center rounded-full bg-white/80 lg:hidden" aria-label="Kembali"><x-icon name="chevron-left" class="size-4" /></a>
-                {{ $recipe['emoji'] }}
-            </div>
+            <a href="{{ route('recipes.index') }}" class="grid size-10 place-items-center rounded-full bg-sand lg:hidden" aria-label="Kembali"><x-icon name="chevron-left" class="size-4" /></a>
 
             <div class="mt-4 flex flex-wrap gap-1.5">
                 @if ($recipe['dibuat_ai'])<span class="badge bg-ai-soft text-ai">✦ Dibuat AI</span>@endif

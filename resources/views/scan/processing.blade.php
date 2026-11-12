@@ -8,8 +8,8 @@
 
         <div class="relative mx-auto mt-10 flex justify-center">
             @if ($jenis === 'kulkas')
-                <div class="grid w-64 grid-cols-3 gap-3 rounded-2xl bg-white/5 p-5 text-4xl" aria-hidden="true">
-                    <span>🥬</span><span>🥛</span><span>🍅</span><span>🥚</span><span>🍗</span><span>🥕</span>
+                <div class="grid h-48 w-64 place-items-center rounded-2xl bg-white/5 text-white/70" aria-hidden="true">
+                    <x-icon name="camera" class="size-12" />
                 </div>
             @else
                 <div class="w-[230px] -rotate-2 rounded-md bg-[#fcfcfa] px-[18px] py-4 font-mono text-[11px] leading-[1.7] text-[#3a3a3a] shadow-[0_8px_24px_rgba(0,0,0,.25)]">

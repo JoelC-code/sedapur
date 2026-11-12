@@ -5,7 +5,7 @@
         <span class="grid size-11 place-items-center rounded-full bg-olive-700 text-lg font-extrabold text-white lg:hidden">{{ mb_substr($user['nama'], 0, 1) }}</span>
         <div class="min-w-0 flex-1">
             <button type="button" class="flex items-center gap-1 text-xs text-muted lg:hidden">{{ $household['nama'] }} <x-icon name="chevron-down" class="size-3" /></button>
-            <h1 class="text-xl font-extrabold lg:text-[22px]">Halo, {{ $user['panggilan'] }} <span class="hidden lg:inline">👋</span></h1>
+            <h1 class="text-xl font-extrabold lg:text-[22px]">Halo, {{ $user['panggilan'] }}</h1>
             <p class="hidden text-[13px] text-muted lg:block">{{ now()->translatedFormat('l, j F Y') }} · Semua makanan di kulkasmu</p>
         </div>
         <form action="{{ route('fridge.index') }}" class="relative hidden w-80 lg:block">
@@ -69,7 +69,7 @@
                         @foreach ($expiring as $item)
                             @php [$label, $cls] = D::expiryBadge($item['sisa_hari']); @endphp
                             <tr>
-                                <td class="py-2.5"><a href="{{ route('fridge.show', $item['id']) }}" class="flex items-center gap-2 font-semibold"><span class="text-lg">{{ $item['emoji'] }}</span>{{ $item['nama'] }}</a></td>
+                                <td class="py-2.5"><a href="{{ route('fridge.show', $item['id']) }}" class="font-semibold hover:text-olive-700">{{ $item['nama'] }}</a></td>
                                 <td class="py-2.5">{{ $item['jumlah'] }} {{ $item['satuan'] }}</td>
                                 <td class="py-2.5">{{ $item['ditambah_oleh'] }}</td>
                                 <td class="py-2.5"><span class="badge {{ $cls }}">{{ $label }}</span></td>
@@ -89,7 +89,6 @@
                 <div class="grid grid-cols-1 gap-2 lg:grid-cols-3">
                     @foreach ($todayMenu as $waktu => $meal)
                         <a href="{{ $meal['recipe_id'] ? route('recipes.show', $meal['recipe_id']) : route('menu.index') }}" class="flex items-center gap-3 rounded-2xl bg-sand p-3 hover:bg-sand-dark">
-                            <span class="grid size-10 place-items-center rounded-xl bg-white text-xl">{{ $meal['emoji'] }}</span>
                             <span class="min-w-0 flex-1">
                                 <span class="stat-label">{{ $waktu }} · {{ $meal['kalori'] }} kkal</span>
                                 <span class="block truncate text-sm font-semibold">{{ $meal['nama'] }}</span>

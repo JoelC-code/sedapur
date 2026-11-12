@@ -29,7 +29,7 @@
             <div class="no-scrollbar -mx-5 mt-3 flex gap-2 overflow-x-auto px-5 lg:mx-0 lg:flex-wrap lg:px-0">
                 <a href="{{ route('fridge.index') }}" class="{{ $kategori ? 'chip' : 'chip-active' }}">Semua</a>
                 @foreach ($categories as $key => $cat)
-                    <a href="{{ route('fridge.index', ['kategori' => $key]) }}" class="{{ $kategori === $key ? 'chip-active' : 'chip' }}">{{ $cat['emoji'] }} {{ $cat['label'] }}</a>
+                    <a href="{{ route('fridge.index', ['kategori' => $key]) }}" class="{{ $kategori === $key ? 'chip-active' : 'chip' }}">{{ $cat['label'] }}</a>
                 @endforeach
             </div>
 
@@ -37,7 +37,7 @@
 
             @if ($items->isEmpty())
                 <div class="card-sand mt-4 py-10 text-center">
-                    <p class="text-3xl">🧺</p>
+                    <span class="mx-auto grid size-12 place-items-center rounded-full bg-white text-olive-700"><x-icon name="fridge" class="size-5" /></span>
                     <p class="mt-2 font-bold">Belum ada bahan di sini</p>
                     <p class="text-sm text-muted">Bahan yang {{ $status === 'tersedia' ? 'cocok dengan filter' : 'ditandai '.$status }} akan muncul di daftar ini.</p>
                 </div>
@@ -63,7 +63,7 @@
                             @foreach ($items as $item)
                                 @php [$label, $cls] = D::expiryBadge($item['sisa_hari']); @endphp
                                 <tr @class(['border-b border-line', 'bg-olive-100' => ($selected['id'] ?? null) === $item['id'], 'hover:bg-sand/60' => ($selected['id'] ?? null) !== $item['id']])>
-                                    <td class="px-3 py-2.5 font-bold whitespace-nowrap"><a href="{{ route('fridge.show', $item['id']) }}" class="flex items-center gap-2.5"><span class="text-xl">{{ $item['emoji'] }}</span>{{ $item['nama'] }}</a></td>
+                                    <td class="px-3 py-2.5 font-bold whitespace-nowrap"><a href="{{ route('fridge.show', $item['id']) }}" class="hover:text-olive-700">{{ $item['nama'] }}</a></td>
                                     <td class="px-3 py-2.5 text-muted">{{ $categories[$item['kategori']]['label'] }}</td>
                                     <td class="px-3 py-2.5 whitespace-nowrap">{{ $item['jumlah'] }} {{ $item['satuan'] }}</td>
                                     <td class="px-3 py-2.5 whitespace-nowrap">{{ D::number($item['berat_gram']) }} g</td>
@@ -95,15 +95,12 @@
                     </div>
                 </div>
 
-                <div class="flex items-center gap-4">
-                    <span class="grid size-16 place-items-center rounded-2xl bg-sand text-4xl">{{ $selected['emoji'] }}</span>
-                    <div>
+                <div>
                         <h1 class="text-2xl font-extrabold">{{ $selected['nama'] }}</h1>
                         <div class="mt-1 flex gap-1.5">
                             <span class="badge bg-sand text-muted">{{ $categories[$selected['kategori']]['label'] }}</span>
                             <span class="badge {{ $cls }}">{{ $selected['sisa_hari'] >= 0 ? $label.' lagi' : $label }}</span>
                         </div>
-                    </div>
                 </div>
 
                 <dl class="card-sand mt-4 grid grid-cols-2 gap-x-4 gap-y-3">

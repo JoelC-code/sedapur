@@ -16,14 +16,13 @@
                     {{ config('app.name') }} · pengingat harian
                 </td></tr>
                 <tr><td style="background:#fff;border-radius:20px;padding:20px">
-                    <p style="margin:0 0 12px;font-size:16px;font-weight:800;color:#4c610d">🍃 {{ config('app.name') }}</p>
+                    <p style="margin:0 0 12px;font-size:16px;font-weight:800;color:#4c610d">{{ config('app.name') }}</p>
                     <p style="margin:0 0 14px;font-size:14px;line-height:1.5">Pagi, Hans! Ada bahan yang perlu dihabiskan hari ini.</p>
                     @foreach ($items as $item)
                         @php [$label] = \App\Support\DemoData::expiryBadge($item['sisa_hari']); @endphp
                         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#efefed;border-radius:14px;margin-bottom:8px">
                             <tr>
-                                <td style="padding:10px 12px;font-size:20px;width:28px">{{ $item['emoji'] }}</td>
-                                <td style="padding:10px 0;font-size:14px;font-weight:700">{{ $item['nama'] }}</td>
+                                <td style="padding:10px 12px;font-size:14px;font-weight:700">{{ $item['nama'] }}</td>
                                 <td align="right" style="padding:10px 12px"><span style="background:#fff0d6;color:#9a5b00;border-radius:999px;padding:3px 9px;font-size:11px;font-weight:700">{{ $label }}</span></td>
                             </tr>
                         </table>

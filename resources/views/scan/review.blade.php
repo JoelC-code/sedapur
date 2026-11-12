@@ -26,12 +26,11 @@
             </p>
 
             <div class="mt-3 space-y-2.5">
-                @foreach ($rows as $i => [$nama, $emoji, $kat, $jumlah, $satuan, $harga, $exp, $src])
+                @foreach ($rows as $i => [$nama, , $kat, $jumlah, $satuan, $harga, $exp, $src])
                     @php [$srcLabel, $srcCls] = D::sourceBadge($src); $keep = $src !== null; @endphp
                     <div @class(['rounded-2xl p-3', 'bg-sand' => $keep, 'bg-sand/50 opacity-60' => ! $keep])>
                         <div class="flex items-center gap-2.5">
                             <input type="checkbox" name="pilih[]" value="{{ $i }}" @checked($keep) class="size-6 rounded-lg border-2 border-sand-dark text-olive-700 focus:ring-olive-700">
-                            <span class="text-xl">{{ $emoji }}</span>
                             <input value="{{ $nama }}" class="min-w-0 flex-1 border-0 bg-transparent p-0 text-[15px] font-bold focus:ring-0" aria-label="Nama bahan">
                             @if ($src)<span class="badge {{ $srcCls }}">{{ $srcLabel }}</span>@endif
                             <x-icon name="edit" class="size-4 text-muted" />

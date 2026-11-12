@@ -25,7 +25,7 @@
             </div>
             <p class="mt-1 flex items-center gap-2 text-xs text-muted"><span class="badge bg-ai-soft text-ai">✦ AI</span> Dibuat Senin pagi · 1.770 kkal/hari</p>
         </div>
-        <p class="hidden items-center gap-2 rounded-full bg-olive-100 px-3 py-2 text-xs lg:flex">🥬🥛🍅 Mendahulukan 3 bahan hampir kedaluwarsa</p>
+        <p class="hidden items-center gap-2 rounded-full bg-olive-100 px-3 py-2 text-xs lg:flex"><x-icon name="clock" class="size-3.5 text-olive-700" /> Mendahulukan 3 bahan hampir kedaluwarsa</p>
         <button class="btn-soft btn-sm hidden lg:inline-flex"><x-icon name="sparkles" class="size-4" /> Buat ulang dengan AI</button>
         <button class="grid size-10 place-items-center rounded-full bg-sand lg:hidden" aria-label="Buat ulang"><x-icon name="refresh" class="size-4" /></button>
     </div>
@@ -42,12 +42,11 @@
             @endforeach
         </div>
 
-        <p class="mt-4 flex items-center gap-2 rounded-2xl bg-olive-100 px-3 py-2.5 text-xs">🥬🥛🍅 Mendahulukan 3 bahan yang hampir kedaluwarsa</p>
+        <p class="mt-4 flex items-center gap-2 rounded-2xl bg-olive-100 px-3 py-2.5 text-xs"><x-icon name="clock" class="size-3.5 text-olive-700" /> Mendahulukan 3 bahan yang hampir kedaluwarsa</p>
 
         <div class="mt-3 space-y-2.5">
             @foreach ($day['meals'] as $waktu => $meal)
                 <a href="{{ $meal['recipe_id'] ? route('recipes.show', $meal['recipe_id']) : route('recipes.index') }}" class="flex items-center gap-3 rounded-[18px] bg-sand p-3.5">
-                    <span class="grid size-14 shrink-0 place-items-center rounded-xl bg-white text-[28px]">{{ $meal['emoji'] }}</span>
                     <span class="min-w-0 flex-1">
                         <span class="stat-label">{{ $waktu }} · {{ $meal['kalori'] }} kkal</span>
                         <span class="block truncate text-[15px] font-bold">{{ $meal['nama'] }}</span>
@@ -83,7 +82,6 @@
                 @php $meal = $d['meals'][$waktu]; @endphp
                 <a href="{{ $meal['recipe_id'] ? route('recipes.show', $meal['recipe_id']) : route('recipes.index') }}"
                    @class(['flex min-h-[132px] flex-col gap-1 rounded-[14px] p-3 transition hover:brightness-95', 'bg-olive-100 shadow-[inset_0_0_0_2px_var(--color-olive-200)]' => $d['is_today'], 'bg-sand' => ! $d['is_today']])>
-                    <span class="text-[26px]">{{ $meal['emoji'] }}</span>
                     <b class="text-[13px] leading-tight">{{ $meal['nama'] }}</b>
                     <span class="text-[11px] text-muted">{{ $meal['kalori'] }} kkal</span>
                     @if ($meal['recipe_id'] === 1)

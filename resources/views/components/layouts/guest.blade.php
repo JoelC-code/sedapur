@@ -13,10 +13,9 @@
             </a>
 
             <div class="flex flex-1 flex-col items-center justify-center lg:items-start">
-                <div class="grid grid-cols-3 gap-x-6 gap-y-3 text-5xl lg:text-6xl" aria-hidden="true">
-                    <span>🥬</span><span>🥚</span><span>🍅</span>
-                    <span>🥛</span><span>🍗</span><span>🥕</span>
-                </div>
+                <span class="grid size-20 place-items-center rounded-full bg-olive-200 text-olive-700 lg:size-24" aria-hidden="true">
+                    <x-icon name="fridge" class="size-9 lg:size-11" />
+                </span>
 
                 <p class="mt-6 flex items-center gap-2 text-2xl font-extrabold text-ink lg:hidden">
                     <x-icon name="leaf" class="size-6 text-olive-700" /> {{ config('app.name') }}

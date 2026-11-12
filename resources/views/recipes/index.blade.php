@@ -20,7 +20,6 @@
     <div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
         @foreach ($fromFridge as $r)
             <a href="{{ route('recipes.show', $r['id']) }}" class="overflow-hidden rounded-[18px] bg-sand hover:bg-sand-dark">
-                <div class="grid h-24 place-items-center text-5xl {{ $r['bg'] }}">{{ $r['emoji'] }}</div>
                 <div class="p-3">
                     <p class="text-sm leading-tight font-bold">{{ $r['nama'] }}</p>
                     <p class="mt-1 text-[11px] text-muted">{{ $r['kalori'] }} kkal · {{ $r['porsi'] }} porsi</p>
@@ -34,7 +33,6 @@
     <div class="grid grid-cols-1 gap-2 lg:grid-cols-2">
         @foreach ($saved as $r)
             <a href="{{ route('recipes.show', $r['id']) }}" class="flex items-center gap-3 rounded-2xl bg-sand p-3 hover:bg-sand-dark">
-                <span class="emo">{{ $r['emoji'] }}</span>
                 <span class="min-w-0 flex-1">
                     <span class="block truncate text-[15px] font-bold">{{ $r['nama'] }}</span>
                     <span class="text-xs text-muted">{{ $r['porsi'] }} porsi · {{ $r['kalori'] }} kkal/porsi</span>

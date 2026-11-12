@@ -34,9 +34,8 @@
             <section class="card">
                 <h2 class="mb-1 font-bold">Paling banyak terbuang</h2>
                 <ul class="divide-y divide-line">
-                    @foreach ($w['terbanyak'] as [$nama, $emoji, $kali, $rp])
+                    @foreach ($w['terbanyak'] as [$nama, , $kali, $rp])
                         <li class="flex items-center gap-3 py-2.5 text-sm">
-                            <span class="text-xl">{{ $emoji }}</span>
                             <span class="flex-1"><b>{{ $nama }}</b> <span class="text-xs text-muted">· {{ $kali }}×</span></span>
                             <b>{{ D::rupiah($rp) }}</b>
                         </li>

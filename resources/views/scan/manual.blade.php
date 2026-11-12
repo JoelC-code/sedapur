@@ -20,7 +20,7 @@
             <span class="label">Kategori</span>
             <div class="pick flex flex-wrap gap-2" data-choice>
                 @foreach ($categories as $key => $cat)
-                    <button type="button" @class(['chip', 'is-active' => $key === 'susu_telur'])>{{ $cat['emoji'] }} {{ $cat['label'] }}</button>
+                    <button type="button" @class(['chip', 'is-active' => $key === 'susu_telur'])>{{ $cat['label'] }}</button>
                 @endforeach
             </div>
         </div>

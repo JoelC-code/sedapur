@@ -1,5 +1,5 @@
 <x-layouts.guest title="Buat atau gabung rumah">
-    <h2 class="text-2xl font-bold">Halo, {{ strtok($authUser['name'] ?? '', ' ') }} 👋</h2>
+    <h2 class="text-2xl font-bold">Halo, {{ strtok($authUser['name'] ?? '', ' ') }}</h2>
     <p class="mt-1 text-sm text-muted">Satu kulkas dipakai bersama. Buat rumah baru atau gabung ke rumah temanmu.</p>
 
     <div class="mt-4">@include('partials.status')</div>

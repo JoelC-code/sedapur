@@ -48,9 +48,8 @@
                     <a href="{{ route('recipes.index') }}" class="text-xs font-semibold text-brand">+ Catat porsi</a>
                 </div>
                 <ul class="divide-y divide-line">
-                    @foreach ($k['log'] as [$nama, $emoji, $porsi, $jam, $kal, $pro, $karbo, $lemak])
+                    @foreach ($k['log'] as [$nama, , $porsi, $jam, $kal, $pro, $karbo, $lemak])
                         <li class="flex items-center gap-3 py-2.5">
-                            <span class="grid size-10 place-items-center rounded-xl bg-sand text-xl">{{ $emoji }}</span>
                             <span class="min-w-0 flex-1">
                                 <span class="block truncate text-sm font-bold">{{ $nama }}</span>
                                 <span class="text-[11px] text-muted">{{ $porsi }} porsi · {{ $jam }} · P {{ $pro }} g · K {{ $karbo }} g · L {{ $lemak }} g</span>
@@ -93,9 +92,8 @@
             <section class="card">
                 <h2 class="mb-1 font-bold">Penyumbang kalori terbesar</h2>
                 <ul class="divide-y divide-line">
-                    @foreach ($f['penyumbang'] as [$nama, $emoji, $berat, $kal])
+                    @foreach ($f['penyumbang'] as [$nama, , $berat, $kal])
                         <li class="flex items-center gap-3 py-2.5 text-sm">
-                            <span class="text-xl">{{ $emoji }}</span>
                             <span class="flex-1"><b>{{ $nama }}</b> <span class="text-xs text-muted">· {{ $berat }}</span></span>
                             <b>{{ D::number($kal) }} kkal</b>
                         </li>
