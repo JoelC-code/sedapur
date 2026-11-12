@@ -28,16 +28,21 @@ Every screen is built from the Figma design (phone and desktop layouts). Sign-in
 
 ## Tech Stack
 
-- [x] Frontend: Laravel 12 Blade + Tailwind CSS v4, PWA manifest
-- [x] Supabase PostgreSQL + Row Level Security (policies, helper functions in a private schema, column-level grants)
-- [x] Supabase Auth (email + password)
-- [x] Supabase Data API (REST + RPC with the user's access token, so RLS applies)
-- [ ] Supabase Storage
-- [ ] Supabase Realtime
-- [ ] Supabase Edge Functions + pg_cron
-- [ ] Gemini API (Gemini 3.1 Flash-Lite) for receipt scan, fridge scan, recipes, menu and summaries
-- [x] FatSecret Platform API + TKPI table (Kemenkes) for nutrition data
-- [ ] CloudPanel + GitHub Actions (automatic deploy)
+### In use
+
+- Frontend: Laravel 12 Blade + Tailwind CSS v4, PWA manifest
+- Supabase PostgreSQL + Row Level Security (policies, helper functions in a private schema, column-level grants)
+- Supabase Auth (email + password)
+- Supabase Data API (REST + RPC with the user's access token, so RLS applies)
+- FatSecret Platform API + TKPI table (Kemenkes) for nutrition data
+
+### Planned
+
+- Supabase Storage
+- Supabase Realtime
+- Supabase Edge Functions + pg_cron
+- Gemini API (Gemini 3.1 Flash-Lite) for receipt scan, fridge scan, recipes, menu and summaries
+- CloudPanel + GitHub Actions for automatic deploy
 
 ## How to run
 
