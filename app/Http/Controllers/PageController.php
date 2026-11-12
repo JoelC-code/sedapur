@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Support\DemoData;
+use App\Support\SupabaseSession;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -13,29 +14,14 @@ use Illuminate\View\View;
  */
 class PageController extends Controller
 {
-    public function login(): View
-    {
-        return view('auth.login');
-    }
-
-    public function register(): View
-    {
-        return view('auth.register');
-    }
-
-    public function householdSetup(): View
-    {
-        return view('household.setup', ['user' => DemoData::user()]);
-    }
-
     public function dashboard(): View
     {
         $items = DemoData::foodItems();
         $waste = DemoData::waste();
 
         return view('dashboard', [
-            'user' => DemoData::user(),
-            'household' => DemoData::household(),
+            'user' => $this->currentUser(),
+            'household' => $this->currentHousehold(),
             'expiring' => $items->filter(fn ($i) => $i['sisa_hari'] <= 3)->values(),
             'stats' => [
                 'total' => 24,
@@ -137,15 +123,49 @@ class PageController extends Controller
 
     public function householdSettings(): View
     {
-        return view('household.settings', ['user' => DemoData::user(), 'household' => DemoData::household()]);
+        return view('household.settings', ['user' => $this->currentUser(), 'household' => $this->currentHousehold()]);
     }
 
     public function emailPreview(): View
     {
         return view('emails.expiry-reminder', [
-            'household' => DemoData::household(),
+            'household' => $this->currentHousehold(),
             'items' => DemoData::foodItems()->filter(fn ($i) => $i['sisa_hari'] >= 0 && $i['sisa_hari'] <= 3)->values(),
             'recipe' => DemoData::recipe(1),
         ]);
+    }
+
+    /**
+     * User yang login, dalam bentuk yang sudah dipakai view (nama, panggilan, email, role).
+     *
+     * @return array{nama: string, panggilan: string, email: string, role: string}
+     */
+    private function currentUser(): array
+    {
+        $user = SupabaseSession::user();
+        $name = $user['name'] ?? '';
+
+        return [
+            'nama' => $name,
+            'panggilan' => strtok($name, ' ') ?: $name,
+            'email' => $user['email'] ?? '',
+            'role' => SupabaseSession::household()['role'] ?? 'member',
+        ];
+    }
+
+    /**
+     * Nama dan kode rumah asli; daftar anggota masih contoh sampai halaman Rumah tersambung.
+     *
+     * @return array<string, mixed>
+     */
+    private function currentHousehold(): array
+    {
+        $household = SupabaseSession::household();
+
+        return [
+            ...DemoData::household(),
+            'nama' => $household['name'] ?? '',
+            'kode_undangan' => $household['invite_code'] ?? '',
+        ];
     }
 }

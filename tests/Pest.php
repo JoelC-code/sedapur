@@ -43,7 +43,21 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+/**
+ * Session Supabase palsu untuk tes: user sudah login (token masih berlaku satu jam)
+ * dan, kecuali $household = null, sudah punya rumah.
+ *
+ * @param  array{id: int, name: string, invite_code: string, role: string}|null  $household
+ */
+function supabaseSession(?array $household = ['id' => 1, 'name' => 'Kos Melati', 'invite_code' => 'MLT72K', 'role' => 'owner']): array
 {
-    // ..
+    return array_filter([
+        'supabase' => [
+            'access_token' => 'user-access-token',
+            'refresh_token' => 'user-refresh-token',
+            'expires_at' => time() + 3600,
+            'user' => ['id' => '00000000-0000-4000-8000-00000000000a', 'email' => 'hans@contoh.com', 'name' => 'Hans Vere Liem'],
+        ],
+        'household' => $household,
+    ]);
 }

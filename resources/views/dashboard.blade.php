@@ -16,6 +16,10 @@
         <a href="{{ route('household.settings') }}" class="grid size-10 place-items-center rounded-full bg-sand lg:hidden" aria-label="Rumah & akun"><x-icon name="user" class="size-4" /></a>
     </header>
 
+    @if (session('status'))
+        <div class="mb-5">@include('partials.status')</div>
+    @endif
+
     <div class="grid grid-cols-1 gap-5 lg:grid-cols-[1fr_340px]">
         <div class="space-y-5">
             {{-- Statistik --}}

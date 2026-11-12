@@ -59,7 +59,10 @@
             </label>
             <a href="{{ route('preview.email') }}" class="block text-center text-xs font-semibold text-brand">Lihat contoh email pengingat</a>
 
-            <a href="{{ route('login') }}" class="btn-danger w-full"><x-icon name="logout" class="size-4" /> Keluar akun</a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button class="btn-danger w-full"><x-icon name="logout" class="size-4" /> Keluar akun</button>
+            </form>
         </div>
     </div>
 </x-layouts.app>

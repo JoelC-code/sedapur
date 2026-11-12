@@ -35,6 +35,12 @@ return [
         ],
     ],
 
+    'supabase' => [
+        'url' => env('SUPABASE_URL'),
+        'publishable_key' => env('SUPABASE_PUBLISHABLE_KEY'),
+        'secret_key' => env('SUPABASE_SECRET_KEY'),
+    ],
+
     'fatsecret' => [
         'client_id' => env('FATSECRET_CLIENT_ID'),
         'client_secret' => env('FATSECRET_CLIENT_SECRET'),

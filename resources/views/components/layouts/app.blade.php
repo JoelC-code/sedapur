@@ -1,7 +1,7 @@
 @props(['title' => null, 'active' => null, 'bare' => false])
 @php
-    $user = \App\Support\DemoData::user();
-    $household = \App\Support\DemoData::household();
+    $user = ['nama' => $authUser['name'] ?? '', 'role' => $authHousehold['role'] ?? 'member'];
+    $household = ['nama' => $authHousehold['name'] ?? ''];
     $nav = [
         ['dashboard', 'Beranda', 'home', null],
         ['fridge.index', 'Kulkas', 'fridge', null],
@@ -72,7 +72,10 @@
                     <span class="block truncate text-sm font-bold">{{ $user['nama'] }}</span>
                     <span class="block text-[11px] text-white/60">{{ ucfirst($user['role']) }}</span>
                 </span>
-                <a href="{{ route('login') }}" class="text-white/70 hover:text-white" title="Keluar"><x-icon name="logout" class="size-4" /></a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="text-white/70 hover:text-white" title="Keluar" aria-label="Keluar"><x-icon name="logout" class="size-4" /></button>
+                </form>
             </div>
         </div>
     </aside>
