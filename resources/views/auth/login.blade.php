@@ -24,7 +24,7 @@
 
     <div class="my-5 flex items-center gap-3 text-xs text-muted"><span class="h-px flex-1 bg-sand-dark"></span>atau<span class="h-px flex-1 bg-sand-dark"></span></div>
 
-    <button type="button" class="btn-ghost w-full opacity-60" disabled title="Login Google menyusul"><x-icon name="google" class="size-4" /> Masuk dengan Google (segera)</button>
+    <button type="button" class="btn-ghost w-full opacity-60" disabled title="Login Google menyusul"><x-icon name="google" class="size-4" /> Masuk dengan Google</button>
 
     <p class="mt-6 text-center text-sm text-muted">Belum punya akun? <a href="{{ route('register') }}" class="font-semibold text-brand">Daftar</a></p>
 </x-layouts.guest>

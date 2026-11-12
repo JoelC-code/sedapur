@@ -33,7 +33,7 @@
         <button class="btn-primary w-full">Daftar</button>
     </form>
 
-    <button type="button" class="btn-ghost mt-3 w-full opacity-60" disabled title="Daftar dengan Google menyusul"><x-icon name="google" class="size-4" /> Daftar dengan Google (segera)</button>
+    <button type="button" class="btn-ghost mt-3 w-full opacity-60" disabled title="Daftar dengan Google menyusul"><x-icon name="google" class="size-4" /> Daftar dengan Google</button>
 
     <p class="mt-6 text-center text-sm text-muted">Sudah punya akun? <a href="{{ route('login') }}" class="font-semibold text-brand">Masuk</a></p>
 </x-layouts.guest>
