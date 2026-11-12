@@ -72,7 +72,7 @@ class TkpiService
         // Setiap kata harus cocok: "ikan lele" tidak boleh jatuh ke "Ikan lehoma" hanya karena kata "ikan".
         foreach (preg_split('/\s+/', $search) as $word) {
             $query->where(function (Builder $query) use ($isPostgres, $like, $word): void {
-                $query->whereRaw("nama_bahan {$like} ? escape '\\'", ['%'.addcslashes($word, '\\%_').'%']);
+                $query->whereRaw("nama_bahan {$like} ?", ['%' . addcslashes($word, '\\%_') . '%']);
 
                 if ($isPostgres) {
                     $query->orWhereRaw('word_similarity(?, nama_bahan) >= ?', [$word, self::MIN_WORD_SIMILARITY]);
@@ -80,10 +80,16 @@ class TkpiService
             });
         }
 
+        // dd([
+        //     'search'   => $search,
+        //     'sql'      => $query->toSql(),
+        //     'bindings' => $query->getBindings(),
+        // ]);
+
         return $query
-            ->orderByRaw("case when nama_bahan {$like} ? escape '\\' then 0 else 1 end", ["{$escaped}%"])
+            ->orderByRaw("case when nama_bahan {$like} ? then 0 else 1 end", ["{$escaped}%"])
             ->orderByRaw("case when nama_bahan {$like} '%segar%' or nama_bahan {$like} '%mentah%' then 0 else 1 end")
-            ->when($isPostgres, fn (Builder $query) => $query->orderByRaw('word_similarity(?, nama_bahan) desc', [$search]))
+            ->when($isPostgres, fn(Builder $query) => $query->orderByRaw('word_similarity(?, nama_bahan) desc', [$search]))
             ->orderByRaw('length(nama_bahan)')
             ->first();
     }

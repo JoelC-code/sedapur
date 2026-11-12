@@ -18,39 +18,39 @@ class FatSecretService
      */
     public function __construct()
     {
-        $this->clientId = (string) config('services.fatsecret.client_id', '');
-        $this->clientSecret = (string) config('services.fatsecret.client_secret', '');
+        $this->clientId = (string) config('services.fatsecret.client_id');
+        $this->clientSecret = (string) config('services.fatsecret.client_secret');
     }
 
     public function getAccessToken(): string
     {
-        return Cache::remember('fatsecret_access_token', 85000, function() {
+        return Cache::remember('fatsecret_access_token', 85000, function () {
             $response = Http::asForm()
                 ->withBasicAuth($this->clientId, $this->clientSecret)->post($this->authUrl, [
                     'grant_type' => 'client_credentials',
                     'scope' => 'basic',
                 ]);
 
-                if($response->failed()) {
-                    throw new Exception("Gagal autentikasi dengan FatSecret API");
-                }
+            if ($response->failed()) {
+                throw new Exception("Gagal autentikasi dengan FatSecret API");
+            }
 
-                return $response->json()['access_token'];
+            return $response->json()['access_token'];
         });
     }
 
     public function searchNutrition(string $foodIngridientName): ?array
     {
         try {
-        $accessToken = $this->getAccessToken();
+            $accessToken = $this->getAccessToken();
 
-        $searchResponse = Http::withToken($accessToken)
-            ->get($this->apiUrl, [
-                'method' => 'foods.search',
-                'search_expression' => $foodIngridientName,
-                'format' => 'json',
-                'max_results' => 1,
-            ]);
+            $searchResponse = Http::withToken($accessToken)
+                ->get($this->apiUrl, [
+                    'method' => 'foods.search',
+                    'search_expression' => $foodIngridientName,
+                    'format' => 'json',
+                    'max_results' => 10,
+                ]);
 
             // dd([
             //     'status' => $searchResponse->status(),
@@ -59,16 +59,16 @@ class FatSecretService
             // ]);
 
             $searchData = $searchResponse->json();
-        
-            if($searchResponse->failed() || empty($searchData['foods']['food'])) {
+
+            if ($searchResponse->failed() || empty($searchData['foods']['food'])) {
                 return null;
             }
 
             $foodResults = $searchData['foods']['food'];
+            $foods = isset($foodResults['food_id']) ? [$foodResults] : $foodResults;
 
-            $food = is_array($foodResults) && isset($foodResults[0]) ? $foodResults[0] : $foodResults;
-
-            if (!$this->isValidMatching($foodIngridientName, $food)) {
+            $bestResult = $this->pickBestMatch($foodIngridientName, $foods);
+            if (!$bestResult) {
                 return null;
             }
 
@@ -76,40 +76,50 @@ class FatSecretService
             //     'hasil_akhir_food' => $food
             // ]);
 
-            return $this->formatNutritionData($food);
+            return $this->formatNutritionData($bestResult);
         } catch (Exception $e) {
             Log::error("FatSecret Service Error: " . $e->getMessage());
             return null;
         }
     }
 
-    protected function isValidMatching(string $query, array $food): bool 
+    protected function pickBestMatch(string $query, array $foods): ?array
     {
-        $query = strtolower(trim($query));
-        $foodName = strtolower($food['food_name'] ?? '');
-        $brandName = strtolower($food['brand_name'] ?? '');
+        $query = mb_strtolower(trim($query));
+        $queryWords = preg_split('/\s+/', $query, -1, PREG_SPLIT_NO_EMPTY);
+        $best = null;
+        $bestScore = 0;
 
-        if (str_contains($foodName, $query) || str_contains($query, $foodName)) {
-            return true;
-        }
-        if ($brandName && (str_contains($brandName, $query) || str_contains($query, $brandName))) {
-            return true;
-        }
-        $queryWords = array_filter(explode('', $query), fn($words) => strlen($words) > 2);
+        foreach ($foods as $food) {
+            $name = mb_strtolower($food['food_name'] ?? '');
+            $nameWords = preg_split('/[\s,\-]+/', $name, -1, PREG_SPLIT_NO_EMPTY);
+            $score = 0;
 
-        foreach ($queryWords as $word) {
-            if(str_contains($foodName, $word) || str_contains($brandName, $word)) {
-                return true;
+            if ($name === $query) {
+                $score += 100;                       // exact match
+            }
+
+            $score += 20 * count(array_intersect($queryWords, $nameWords));
+
+            if(($food['food_type'] ?? '') === 'Generic') {
+                $score += 15;
+            }
+
+            $score -= count($nameWords);
+
+            if($score > $bestScore) {
+                $bestScore = $score;
+                $best = $food;
             }
         }
 
-        return false;
+        return $bestScore >= 20 ? $best : null;
     }
 
     protected function formatNutritionData(array $foodData): array
     {
         $description = $foodData['food_description'] ?? '';
-        
+
         preg_match('/Calories:\s*([\d\.]+)/i', $description, $calMatches);
         preg_match('/Protein:\s*([\d\.]+)/i', $description, $proMatches);
         preg_match('/Carbs:\s*([\d\.]+)/i', $description, $carbMatches);

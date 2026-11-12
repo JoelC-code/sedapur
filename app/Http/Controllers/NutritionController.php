@@ -7,6 +7,7 @@ use App\Services\FatSecretService;
 use App\Services\TkpiService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
+use Throwable;
 
 class NutritionController extends Controller
 {
@@ -44,11 +45,18 @@ class NutritionController extends Controller
             ]);
         }
 
+        try {
         $tkpiResult = $this->tkpiService->searchNutrition($ingredientName);
         if($tkpiResult) {
             return response()->json([
                 'status' => 'success',
                 'data' => $tkpiResult
+            ]);
+        }
+        } catch (Throwable $e) {
+            Log::warning('Error', [
+                'query' => $ingredientName,
+                'error' => $e->getMessage()
             ]);
         }
 
