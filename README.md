@@ -37,14 +37,14 @@ Semua layar sudah dibuat sesuai desain Figma (versi HP dan desktop). Layar masih
 
 ```bash
 composer install
-cp .env.example .env   # lalu isi DB_PASSWORD dan key Supabase (minta ke tim)
+cp .env.example .env
 php artisan key:generate
 php artisan migrate
 npm install
-npm run build   # atau: npm run dev
+npm run build
 ```
 
-Dengan Laravel Herd, buka `http://sedapur.test`. Tanpa Herd: `composer run dev` lalu buka `http://localhost:8000`.
+Dengan Laravel Herd, buka `http://sedapur.test`. 
 
 ## Halaman
 
