@@ -30,11 +30,13 @@ Every screen is built from the Figma design (phone and desktop layouts). Sign-in
 
 ### In use
 
-- Frontend: Laravel 12 Blade + Tailwind CSS v4, PWA manifest
-- Supabase PostgreSQL + Row Level Security (policies, helper functions in a private schema, column-level grants)
-- Supabase Auth (email + password)
-- Supabase Data API (REST + RPC with the user's access token, so RLS applies)
-- FatSecret Platform API + TKPI table (Kemenkes) for nutrition data
+| Part | Owner |
+| --- | --- |
+| Frontend: Laravel 12 Blade + Tailwind CSS v4, PWA manifest | Hans |
+| Supabase PostgreSQL + Row Level Security (policies, helper functions in a private schema, column-level grants) | Grevi |
+| Supabase Auth (email + password) | Hans |
+| Supabase Data API (REST + RPC with the user's access token, so RLS applies) | Joel |
+| FatSecret Platform API + TKPI table (Kemenkes) for nutrition data | Joel |
 
 ### Planned
 
