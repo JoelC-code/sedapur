@@ -63,7 +63,8 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('household.setup');
+        // Kembali ke link undangan yang tadi dibuka (mis. /rumah/mulai?kode=ARFRG7) bila ada.
+        return redirect()->intended(route('household.setup'));
     }
 
     public function logout(Request $request): RedirectResponse

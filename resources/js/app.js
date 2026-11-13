@@ -67,14 +67,63 @@ document.addEventListener('click', (event) => {
     option.classList.add('is-active');
 });
 
+// Pesan singkat di [data-copy-status] terdekat (mis. "Kode tersalin"), hilang setelah 2,5 detik.
+function showStatus(origin, message) {
+    const status = origin.closest('section, form, div')?.querySelector('[data-copy-status]') ?? document.querySelector('[data-copy-status]');
+    if (!status) return;
+    status.textContent = message;
+    clearTimeout(status.hideTimer);
+    status.hideTimer = setTimeout(() => { status.textContent = ''; }, 2500);
+}
+
+// Salin teks. navigator.clipboard hanya ada di HTTPS/localhost; selain itu pakai cara lama (textarea + execCommand).
+async function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+    }
+    const area = Object.assign(document.createElement('textarea'), { value: text, readOnly: true });
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.append(area);
+    area.select();
+    const copied = document.execCommand('copy');
+    area.remove();
+    if (!copied) throw new Error('copy failed');
+}
+
 // Salin kode undangan.
 document.addEventListener('click', async (event) => {
     const button = event.target.closest('[data-copy]');
     if (!button) return;
     try {
-        await navigator.clipboard.writeText(button.dataset.copy);
-        button.title = 'Tersalin';
+        await copyText(button.dataset.copy);
+        showStatus(button, 'Kode tersalin');
     } catch {
-        // Clipboard tidak tersedia; abaikan.
+        showStatus(button, 'Gagal menyalin, salin kodenya secara manual.');
     }
+});
+
+// Bagikan undangan: di HP pakai menu share bawaan; di laptop buka WhatsApp Web.
+document.addEventListener('click', async (event) => {
+    const button = event.target.closest('[data-share-text]');
+    if (!button) return;
+    const text = button.dataset.shareText;
+    const url = button.dataset.shareUrl;
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    if (isTouch && navigator.share) {
+        try {
+            await navigator.share({ text, url });
+        } catch {
+            // Dibatalkan oleh user.
+        }
+        return;
+    }
+    window.open(`https://wa.me/?text=${encodeURIComponent(`${text}\n${url}`)}`, '_blank', 'noopener');
+});
+
+// Form dengan [data-confirm] minta konfirmasi dulu (mis. mengeluarkan anggota).
+document.addEventListener('submit', (event) => {
+    const message = event.target.dataset?.confirm;
+    if (message && !window.confirm(message)) event.preventDefault();
 });

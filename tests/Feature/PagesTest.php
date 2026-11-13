@@ -1,5 +1,15 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
+
+beforeEach(function () {
+    config(['services.supabase.url' => 'https://test.supabase.co']);
+    Http::preventStrayRequests();
+    Http::fake(['test.supabase.co/rest/v1/household_members*' => Http::response([
+        ['user_id' => '00000000-0000-4000-8000-00000000000a', 'role' => 'owner', 'joined_at' => '2026-11-12T08:00:00+00:00', 'profiles' => ['full_name' => 'Hans Vere Liem']],
+    ])]);
+});
+
 it('menampilkan halaman masuk dan daftar untuk tamu', function (string $uri) {
     $this->get($uri)->assertOk();
 })->with(['/masuk', '/daftar']);

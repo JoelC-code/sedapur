@@ -90,7 +90,10 @@ it('keeps logged in users away from the login page', function () {
 });
 
 it('refreshes an access token that is about to expire', function () {
-    Http::fake(['test.supabase.co/auth/v1/token*' => Http::response(supabaseAuthSession('refreshed-token'))]);
+    Http::fake([
+        'test.supabase.co/auth/v1/token*' => Http::response(supabaseAuthSession('refreshed-token')),
+        'test.supabase.co/rest/v1/household_members*' => Http::response([]),
+    ]);
     $session = supabaseSession();
     $session['supabase']['expires_at'] = time() + 10;
 
@@ -122,4 +125,25 @@ it('signs out of Supabase and clears the session', function () {
 
     Http::assertSent(fn (Request $request) => $request->url() === 'https://test.supabase.co/auth/v1/logout'
         && $request->hasHeader('Authorization', 'Bearer user-access-token'));
+});
+
+it('brings a new user from an invite link back to it with the code filled in', function () {
+    Http::fake(['test.supabase.co/auth/v1/signup' => Http::response(supabaseAuthSession())]);
+
+    $this->get('/rumah/mulai?kode=AB23CD')->assertRedirect(route('login'));
+    $this->get('/masuk')->assertSee('Kamu diundang ke sebuah rumah.');
+
+    $this->post('/daftar', ['name' => 'Rina', 'email' => 'rina@contoh.com', 'password' => 'rahasia123', 'password_confirmation' => 'rahasia123'])
+        ->assertRedirect(route('household.setup', ['kode' => 'AB23CD']));
+
+    $this->get('/rumah/mulai?kode=AB23CD')
+        ->assertOk()
+        ->assertSee('value="A"', false)
+        ->assertSee('value="D"', false);
+});
+
+it('ignores an invite code with the wrong format in the link', function () {
+    $this->withSession(supabaseSession(household: null))->get('/rumah/mulai?kode=<script>')
+        ->assertOk()
+        ->assertDontSee('<script>', false);
 });

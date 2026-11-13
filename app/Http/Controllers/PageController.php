@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Support\DemoData;
+use App\Support\HouseholdMembers;
 use App\Support\SupabaseSession;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -154,18 +155,18 @@ class PageController extends Controller
     }
 
     /**
-     * Nama dan kode rumah asli; daftar anggota masih contoh sampai halaman Rumah tersambung.
+     * Rumah aktif dengan anggota asli dari Supabase (nama dari public.profiles).
      *
-     * @return array<string, mixed>
+     * @return array{nama: string, kode_undangan: string, members: list<array<string, mixed>>}
      */
     private function currentHousehold(): array
     {
         $household = SupabaseSession::household();
 
         return [
-            ...DemoData::household(),
             'nama' => $household['name'] ?? '',
-            'kode_undangan' => $household['invite_code'] ?? '',
+            'kode_undangan' => $household['invite_code'] ?? null,
+            'members' => HouseholdMembers::forCurrentHousehold(),
         ];
     }
 }

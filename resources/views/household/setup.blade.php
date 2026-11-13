@@ -31,7 +31,7 @@
         </div>
         <div class="mt-3 grid grid-cols-6 gap-2" data-code-input>
             @for ($i = 0; $i < 6; $i++)
-                <input name="kode[]" maxlength="1" inputmode="text" autocomplete="off" aria-label="Karakter {{ $i + 1 }}" required
+                <input name="kode[]" maxlength="1" inputmode="text" autocomplete="off" aria-label="Karakter {{ $i + 1 }}" required value="{{ old('kode.'.$i, $inviteCode[$i] ?? '') }}"
                        class="aspect-square w-full rounded-xl border-0 bg-white text-center text-lg font-bold uppercase focus:ring-2 focus:ring-ink focus:outline-none">
             @endfor
         </div>

@@ -1,6 +1,10 @@
 <x-layouts.app title="Rumah & akun" active="household.settings">
     <x-page-header title="Rumah & akun" subtitle="Kelola profil, rumah, anggota, dan pengaturan email" :back="route('dashboard')" />
 
+    @if (session('status'))
+        <div class="mb-4">@include('partials.status')</div>
+    @endif
+
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:items-start">
         <div class="space-y-4">
             <section class="card-sand flex items-center gap-3">
@@ -18,15 +22,26 @@
                         <p class="stat-label">Rumah</p>
                         <p class="font-bold">{{ $household['nama'] }}</p>
                     </div>
-                    <span class="badge bg-ok-soft text-olive-700">Owner</span>
+                    <span @class(['badge', 'bg-ok-soft text-olive-700' => $user['role'] === 'owner', 'bg-white text-muted' => $user['role'] !== 'owner'])>{{ ucfirst($user['role']) }}</span>
                 </div>
-                <p class="stat-label mt-3">Kode undangan</p>
-                <div class="mt-1 flex items-center gap-2">
-                    <p class="flex-1 text-2xl font-extrabold tracking-[.15em]">{{ $household['kode_undangan'] }}</p>
-                    <button type="button" data-copy="{{ $household['kode_undangan'] }}" class="grid size-10 place-items-center rounded-full bg-white" aria-label="Salin kode"><x-icon name="copy" class="size-4" /></button>
-                    <button type="button" class="grid size-10 place-items-center rounded-full bg-brand text-white" aria-label="Bagikan kode"
-                            onclick="navigator.share?.({ title: 'Gabung ke {{ $household['nama'] }}', text: 'Kode undangan: {{ $household['kode_undangan'] }}' })"><x-icon name="share" class="size-4" /></button>
-                </div>
+                @if ($user['role'] === 'owner' && $household['kode_undangan'])
+                    <p class="stat-label mt-3">Kode undangan</p>
+                    <div class="mt-1 flex items-center gap-2">
+                        <p class="flex-1 text-2xl font-extrabold tracking-[.15em]">{{ $household['kode_undangan'] }}</p>
+                        <button type="button" data-copy="{{ $household['kode_undangan'] }}" class="grid size-11 place-items-center rounded-full bg-white" aria-label="Salin kode"><x-icon name="copy" class="size-4" /></button>
+                        <button type="button" class="grid size-11 place-items-center rounded-full bg-brand text-white" aria-label="Bagikan kode"
+                                data-share-text="Gabung ke rumah {{ $household['nama'] }} di {{ config('app.name') }}. Kode undangan: {{ $household['kode_undangan'] }}"
+                                data-share-url="{{ route('household.setup', ['kode' => $household['kode_undangan']]) }}"><x-icon name="share" class="size-4" /></button>
+                    </div>
+                    <p class="mt-2 h-4 text-xs font-medium text-olive-700" data-copy-status aria-live="polite"></p>
+                @else
+                    <p class="mt-3 text-xs text-muted">Kode undangan hanya bisa dilihat dan dibagikan oleh owner rumah.</p>
+                    <form method="POST" action="{{ route('household.leave') }}" class="mt-3" data-confirm="Keluar dari {{ $household['nama'] }}? Kamu tidak bisa melihat isi kulkasnya lagi sampai diundang ulang.">
+                        @csrf
+                        @method('DELETE')
+                        <button class="text-sm font-semibold text-danger hover:underline">Keluar dari rumah ini</button>
+                    </form>
+                @endif
             </section>
         </div>
 
@@ -42,7 +57,13 @@
                                 <span class="text-[11px] text-muted">Gabung {{ $m['joined_at'] }}</span>
                             </span>
                             <span @class(['badge', 'bg-ok-soft text-olive-700' => $m['role'] === 'owner', 'bg-sand text-muted' => $m['role'] !== 'owner'])>{{ ucfirst($m['role']) }}</span>
-                            @if ($m['role'] !== 'owner')<button class="text-muted" aria-label="Opsi"><x-icon name="more" class="size-4" /></button>@endif
+                            @if ($user['role'] === 'owner' && ! $m['is_self'])
+                                <form method="POST" action="{{ route('household.members.destroy', $m['user_id']) }}" data-confirm="Keluarkan {{ $m['nama'] }} dari rumah ini?">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="rounded-full px-2 py-1 text-xs font-semibold text-danger hover:bg-danger-soft">Keluarkan</button>
+                                </form>
+                            @endif
                         </li>
                     @endforeach
                 </ul>

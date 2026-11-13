@@ -43,6 +43,8 @@ Route::middleware('supabase.auth')->group(function () {
         Route::get('/food-waste', 'waste')->name('waste.index');
         Route::get('/riwayat', 'activity')->name('activity.index');
         Route::get('/rumah', 'householdSettings')->name('household.settings');
+        Route::delete('/rumah/anggota/{userId}', [HouseholdController::class, 'removeMember'])->whereUuid('userId')->name('household.members.destroy');
+        Route::delete('/rumah/keluar', [HouseholdController::class, 'leave'])->name('household.leave');
 
         // Pratinjau email pengingat harian
         Route::get('/pratinjau/email-pengingat', 'emailPreview')->name('preview.email');

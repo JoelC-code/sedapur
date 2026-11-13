@@ -76,9 +76,9 @@ class SupabaseSession
     }
 
     /**
-     * Rumah aktif user: id, name, invite_code, role (owner/member).
+     * Rumah aktif user: id, name, invite_code (hanya untuk owner), role (owner/member).
      *
-     * @return array{id: int, name: string, invite_code: string, role: string}|null
+     * @return array{id: int, name: string, invite_code: string|null, role: string}|null
      */
     public static function household(): ?array
     {
@@ -86,11 +86,19 @@ class SupabaseSession
     }
 
     /**
-     * @param  array{id: int, name: string, invite_code: string, role: string}  $household
+     * @param  array{id: int, name: string, invite_code: string|null, role: string}  $household
      */
     public static function setHousehold(array $household): void
     {
         session()->put(self::HOUSEHOLD_KEY, $household);
+    }
+
+    /**
+     * Lupakan rumah aktif (setelah keluar dari rumah); login tetap.
+     */
+    public static function forgetHousehold(): void
+    {
+        session()->forget(self::HOUSEHOLD_KEY);
     }
 
     public static function clear(): void

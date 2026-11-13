@@ -5,6 +5,9 @@
     <form method="POST" action="{{ route('login.store') }}" class="mt-6 space-y-4">
         @csrf
         @include('partials.status')
+        @if (str_contains((string) session('url.intended'), '/rumah/mulai?kode='))
+            <p class="rounded-2xl bg-olive-100 px-4 py-3 text-sm text-olive-700">Kamu diundang ke sebuah rumah. Masuk, atau daftar dulu kalau belum punya akun, lalu kode undangannya terisi otomatis.</p>
+        @endif
         <div>
             <label class="label" for="email">Email</label>
             <input id="email" type="email" name="email" value="{{ old('email') }}" class="input" placeholder="hans@contoh.com" autocomplete="email" required autofocus>

@@ -80,16 +80,33 @@ class SupabaseService
     /**
      * INSERT lewat Data API sebagai user; mengembalikan baris yang baru dibuat.
      *
+     * $columns membatasi kolom yang dikembalikan (perlu bila user tidak boleh membaca semua kolom).
+     *
      * @param  array<string, mixed>  $values
      * @return array<string, mixed>
      */
-    public function insert(string $accessToken, string $table, array $values): array
+    public function insert(string $accessToken, string $table, array $values, string $columns = '*'): array
     {
         $rows = $this->send(fn (PendingRequest $http) => $http->withToken($accessToken)
             ->withHeaders(['Prefer' => 'return=representation'])
-            ->post($this->url("/rest/v1/{$table}"), $values));
+            ->post($this->url("/rest/v1/{$table}?select=".urlencode($columns)), $values));
 
         return $rows[0] ?? [];
+    }
+
+    /**
+     * DELETE lewat Data API sebagai user; mengembalikan jumlah baris yang benar-benar terhapus
+     * (0 berarti RLS menolak atau barisnya tidak ada).
+     *
+     * @param  array<string, string>  $filters  sintaks PostgREST, contoh: ['id' => 'eq.5']
+     */
+    public function delete(string $accessToken, string $table, array $filters): int
+    {
+        $rows = $this->send(fn (PendingRequest $http) => $http->withToken($accessToken)
+            ->withHeaders(['Prefer' => 'return=representation'])
+            ->delete($this->url("/rest/v1/{$table}").'?'.http_build_query($filters)));
+
+        return is_array($rows) ? count($rows) : 0;
     }
 
     /**
