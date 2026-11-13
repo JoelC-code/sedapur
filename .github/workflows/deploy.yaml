@@ -12,16 +12,6 @@ jobs:
     name: Run Tests & Build Assets
     runs-on: ubuntu-latest
 
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE: testing
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
     steps:
     - name: Checkout Code
       uses: actions/checkout@v4
@@ -30,7 +20,7 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.5'
-        extensions: mbstring, xml, ctype, iconv, mysql, bcmath, filter, zip
+        extensions: mbstring, xml, ctype, iconv, pdo_sqlite, sqlite3, bcmath, filter, zip
         tools: composer:v2
         coverage: none
 
@@ -55,18 +45,10 @@ jobs:
     - name: Generate Application Key
       run: php artisan key:generate
 
-    - name: Run Migrations & Tests
-      run: |
-        php artisan migrate --env=testing
-        php artisan test
-      env:
-        DB_CONNECTION: pgsql
-        DB_HOST: ${{ secrets.DB_HOST }}
-        DB_PORT: 5432
-        DB_DATABASE: postgres
-        DB_USERNAME: ${{ secrets.DB_USERNAME }}
-        DB_PASSWORD: ${{secrets.DB_PASSWORD }}
-        DB_SSLMODE: require
+    # Tests use the in-memory SQLite database from phpunit.xml. Never pass DB_* here:
+    # RefreshDatabase runs migrate:fresh and would wipe the shared Supabase database.
+    - name: Run Tests
+      run: php artisan test
 
     # Compile frontend production assets (Vite) so they are ready for deployment
     - name: Install NPM Dependencies & Build Assets
