@@ -68,13 +68,10 @@ class FatSecretService
             $foods = isset($foodResults['food_id']) ? [$foodResults] : $foodResults;
 
             $bestResult = $this->pickBestMatch($foodIngridientName, $foods);
+            
             if (!$bestResult) {
                 return null;
             }
-
-            // dd([
-            //     'hasil_akhir_food' => $food
-            // ]);
 
             return $this->formatNutritionData($bestResult);
         } catch (Exception $e) {
