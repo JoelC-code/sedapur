@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HouseholdController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReceiptScanController;
 
 // Auth: Supabase Auth (email + kata sandi)
 Route::middleware('supabase.guest')->controller(AuthController::class)->group(function () {
@@ -29,11 +30,6 @@ Route::middleware('supabase.auth')->group(function () {
         Route::get('/kulkas', 'fridge')->name('fridge.index');
         Route::get('/kulkas/{item}', 'fridge')->whereNumber('item')->name('fridge.show');
 
-        Route::get('/scan', 'scanProcessing')->name('scan.processing');
-        Route::get('/scan/gagal', 'scanFailed')->name('scan.failed');
-        Route::get('/scan/hasil', 'scanReview')->name('scan.review');
-        Route::get('/bahan/manual', 'manualInput')->name('items.manual');
-
         Route::get('/menu', 'menu')->name('menu.index');
         Route::get('/resep', 'recipes')->name('recipes.index');
         Route::get('/resep/{recipe}', 'recipe')->whereNumber('recipe')->name('recipes.show');
@@ -45,6 +41,23 @@ Route::middleware('supabase.auth')->group(function () {
         Route::get('/rumah', 'householdSettings')->name('household.settings');
         Route::delete('/rumah/anggota/{userId}', [HouseholdController::class, 'removeMember'])->whereUuid('userId')->name('household.members.destroy');
         Route::delete('/rumah/keluar', [HouseholdController::class, 'leave'])->name('household.leave');
+        Route::get('/items/manual', [PageController::class, 'manualInput'])->name('scan.manual');
+
+        Route::controller(ReceiptScanController::class)->group(function () {
+            Route::post('/scan', 'upload')->name('scan.upload');
+
+            Route::get('/scan/{scan}/processing', 'processing')
+                ->name('scan.processing');
+
+            Route::get('/scan/{scan}/status', 'status')
+                ->name('scan.status');
+
+            Route::get('/scan/{scan}/hasil', 'review')
+                ->name('scan.review');
+
+            Route::get('/scan/{scan}/gagal', 'failed')
+                ->name('scan.failed');
+        });
 
         // Pratinjau email pengingat harian
         Route::get('/pratinjau/email-pengingat', 'emailPreview')->name('preview.email');

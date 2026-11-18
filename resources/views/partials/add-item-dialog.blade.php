@@ -23,11 +23,11 @@
                     </span>
                     <x-icon name="chevron-right" class="size-4 text-muted" />
                     {{-- Kamera HP langsung dari browser --}}
-                    <input type="file" accept="image/*" capture="environment" class="sr-only" data-scan="{{ route('scan.processing', ['jenis' => $jenis]) }}">
+                    <input type="file" name="receipt" accept="image/*" capture="environment" class="sr-only" data-scan="{{ route('scan.upload') }}">
                 </label>
             @endforeach
 
-            <a href="{{ route('items.manual') }}" class="flex items-center gap-3 rounded-2xl bg-sand p-3 hover:bg-sand-dark">
+            <a href="{{ route('scan.manual') }}" class="flex items-center gap-3 rounded-2xl bg-sand p-3 hover:bg-sand-dark">
                 <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-white text-olive-700"><x-icon name="keyboard" /></span>
                 <span class="min-w-0 flex-1">
                     <span class="block text-sm font-semibold">Input manual</span>

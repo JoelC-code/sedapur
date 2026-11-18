@@ -90,7 +90,7 @@
                     <a href="{{ route('fridge.index') }}" class="grid size-10 place-items-center rounded-full bg-sand lg:hidden" aria-label="Kembali"><x-icon name="chevron-left" class="size-4" /></a>
                     <p class="stat-label hidden lg:block">Detail bahan</p>
                     <div class="flex gap-2">
-                        <a href="{{ route('items.manual') }}" class="grid size-10 place-items-center rounded-full bg-sand" aria-label="Ubah"><x-icon name="edit" class="size-4" /></a>
+                        <a href="{{ route('scan.manual') }}" class="grid size-10 place-items-center rounded-full bg-sand" aria-label="Ubah"><x-icon name="edit" class="size-4" /></a>
                         <a href="{{ route('fridge.index') }}" class="hidden size-10 place-items-center rounded-full bg-sand lg:grid" aria-label="Tutup"><x-icon name="x" class="size-4" /></a>
                     </div>
                 </div>
