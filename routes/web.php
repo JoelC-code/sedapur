@@ -18,6 +18,7 @@ Route::middleware('supabase.guest')->controller(AuthController::class)->group(fu
 
 Route::middleware('supabase.auth')->group(function () {
     Route::post('/keluar', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/sesi/token', [AuthController::class, 'token'])->name('session.token');
 
     // Rumah: buat baru atau gabung dengan kode undangan
     Route::controller(HouseholdController::class)->group(function () {

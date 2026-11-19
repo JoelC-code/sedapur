@@ -28,7 +28,7 @@ class EnsureSupabaseSession
     public function handle(Request $request, Closure $next): Response
     {
         if (! SupabaseSession::check()) {
-            return redirect()->guest(route('login'));
+            return $this->toLogin($request);
         }
 
         if (SupabaseSession::expiresWithin(self::REFRESH_MARGIN_SECONDS)) {
@@ -37,8 +37,7 @@ class EnsureSupabaseSession
             } catch (SupabaseException) {
                 SupabaseSession::clear();
 
-                return redirect()->guest(route('login'))
-                    ->with('status', 'Sesi kamu sudah berakhir. Silakan masuk lagi.');
+                return $this->toLogin($request, 'Sesi kamu sudah berakhir. Silakan masuk lagi.');
             }
         }
 
@@ -47,6 +46,22 @@ class EnsureSupabaseSession
         View::share('authUser', SupabaseSession::user());
 
         return $next($request);
+    }
+
+    /**
+     * Halaman biasa dialihkan ke login (dan kembali ke sini setelah login). Request latar belakang
+     * (fetch JSON/AJAX, mis. token Realtime) mendapat 401, supaya URL-nya tidak tersimpan sebagai
+     * tujuan setelah login.
+     */
+    private function toLogin(Request $request, ?string $status = null): Response
+    {
+        if ($request->expectsJson()) {
+            return response()->json(['message' => $status ?? 'Silakan masuk dulu.'], 401);
+        }
+
+        $redirect = redirect()->guest(route('login'));
+
+        return $status ? $redirect->with('status', $status) : $redirect;
     }
 
     /**

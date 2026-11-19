@@ -62,6 +62,12 @@ class SupabaseSession
         return session(self::KEY.'.refresh_token');
     }
 
+    /** Waktu habis access token, unix detik. */
+    public static function expiresAt(): int
+    {
+        return (int) session(self::KEY.'.expires_at', 0);
+    }
+
     public static function expiresWithin(int $seconds): bool
     {
         return (int) session(self::KEY.'.expires_at', 0) - time() <= $seconds;

@@ -7,6 +7,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Services\SupabaseService;
 use App\Support\SupabaseSession;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -65,6 +66,18 @@ class AuthController extends Controller
 
         // Kembali ke link undangan yang tadi dibuka (mis. /rumah/mulai?kode=ARFRG7) bila ada.
         return redirect()->intended(route('household.setup'));
+    }
+
+    /**
+     * Access token untuk Supabase Realtime di browser. Middleware supabase.auth sudah memperbaruinya
+     * bila hampir habis. Refresh token dan secret key tidak pernah dikirim ke browser.
+     */
+    public function token(): JsonResponse
+    {
+        return response()->json([
+            'access_token' => SupabaseSession::accessToken(),
+            'expires_at' => SupabaseSession::expiresAt(),
+        ])->header('Cache-Control', 'no-store, private');
     }
 
     public function logout(Request $request): RedirectResponse
