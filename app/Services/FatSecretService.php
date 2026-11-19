@@ -52,12 +52,6 @@ class FatSecretService
                     'max_results' => 10,
                 ]);
 
-            // dd([
-            //     'status' => $searchResponse->status(),
-            //     'json' => $searchResponse->json(),
-            //     'raw_body' => $searchResponse->body()
-            // ]);
-
             $searchData = $searchResponse->json();
 
             if ($searchResponse->failed() || empty($searchData['foods']['food'])) {

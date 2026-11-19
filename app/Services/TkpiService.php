@@ -80,12 +80,6 @@ class TkpiService
             });
         }
 
-        // dd([
-        //     'search'   => $search,
-        //     'sql'      => $query->toSql(),
-        //     'bindings' => $query->getBindings(),
-        // ]);
-
         return $query
             ->orderByRaw("case when nama_bahan {$like} ? then 0 else 1 end", ["{$escaped}%"])
             ->orderByRaw("case when nama_bahan {$like} '%segar%' or nama_bahan {$like} '%mentah%' then 0 else 1 end")
