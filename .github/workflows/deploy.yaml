@@ -1,11 +1,11 @@
-name: Laravel 13 CI/CD Deployment
+name: Laravel 12 CI/CD Deployment
 
 on:
   push:
     branches: [ "main" ] # Triggers only when code is pushed to your main production branch
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   laravel-tests:
@@ -16,10 +16,11 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
 
+    # Same PHP version as the CloudPanel server (8.4).
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.5'
+        php-version: '8.4'
         extensions: mbstring, xml, ctype, iconv, pdo_sqlite, sqlite3, bcmath, filter, zip
         tools: composer:v2
         coverage: none
@@ -50,22 +51,12 @@ jobs:
     - name: Run Tests
       run: php artisan test
 
-    # Compile frontend production assets (Vite) so they are ready for deployment
+    # Checks that the frontend still builds. The deploy job builds again for the server;
+    # build output is never committed (public/build is gitignored).
     - name: Install NPM Dependencies & Build Assets
       run: |
         npm ci
         npm run build
-
-    # Optional: Push compiled production assets back to Git if your deployment relies on Git integration
-    - name: Commit Built Assets (If required by your hosting Git sync)
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@://github.com"
-        git add public/build -f
-        git diff-index --quiet HEAD || git commit -m "chore: build production assets [skip ci]"
-        git push origin main
-      env:
-        GITHUB_TOKEN: ${{ secrets.MY_PAT }}
 
   deploy:
     name: Deploy to Live Hosting
@@ -79,10 +70,15 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.5'
+        php-version: '8.4'
         extensions: mbstring, xml, ctype, iconv, bcmath, filter, zip
         tools: composer:v2
         coverage: none
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
 
     - name: Cache Composer Dependencies
       uses: actions/cache@v4
@@ -91,24 +87,30 @@ jobs:
         key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
         restore-keys: ${{ runner.os }}-composer-
 
-    # vendor/ is gitignored, so it must be built here (production deps only) and
-    # shipped to the server separately, since the server does not have Composer.
+    # vendor/ and public/build are gitignored, so they are built here and shipped to the
+    # server as one package, since the server has neither Composer nor Node.
     - name: Install Production Composer Dependencies
       run: composer install --no-dev --optimize-autoloader --prefer-dist --no-ansi --no-interaction --no-progress
 
-    - name: Package Vendor Directory
-      run: tar -czf vendor.tar.gz vendor
+    - name: Build Frontend Assets
+      run: |
+        npm ci
+        npm run build
 
-    - name: Upload Vendor Package to Server
+    - name: Package Release
+      run: tar -czf release.tar.gz vendor public/build
+
+    - name: Upload Release Package to Server
       uses: appleboy/scp-action@v1.0.0
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
         password: ${{ secrets.SSH_PASSWORD }}
         port: 22
-        source: "vendor.tar.gz"
+        source: "release.tar.gz"
         target: "/home/jchristopher-sedapur/htdocs/sedapur.jchristopher.my.id"
 
+    # set -e stops at the first failing command, so a failed migration marks the deploy as failed.
     - name: Deploy via SSH
       uses: appleboy/ssh-action@v1.2.5
       with:
@@ -117,11 +119,12 @@ jobs:
         password: ${{ secrets.SSH_PASSWORD }}
         port: 22
         script: |
+          set -e
           cd /home/jchristopher-sedapur/htdocs/sedapur.jchristopher.my.id
           git pull origin main
-          rm -rf vendor
-          tar -xzf vendor.tar.gz
-          rm -f vendor.tar.gz
+          rm -rf vendor public/build
+          tar -xzf release.tar.gz
+          rm -f release.tar.gz
 
           rm -f bootstrap/cache/packages.php
           rm -f bootstrap/cache/services.php
