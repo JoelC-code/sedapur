@@ -141,13 +141,15 @@
                     <a href="{{ route('activity.index') }}" class="text-xs font-semibold text-brand">Semua</a>
                 </div>
                 <ul class="space-y-3">
-                    @foreach (collect($activities)->flatMap(fn ($g) => $g['items'])->take(4) as [$who, $what, $note, $aksi, $time])
+                    @forelse (collect($activities)->flatMap(fn ($g) => $g['items'])->take(4) as [$who, $what, $note, $aksi, $time])
                         <li class="flex items-center gap-2 text-xs">
                             @include('partials.member-dot', ['name' => $who])
                             <span class="flex-1"><b>{{ $who }}</b> {{ $what }}</span>
                             <span class="text-muted">{{ $time }}</span>
                         </li>
-                    @endforeach
+                    @empty
+                        <li class="text-xs text-muted">Belum ada aktivitas.</li>
+                    @endforelse
                 </ul>
             </section>
 

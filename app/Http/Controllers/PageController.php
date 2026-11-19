@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\SupabaseException;
+use App\Services\ActivityLogService;
 use App\Services\FoodItemService;
 use App\Support\DemoData;
 use App\Support\HouseholdMembers;
@@ -37,7 +38,7 @@ class PageController extends Controller
             'waste' => $waste,
             'todayMenu' => DemoData::todayMenu(),
             'nutrition' => DemoData::nutrition(),
-            'activities' => DemoData::activities(),
+            'activities' => $this->recentActivities(null, 4),
         ]);
     }
 
@@ -86,7 +87,9 @@ class PageController extends Controller
 
     public function activity(Request $request): View
     {
-        return view('activity.index', ['groups' => DemoData::activities(), 'filter' => $request->query('aksi', 'semua')]);
+        $action = in_array($request->query('aksi'), ActivityLogService::ACTIONS, true) ? $request->query('aksi') : null;
+
+        return view('activity.index', ['groups' => $this->recentActivities($action), 'filter' => $action ?? 'semua']);
     }
 
     public function householdSettings(): View
@@ -122,6 +125,26 @@ class PageController extends Controller
             ));
         } catch (SupabaseException) {
             return collect();
+        }
+    }
+
+    /**
+     * Riwayat aktivitas rumah aktif. Bila Supabase bermasalah, halaman tetap tampil tanpa riwayat.
+     *
+     * @return list<array{hari: string, items: list<array<int, string>>}>
+     */
+    private function recentActivities(?string $action, int $limit = 100): array
+    {
+        try {
+            return app(ActivityLogService::class)->recent(
+                (string) SupabaseSession::accessToken(),
+                SupabaseSession::household()['id'],
+                $action,
+                array_column(HouseholdMembers::forCurrentHousehold(), 'nama', 'user_id'),
+                $limit,
+            );
+        } catch (SupabaseException) {
+            return [];
         }
     }
 

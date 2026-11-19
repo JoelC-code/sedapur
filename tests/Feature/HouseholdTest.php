@@ -24,6 +24,7 @@ it('loads the household of a returning member through the Data API with their to
             ['role' => 'member', 'households' => ['id' => 7, 'name' => 'Kos Melati']],
         ]),
         'test.supabase.co/rest/v1/food_items*' => Http::response([]),
+        'test.supabase.co/rest/v1/activity_logs*' => Http::response([]),
     ]);
 
     $this->withSession(supabaseSession(household: null))->get('/')

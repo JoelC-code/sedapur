@@ -218,21 +218,6 @@ class DemoData
         ];
     }
 
-    public static function activities(): array
-    {
-        return [
-            ['hari' => 'Hari ini', 'items' => [
-                ['Joel', 'menambahkan 6 bahan', 'Dari scan struk Superindo', 'ditambah', '10:24'],
-                ['Grevi', 'memasak Bayam', 'Untuk resep telur dadar bayam', 'dimasak', '07:30'],
-                ['Hans', 'membuang Tahu putih', 'Lewat 1 hari · Rp 5.000', 'dibuang', '07:12'],
-            ]],
-            ['hari' => 'Kemarin', 'items' => [
-                ['Hans', 'mengubah Telur ayam', 'Jumlah 10 → 6 butir', 'diubah', '20:05'],
-                ['Grevi', 'menambahkan Tomat', 'Input manual · 4 buah', 'ditambah', '17:40'],
-            ]],
-        ];
-    }
-
     public static function nutrition(): array
     {
         return [

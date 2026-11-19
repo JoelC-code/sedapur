@@ -10,6 +10,7 @@ beforeEach(function () {
             ['user_id' => '00000000-0000-4000-8000-00000000000a', 'role' => 'owner', 'joined_at' => '2026-11-12T08:00:00+00:00', 'profiles' => ['full_name' => 'Hans Vere Liem']],
         ]),
         'test.supabase.co/rest/v1/food_items*' => Http::response([]),
+        'test.supabase.co/rest/v1/activity_logs*' => Http::response([]),
         'test.supabase.co/rest/v1/shopping_list_items*' => Http::response([]),
     ]);
 });

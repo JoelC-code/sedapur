@@ -1,6 +1,7 @@
 @php
     $badge = [
         'ditambah' => ['Ditambah', 'bg-ok-soft text-olive-700'],
+        'dipakai' => ['Dipakai', 'bg-brand-soft text-brand-dark'],
         'diubah' => ['Diubah', 'bg-info-soft text-info'],
         'dimasak' => ['Dimasak', 'bg-warn-soft text-warn'],
         'dibuang' => ['Dibuang', 'bg-danger-soft text-danger'],
@@ -17,6 +18,10 @@
             <a href="{{ route('activity.index', ['aksi' => $key]) }}" class="{{ $filter === $key ? 'chip-active' : 'chip' }}">{{ $label }}</a>
         @endforeach
     </div>
+
+    @if ($groups === [])
+        <p class="card mt-4 text-sm text-muted">Belum ada aktivitas{{ $filter !== 'semua' ? ' '.strtolower($badge[$filter][0]) : '' }}. Riwayat tercatat otomatis setiap ada bahan yang ditambah, dipakai, diubah, atau dibuang.</p>
+    @endif
 
     {{-- HP: timeline --}}
     <div class="mt-4 lg:hidden">
@@ -43,7 +48,7 @@
     </div>
 
     {{-- Desktop: tabel --}}
-    <table class="mt-5 hidden w-full text-sm lg:table">
+    <table @class(['mt-5 hidden w-full text-sm', 'lg:table' => $groups !== []])>
         <thead>
             <tr class="border-b border-line text-left text-[11px] tracking-[.07em] text-muted uppercase">
                 @foreach (['Waktu', 'Anggota', 'Aktivitas', 'Keterangan', 'Aksi'] as $th)
