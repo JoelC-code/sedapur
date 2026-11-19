@@ -97,17 +97,6 @@ document.querySelectorAll("[data-code-input]").forEach((group) => {
     });
 });
 
-// Centang daftar belanja (sementara di sisi klien; nanti disinkronkan lewat Supabase Realtime).
-document.addEventListener("change", (event) => {
-    const box = event.target;
-    if (box.matches("input[data-shopping]")) {
-        box.closest("li")?.classList.toggle("opacity-50", box.checked);
-        box.closest("li")
-            ?.querySelector("[data-name]")
-            ?.classList.toggle("line-through", box.checked);
-    }
-});
-
 // Pilihan porsi & tab sederhana: tombol dalam [data-choice] saling eksklusif.
 document.addEventListener("click", (event) => {
     const option = event.target.closest("[data-choice] > button");

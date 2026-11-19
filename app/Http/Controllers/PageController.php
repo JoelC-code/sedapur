@@ -74,11 +74,6 @@ class PageController extends Controller
         return view('recipes.show', ['recipe' => $data]);
     }
 
-    public function shopping(): View
-    {
-        return view('shopping.index', ['groups' => DemoData::shoppingList()]);
-    }
-
     public function nutrition(Request $request): View
     {
         return view('nutrition.index', ['tab' => $request->query('tab', 'saya'), 'n' => DemoData::nutrition()]);

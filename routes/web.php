@@ -4,8 +4,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FridgeController;
 use App\Http\Controllers\HouseholdController;
 use App\Http\Controllers\PageController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReceiptScanController;
+use App\Http\Controllers\ShoppingListController;
+use Illuminate\Support\Facades\Route;
 
 // Auth: Supabase Auth (email + kata sandi)
 Route::middleware('supabase.guest')->controller(AuthController::class)->group(function () {
@@ -42,7 +43,12 @@ Route::middleware('supabase.auth')->group(function () {
         Route::get('/resep', 'recipes')->name('recipes.index');
         Route::get('/resep/{recipe}', 'recipe')->whereNumber('recipe')->name('recipes.show');
 
-        Route::get('/belanja', 'shopping')->name('shopping.index');
+        Route::controller(ShoppingListController::class)->group(function () {
+            Route::get('/belanja', 'index')->name('shopping.index');
+            Route::post('/belanja', 'store')->name('shopping.store');
+            Route::patch('/belanja/{item}', 'update')->whereNumber('item')->name('shopping.update');
+            Route::delete('/belanja/{item}', 'destroy')->whereNumber('item')->name('shopping.destroy');
+        });
         Route::get('/gizi', 'nutrition')->name('nutrition.index');
         Route::get('/food-waste', 'waste')->name('waste.index');
         Route::get('/riwayat', 'activity')->name('activity.index');
