@@ -41,7 +41,13 @@ Rules:
 3. Understand Indonesian receipt abbreviations.
 4. Do not invent unreadable information.
 5. Use null for unknown values.
+   Set "unit" only to: g, kg, ml, l, butir, buah, ikat, bungkus,
+   botol, kaleng, or kotak. Normalize common aliases: pcs/pc/piece -> buah,
+   pack/packs -> bungkus, liter -> l, milliliter -> ml.
 6. Prices must be numeric, without currency symbols.
+   For a receipt line written as <quantity> <unit> x <unit price>,
+   set the fields to the parsed quantity, normalized unit, numeric unit price,
+   and the numeric line total. This is an example pattern, not a fixed receipt value.
 7. Distinguish food products from non-food products.
 8. Do not treat the receipt's total as an item's price.
 9. purchase_date must use YYYY-MM-DD.
