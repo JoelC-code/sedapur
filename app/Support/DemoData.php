@@ -293,8 +293,12 @@ class DemoData
     }
 
     /** Label & warna badge sisa umur bahan. Batas "hampir" = 3 hari (catatan desain). */
-    public static function expiryBadge(int $sisaHari): array
+    public static function expiryBadge(?int $sisaHari): array
     {
+        if ($sisaHari === null) {
+            return ['Tanpa tanggal', 'bg-sand-dark text-muted'];
+        }
+
         // Label = tanggal kedaluwarsa (masukan dosen); warna tetap menandai seberapa mendesak.
         $date = now()->addDays($sisaHari);
         $label = $date->translatedFormat($date->isSameYear(now()) ? 'j M' : 'j M Y');

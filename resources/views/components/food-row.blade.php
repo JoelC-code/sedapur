@@ -5,7 +5,7 @@
     <span class="min-w-0 flex-1">
         <span class="block truncate text-[15px] font-bold">{{ $item['nama'] }}</span>
         <span class="mt-0.5 block truncate text-xs text-muted">
-            {{ \App\Support\DemoData::CATEGORIES[$item['kategori']]['label'] ?? 'Lainnya' }} · {{ $item['jumlah'] }} {{ $item['satuan'] }} · {{ \App\Support\DemoData::number($item['berat_gram']) }} g · {{ \App\Support\DemoData::rupiah($item['harga']) }}
+            {{ \App\Support\DemoData::CATEGORIES[$item['kategori']]['label'] ?? 'Lainnya' }} · {{ $item['jumlah'] }} {{ $item['satuan'] }}@if ($item['berat_gram']) · {{ \App\Support\DemoData::number($item['berat_gram']) }} g @endif @if ($item['harga'] !== null) · {{ \App\Support\DemoData::rupiah($item['harga']) }}@endif
         </span>
     </span>
     <span class="days {{ $cls }}">{{ $label }}</span>

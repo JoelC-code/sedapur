@@ -19,9 +19,12 @@ it('sends a user without a household to the setup page', function () {
 });
 
 it('loads the household of a returning member through the Data API with their token', function () {
-    Http::fake(['test.supabase.co/rest/v1/household_members*' => Http::response([
-        ['role' => 'member', 'households' => ['id' => 7, 'name' => 'Kos Melati']],
-    ])]);
+    Http::fake([
+        'test.supabase.co/rest/v1/household_members*' => Http::response([
+            ['role' => 'member', 'households' => ['id' => 7, 'name' => 'Kos Melati']],
+        ]),
+        'test.supabase.co/rest/v1/food_items*' => Http::response([]),
+    ]);
 
     $this->withSession(supabaseSession(household: null))->get('/')
         ->assertOk()

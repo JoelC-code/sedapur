@@ -192,3 +192,28 @@ document.addEventListener("submit", (event) => {
     const message = event.target.dataset?.confirm;
     if (message && !window.confirm(message)) event.preventDefault();
 });
+
+// Form tambah bahan [data-shelf-life]: tanggal kedaluwarsa mengikuti perkiraan umur simpan kategori
+// (data-shelf-days) dihitung dari tanggal beli, sampai user mengubah tanggalnya sendiri.
+document.addEventListener("change", (event) => {
+    const form = event.target.closest("form[data-shelf-life]");
+    if (!form) return;
+    const expires = form.elements.expires_at;
+    if (event.target === expires) {
+        expires.dataset.touched = "1";
+        return;
+    }
+    if (expires.dataset.touched) return;
+    const category = form.querySelector("input[name=category]:checked");
+    if (!category) return;
+    const start = form.elements.purchased_at.value
+        ? new Date(`${form.elements.purchased_at.value}T00:00:00`)
+        : new Date();
+    start.setDate(start.getDate() + Number(category.dataset.shelfDays));
+    const pad = (n) => String(n).padStart(2, "0");
+    expires.value = `${start.getFullYear()}-${pad(start.getMonth() + 1)}-${pad(start.getDate())}`;
+    const hint = form.querySelector("[data-shelf-hint]");
+    if (hint) {
+        hint.textContent = `Tanggal kedaluwarsa diisi perkiraan sesuai kategori (${category.parentElement.textContent.trim()} ±${category.dataset.shelfDays} hari). Ubah bila kemasan menulis tanggal lain.`;
+    }
+});

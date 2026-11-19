@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\SupabaseException;
+use App\Services\FoodItemService;
 use App\Support\DemoData;
 use App\Support\HouseholdMembers;
 use App\Support\SupabaseSession;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
 /**
@@ -17,17 +20,18 @@ class PageController extends Controller
 {
     public function dashboard(): View
     {
-        $items = DemoData::foodItems();
+        $items = $this->availableItems();
+        $expiring = $items->filter(fn ($i) => $i['sisa_hari'] !== null && $i['sisa_hari'] <= 3)->values();
         $waste = DemoData::waste();
 
         return view('dashboard', [
             'user' => $this->currentUser(),
             'household' => $this->currentHousehold(),
-            'expiring' => $items->filter(fn ($i) => $i['sisa_hari'] <= 3)->values(),
+            'expiring' => $expiring,
             'stats' => [
-                'total' => 24,
-                'segera' => $items->filter(fn ($i) => $i['sisa_hari'] <= 3)->count(),
-                'lewat' => $items->filter(fn ($i) => $i['sisa_hari'] < 0)->count(),
+                'total' => $items->count(),
+                'segera' => $expiring->count(),
+                'lewat' => $expiring->filter(fn ($i) => $i['sisa_hari'] < 0)->count(),
                 'terbuang_short' => str_replace('.', ',', round($waste['terbuang'] / 1000, 1)).'rb',
             ],
             'waste' => $waste,
@@ -37,31 +41,14 @@ class PageController extends Controller
         ]);
     }
 
-    public function fridge(Request $request, ?int $item = null): View
-    {
-        $status = $request->query('status', 'tersedia');
-        $kategori = $request->query('kategori');
-        $items = DemoData::foodItems()
-            ->when($kategori, fn ($c) => $c->where('kategori', $kategori))
-            ->when($request->query('q'), fn ($c, $q) => $c->filter(fn ($i) => str_contains(mb_strtolower($i['nama']), mb_strtolower($q))))
-            ->sortBy('sisa_hari')
-            ->values();
-
-        $selected = $item ? DemoData::foodItem($item) : null;
-        abort_if($item && ! $selected, 404);
-
-        return view('fridge.index', [
-            'items' => $status === 'tersedia' ? $items : collect(),
-            'status' => $status,
-            'kategori' => $kategori,
-            'selected' => $selected,
-            'categories' => DemoData::CATEGORIES,
-        ]);
-    }
-
     public function manualInput(): View
     {
-        return view('scan.manual', ['categories' => DemoData::CATEGORIES]);
+        return view('scan.manual', [
+            'item' => null,
+            'categories' => DemoData::CATEGORIES,
+            'units' => FoodItemService::UNITS,
+            'shelfDays' => FoodItemService::SHELF_DAYS,
+        ]);
     }
 
     public function menu(): View
@@ -116,9 +103,31 @@ class PageController extends Controller
     {
         return view('emails.expiry-reminder', [
             'household' => $this->currentHousehold(),
-            'items' => DemoData::foodItems()->filter(fn ($i) => $i['sisa_hari'] >= 0 && $i['sisa_hari'] <= 3)->values(),
+            'items' => $this->availableItems()->filter(fn ($i) => $i['sisa_hari'] !== null && $i['sisa_hari'] >= 0 && $i['sisa_hari'] <= 3)->values(),
             'recipe' => DemoData::recipe(1),
         ]);
+    }
+
+    /**
+     * Bahan yang masih tersedia di kulkas rumah aktif, paling cepat kedaluwarsa dulu.
+     * Bila Supabase sedang bermasalah, halaman tetap tampil dengan daftar kosong.
+     *
+     * @return Collection<int, array<string, mixed>>
+     */
+    private function availableItems(): Collection
+    {
+        try {
+            return collect(app(FoodItemService::class)->list(
+                (string) SupabaseSession::accessToken(),
+                SupabaseSession::household()['id'],
+                'tersedia',
+                null,
+                null,
+                array_column(HouseholdMembers::forCurrentHousehold(), 'nama', 'user_id'),
+            ));
+        } catch (SupabaseException) {
+            return collect();
+        }
     }
 
     /**

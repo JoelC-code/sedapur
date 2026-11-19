@@ -93,6 +93,7 @@ it('refreshes an access token that is about to expire', function () {
     Http::fake([
         'test.supabase.co/auth/v1/token*' => Http::response(supabaseAuthSession('refreshed-token')),
         'test.supabase.co/rest/v1/household_members*' => Http::response([]),
+        'test.supabase.co/rest/v1/food_items*' => Http::response([]),
     ]);
     $session = supabaseSession();
     $session['supabase']['expires_at'] = time() + 10;
@@ -128,7 +129,10 @@ it('signs out of Supabase and clears the session', function () {
 });
 
 it('brings a new user from an invite link back to it with the code filled in', function () {
-    Http::fake(['test.supabase.co/auth/v1/signup' => Http::response(supabaseAuthSession())]);
+    Http::fake([
+        'test.supabase.co/auth/v1/signup' => Http::response(supabaseAuthSession()),
+        'test.supabase.co/rest/v1/rpc/touch_last_seen' => Http::response(null, 204),
+    ]);
 
     $this->get('/rumah/mulai?kode=AB23CD')->assertRedirect(route('login'));
     $this->get('/masuk')->assertSee('Kamu diundang ke sebuah rumah.');

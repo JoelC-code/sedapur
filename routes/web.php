@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FridgeController;
 use App\Http\Controllers\HouseholdController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
@@ -27,8 +28,15 @@ Route::middleware('supabase.auth')->group(function () {
     // Aplikasi: halaman masih memakai data contoh (App\Support\DemoData) sampai fiturnya tersambung.
     Route::middleware('household')->controller(PageController::class)->group(function () {
         Route::get('/', 'dashboard')->name('dashboard');
-        Route::get('/kulkas', 'fridge')->name('fridge.index');
-        Route::get('/kulkas/{item}', 'fridge')->whereNumber('item')->name('fridge.show');
+        Route::controller(FridgeController::class)->group(function () {
+            Route::get('/kulkas', 'index')->name('fridge.index');
+            Route::post('/kulkas', 'store')->name('fridge.store');
+            Route::get('/kulkas/{item}', 'index')->whereNumber('item')->name('fridge.show');
+            Route::get('/kulkas/{item}/ubah', 'edit')->whereNumber('item')->name('fridge.edit');
+            Route::put('/kulkas/{item}', 'update')->whereNumber('item')->name('fridge.update');
+            Route::post('/kulkas/{item}/pakai', 'use')->whereNumber('item')->name('fridge.use');
+            Route::patch('/kulkas/{item}/status', 'updateStatus')->whereNumber('item')->name('fridge.status');
+        });
 
         Route::get('/menu', 'menu')->name('menu.index');
         Route::get('/resep', 'recipes')->name('recipes.index');

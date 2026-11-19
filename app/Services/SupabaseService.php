@@ -97,6 +97,22 @@ class SupabaseService
     }
 
     /**
+     * UPDATE lewat Data API sebagai user; mengembalikan jumlah baris yang benar-benar berubah
+     * (0 berarti RLS menolak atau barisnya tidak ada).
+     *
+     * @param  array<string, string>  $filters  sintaks PostgREST, contoh: ['id' => 'eq.5']
+     * @param  array<string, mixed>  $values
+     */
+    public function update(string $accessToken, string $table, array $filters, array $values): int
+    {
+        $rows = $this->send(fn (PendingRequest $http) => $http->withToken($accessToken)
+            ->withHeaders(['Prefer' => 'return=representation'])
+            ->patch($this->url("/rest/v1/{$table}?select=id&").http_build_query($filters), $values));
+
+        return is_array($rows) ? count($rows) : 0;
+    }
+
+    /**
      * DELETE lewat Data API sebagai user; mengembalikan jumlah baris yang benar-benar terhapus
      * (0 berarti RLS menolak atau barisnya tidak ada).
      *

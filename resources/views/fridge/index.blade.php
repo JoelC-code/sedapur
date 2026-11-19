@@ -1,9 +1,12 @@
 @php use App\Support\DemoData as D; @endphp
 <x-layouts.app :title="$selected['nama'] ?? 'Kulkas'" active="fridge.index" :bare="(bool) $selected">
+    @if (session('status'))
+        <div class="mb-4">@include('partials.status')</div>
+    @endif
     <div class="lg:flex lg:gap-6">
         {{-- Daftar bahan (di HP disembunyikan saat detail dibuka) --}}
         <section @class(['min-w-0 flex-1', 'hidden lg:block' => $selected])>
-            <x-page-header title="Kulkas" subtitle="24 bahan tersedia · ditambahkan 3 anggota">
+            <x-page-header title="Kulkas" :subtitle="$items->count().' bahan '.$status">
                 <x-avatars class="lg:hidden" />
                 <form class="relative hidden w-72 lg:block">
                     <x-icon name="search" class="absolute top-1/2 left-4 size-4 -translate-y-1/2 text-muted" />
@@ -38,8 +41,13 @@
             @if ($items->isEmpty())
                 <div class="card-sand mt-4 py-10 text-center">
                     <span class="mx-auto grid size-12 place-items-center rounded-full bg-white text-olive-700"><x-icon name="fridge" class="size-5" /></span>
-                    <p class="mt-2 font-bold">Belum ada bahan di sini</p>
-                    <p class="text-sm text-muted">Bahan yang {{ $status === 'tersedia' ? 'cocok dengan filter' : 'ditandai '.$status }} akan muncul di daftar ini.</p>
+                    @if ($loadFailed)
+                        <p class="mt-2 font-bold">Isi kulkas belum bisa dimuat</p>
+                        <p class="text-sm text-muted">Koneksi ke server sedang bermasalah. Muat ulang halaman sebentar lagi.</p>
+                    @else
+                        <p class="mt-2 font-bold">Belum ada bahan di sini</p>
+                        <p class="text-sm text-muted">Bahan yang {{ $status === 'tersedia' ? 'cocok dengan filter' : 'ditandai '.$status }} akan muncul di daftar ini.</p>
+                    @endif
                 </div>
             @else
                 {{-- HP --}}
@@ -66,7 +74,7 @@
                                     <td class="px-3 py-2.5 font-bold whitespace-nowrap"><a href="{{ route('fridge.show', $item['id']) }}" class="hover:text-olive-700">{{ $item['nama'] }}</a></td>
                                     <td class="px-3 py-2.5 text-muted">{{ $categories[$item['kategori']]['label'] }}</td>
                                     <td class="px-3 py-2.5 whitespace-nowrap">{{ $item['jumlah'] }} {{ $item['satuan'] }}</td>
-                                    <td class="px-3 py-2.5 whitespace-nowrap">{{ D::number($item['berat_gram']) }} g</td>
+                                    <td class="px-3 py-2.5 whitespace-nowrap">{{ $item['berat_gram'] ? D::number($item['berat_gram']).' g' : '—' }}</td>
                                     <td class="px-3 py-2.5 whitespace-nowrap">{{ D::rupiah($item['harga']) }}</td>
                                     <td class="px-3 py-2.5">{{ $item['ditambah_oleh'] }}</td>
                                     <td class="px-3 py-2.5"><span class="days {{ $cls }}">{{ $label }}</span></td>
@@ -74,7 +82,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <p class="mt-3 text-xs text-muted">Menampilkan {{ $items->count() }} dari 24 bahan</p>
+                    <p class="mt-3 text-xs text-muted">Menampilkan {{ $items->count() }} bahan</p>
                 </div>
             @endif
         </section>
@@ -83,14 +91,16 @@
         @if ($selected)
             @php
                 [$label, $cls] = D::expiryBadge($selected['sisa_hari']);
-                [$srcLabel, $srcCls] = D::sourceBadge($selected['gizi']['sumber']);
+                $gizi = $selected['gizi'];
             @endphp
             <aside class="lg:-my-0 lg:w-[380px] lg:shrink-0 lg:border-l lg:border-line lg:pt-6 lg:pl-6">
                 <div class="mb-4 flex items-center justify-between">
                     <a href="{{ route('fridge.index') }}" class="grid size-10 place-items-center rounded-full bg-sand lg:hidden" aria-label="Kembali"><x-icon name="chevron-left" class="size-4" /></a>
                     <p class="stat-label hidden lg:block">Detail bahan</p>
                     <div class="flex gap-2">
-                        <a href="{{ route('scan.manual') }}" class="grid size-10 place-items-center rounded-full bg-sand" aria-label="Ubah"><x-icon name="edit" class="size-4" /></a>
+                        @if ($selected['status'] === 'tersedia')
+                            <a href="{{ route('fridge.edit', $selected['id']) }}" class="grid size-10 place-items-center rounded-full bg-sand" aria-label="Ubah"><x-icon name="edit" class="size-4" /></a>
+                        @endif
                         <a href="{{ route('fridge.index') }}" class="hidden size-10 place-items-center rounded-full bg-sand lg:grid" aria-label="Tutup"><x-icon name="x" class="size-4" /></a>
                     </div>
                 </div>
@@ -101,16 +111,41 @@
                             <span class="badge bg-sand text-muted">{{ $categories[$selected['kategori']]['label'] }}</span>
                             <span class="badge {{ $cls }}">{{ $label }}</span>
                         </div>
-                        <p class="mt-1 text-xs text-muted">{{ match (true) { $selected['sisa_hari'] < 0 => 'Lewat '.abs($selected['sisa_hari']).' hari', $selected['sisa_hari'] === 0 => 'Kedaluwarsa hari ini', default => $selected['sisa_hari'].' hari lagi' } }}</p>
+                        <p class="mt-1 text-xs text-muted">{{ match (true) { $selected['sisa_hari'] === null => 'Tanggal kedaluwarsa belum diisi', $selected['sisa_hari'] < 0 =>'Lewat '.abs($selected['sisa_hari']).' hari', $selected['sisa_hari'] === 0 => 'Kedaluwarsa hari ini', default => $selected['sisa_hari'].' hari lagi' } }}</p>
                 </div>
+
+                @if ($selected['status'] === 'tersedia')
+                    <div class="card-sand mt-4">
+                        <div class="flex items-baseline justify-between">
+                            <p class="stat-label">Sisa</p>
+                            <p class="text-sm font-bold">{{ $selected['jumlah'] }} {{ $selected['satuan'] }} · {{ $selected['sisa_persen'] }}%</p>
+                        </div>
+                        <div class="mt-2 h-2 overflow-hidden rounded-full bg-white" role="progressbar" aria-label="Sisa bahan" aria-valuenow="{{ $selected['sisa_persen'] }}" aria-valuemin="0" aria-valuemax="100">
+                            <div class="h-full rounded-full bg-olive-700" style="width: {{ $selected['sisa_persen'] }}%"></div>
+                        </div>
+                        <p class="mt-3 text-xs text-muted">Baru dipakai? Catat sekali tekan:</p>
+                        <div class="mt-1.5 flex flex-wrap gap-2">
+                            @foreach ($selected['pakai'] as $option)
+                                <form method="POST" action="{{ route('fridge.use', $selected['id']) }}">
+                                    @csrf
+                                    <button name="amount" value="{{ $option['amount'] }}" class="chip bg-white">Pakai {{ $option['label'] }}</button>
+                                </form>
+                            @endforeach
+                            <form method="POST" action="{{ route('fridge.status', $selected['id']) }}">
+                                @csrf @method('PATCH')
+                                <button name="status" value="dimasak" class="chip bg-white">Habis</button>
+                            </form>
+                        </div>
+                    </div>
+                @endif
 
                 <dl class="card-sand mt-4 grid grid-cols-2 gap-x-4 gap-y-3">
                     @foreach ([
                         ['Jumlah', $selected['jumlah'].' '.$selected['satuan'], ''],
-                        ['Berat', D::number($selected['berat_gram']).' g', ''],
+                        ['Berat', $selected['berat_gram'] ? D::number($selected['berat_gram']).' g' : '—', ''],
                         ['Harga', D::rupiah($selected['harga']), ''],
-                        ['Dibeli', $selected['tgl_beli']->translatedFormat('j M Y'), ''],
-                        ['Kedaluwarsa', $selected['tgl_kedaluwarsa']->translatedFormat('j M Y'), 'text-brand'],
+                        ['Dibeli', $selected['tgl_beli']?->translatedFormat('j M Y') ?? '—', ''],
+                        ['Kedaluwarsa', $selected['tgl_kedaluwarsa']?->translatedFormat('j M Y') ?? '—', 'text-brand'],
                         ['Sumber', $selected['sumber'], ''],
                     ] as [$k, $v, $c])
                         <div>
@@ -120,29 +155,40 @@
                     @endforeach
                 </dl>
 
-                <div class="mt-5 flex items-center justify-between">
-                    <h2 class="font-bold">Gizi per 100 g</h2>
-                    <span class="badge {{ $srcCls }}">{{ $srcLabel }}</span>
-                </div>
-                <div class="mt-2 grid grid-cols-4 gap-2 text-center">
-                    @foreach ([['kalori', 'kkal', ''], ['protein', 'protein', ' g'], ['karbo', 'karbo', ' g'], ['lemak', 'lemak', ' g']] as [$key, $unit, $suffix])
-                        <div class="rounded-[14px] bg-sand px-2 py-2.5">
-                            <b class="block text-base font-extrabold">{{ str_replace('.', ',', $selected['gizi'][$key]) }}{{ $suffix }}</b>
-                            <span class="text-[11px] text-muted">{{ $unit }}</span>
-                        </div>
-                    @endforeach
-                </div>
+                @if ($gizi)
+                    @php [$srcLabel, $srcCls] = D::sourceBadge($gizi['data_source']); @endphp
+                    <div class="mt-5 flex items-center justify-between">
+                        <h2 class="font-bold">Gizi per 100 g</h2>
+                        <span class="badge {{ $srcCls }}">{{ $srcLabel }}</span>
+                    </div>
+                    <div class="mt-2 grid grid-cols-4 gap-2 text-center">
+                        @foreach ([['calories', 'kkal', ''], ['protein', 'protein', ' g'], ['carbohydrates', 'karbo', ' g'], ['fat', 'lemak', ' g']] as [$key, $unit, $suffix])
+                            <div class="rounded-[14px] bg-sand px-2 py-2.5">
+                                <b class="block text-base font-extrabold">{{ str_replace('.', ',', (string) round($gizi[$key], 1)) }}{{ $suffix }}</b>
+                                <span class="text-[11px] text-muted">{{ $unit }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                    <p class="mt-1.5 text-xs text-muted">Data gizi untuk "{{ $gizi['name'] }}".</p>
+                @endif
 
                 <h2 class="mt-5 mb-2 font-bold">Riwayat</h2>
                 <ul class="space-y-2.5 text-sm">
-                    <li class="flex items-center gap-2">@include('partials.member-dot', ['name' => $selected['ditambah_oleh']]) <span class="flex-1">{{ $selected['ditambah_oleh'] }} menambahkan dari {{ mb_strtolower($selected['sumber']) }}</span><span class="text-xs text-muted">{{ $selected['tgl_beli']->translatedFormat('j M') }}</span></li>
-                    <li class="flex items-center gap-2">@include('partials.member-dot', ['name' => 'Grevi']) <span class="flex-1">Grevi mengubah jumlah 3 → 2</span><span class="text-xs text-muted">{{ now()->subDay()->translatedFormat('j M') }}</span></li>
+                    <li class="flex items-center gap-2">@include('partials.member-dot', ['name' => $selected['ditambah_oleh']]) <span class="flex-1">{{ $selected['ditambah_oleh'] }} menambahkan dari {{ mb_strtolower($selected['sumber']) }}</span></li>
                 </ul>
 
-                <div class="mt-6 grid grid-cols-[auto_1fr] gap-2">
-                    <button type="button" class="btn-danger"><x-icon name="trash" class="size-4" /> Buang</button>
-                    <button type="button" class="btn-primary"><x-icon name="utensils" class="size-4" /> Tandai dimasak</button>
-                </div>
+                @if ($selected['status'] === 'tersedia')
+                    <div class="mt-6 grid grid-cols-[auto_1fr] gap-2">
+                        <form method="POST" action="{{ route('fridge.status', $selected['id']) }}">
+                            @csrf @method('PATCH')
+                            <button name="status" value="dibuang" class="btn-danger w-full"><x-icon name="trash" class="size-4" /> Buang</button>
+                        </form>
+                        <form method="POST" action="{{ route('fridge.status', $selected['id']) }}">
+                            @csrf @method('PATCH')
+                            <button name="status" value="dimasak" class="btn-primary w-full"><x-icon name="utensils" class="size-4" /> Tandai dimasak</button>
+                        </form>
+                    </div>
+                @endif
             </aside>
         @endif
     </div>
