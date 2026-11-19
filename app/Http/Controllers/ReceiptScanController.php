@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\SupabaseException;
-use App\Models\ReceiptScan;
 use App\Jobs\ProcessReceiptScan;
-use App\Services\SupabaseService;
-use App\Support\SupabaseSession;
-use App\Support\ReceiptPriceNormalizer;
+use App\Models\ReceiptScan;
 use App\Services\FoodItemService;
+use App\Services\SupabaseService;
 use App\Support\DemoData;
-use Illuminate\Validation\Rule;
+use App\Support\ReceiptPriceNormalizer;
+use App\Support\SupabaseSession;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class ReceiptScanController extends Controller
 {
@@ -135,11 +136,14 @@ class ReceiptScanController extends Controller
 
         $rows = $result['items'] ?? [];
 
-        return view('scan.review', compact(
-            'scan',
-            'result',
-            'rows'
-        ));
+        return view('scan.review', [
+            'scan' => $scan,
+            'result' => $result,
+            'rows' => $rows,
+            'units' => FoodItemService::UNITS,
+            'categories' => DemoData::CATEGORIES,
+            'shelfDays' => FoodItemService::SHELF_DAYS,
+        ]);
     }
 
     public function failed(
@@ -220,7 +224,7 @@ class ReceiptScanController extends Controller
             if ($expiresAt && $purchasedAt && $expiresAt < $purchasedAt) {
                 return back()->withErrors([
                     'items' => 'Tanggal kedaluwarsa tidak boleh sebelum tanggal beli.',
-                ]);
+                ])->withInput();
             }
 
             if ($quantity <= 0) {
@@ -271,12 +275,12 @@ class ReceiptScanController extends Controller
 
             return back()->withErrors([
                 'items' => $detail,
-            ]);
+            ])->withInput();
         }
 
         return redirect()->route('fridge.index')->with(
-            'success',
-            $saved . ' bahan berhasil disimpan ke kulkas.'
+            'status',
+            $saved.' bahan berhasil disimpan ke kulkas.'
         );
     }
 
@@ -297,7 +301,7 @@ class ReceiptScanController extends Controller
         }
 
         try {
-            return \Illuminate\Support\Carbon::createFromFormat('Y-m-d', $date)->format('Y-m-d');
+            return Carbon::createFromFormat('Y-m-d', $date)->format('Y-m-d');
         } catch (\Throwable) {
             return null;
         }
