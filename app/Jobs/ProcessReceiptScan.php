@@ -5,12 +5,12 @@ namespace App\Jobs;
 use App\Models\ReceiptScan;
 use App\Services\GeminiReceiptService;
 use App\Services\NutritionLookupService;
-use App\Services\SupabaseStorageService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
@@ -28,13 +28,12 @@ class ProcessReceiptScan implements ShouldQueue
     ) {}
 
     public function handle(
-        SupabaseStorageService $storage,
         GeminiReceiptService $gemini,
         NutritionLookupService $nutrition,
     ): void {
         $scan = ReceiptScan::findOrFail($this->scanId);
 
-        $image = $storage->download($this->signedUrl);
+        $image = Http::timeout(30)->get($this->signedUrl)->throw()->body();
 
         $mimeType = match (pathinfo($scan->image_path, PATHINFO_EXTENSION)) {
             'jpg', 'jpeg' => 'image/jpeg',

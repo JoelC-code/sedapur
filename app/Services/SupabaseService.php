@@ -6,7 +6,9 @@ use App\Exceptions\SupabaseException;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 /**
  * Pintu ke Supabase: Auth (/auth/v1) dan Data API (/rest/v1).
@@ -118,6 +120,38 @@ class SupabaseService
     {
         return $this->send(fn (PendingRequest $http) => $http->withToken($accessToken)
             ->post($this->url("/rest/v1/rpc/{$function}"), $arguments));
+    }
+
+    /**
+     * Unggah foto ke bucket privat Supabase Storage sebagai user, di folder rumahnya:
+     * <household_id>/<uuid>.<ext>. RLS storage.objects menolak bila user bukan anggota rumah itu.
+     *
+     * @return string path file di dalam bucket, simpan ini (bukan URL) di database
+     */
+    public function uploadHouseholdPhoto(string $accessToken, string $bucket, int $householdId, UploadedFile $photo): string
+    {
+        $path = $householdId.'/'.Str::uuid().'.'.($photo->guessExtension() ?? 'jpg');
+
+        $this->send(fn (PendingRequest $http) => $http->withToken($accessToken)
+            ->withBody((string) file_get_contents($photo->getRealPath()), (string) $photo->getMimeType())
+            ->post($this->url("/storage/v1/object/{$bucket}/{$path}")));
+
+        return $path;
+    }
+
+    /**
+     * Link sementara untuk menampilkan foto dari bucket privat. Default berlaku 5 menit.
+     */
+    public function createSignedUrl(string $accessToken, string $bucket, string $path, int $expiresInSeconds = 300): string
+    {
+        $result = $this->send(fn (PendingRequest $http) => $http->withToken($accessToken)
+            ->post($this->url("/storage/v1/object/sign/{$bucket}/{$path}"), ['expiresIn' => $expiresInSeconds]));
+
+        if (! is_string($result['signedURL'] ?? null)) {
+            throw new SupabaseException('invalid_signed_url', 0, 'Supabase tidak mengembalikan signed URL.');
+        }
+
+        return $this->url('/storage/v1'.$result['signedURL']);
     }
 
     /**

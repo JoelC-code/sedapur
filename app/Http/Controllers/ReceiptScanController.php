@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ReceiptScan;
 use App\Jobs\ProcessReceiptScan;
-use App\Services\SupabaseStorageService;
+use App\Services\SupabaseService;
 use App\Support\SupabaseSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -23,14 +23,14 @@ class ReceiptScanController extends Controller
 
     public function upload(
         Request $request,
-        SupabaseStorageService $storage
+        SupabaseService $supabase
     ) {
         $request->validate([
             'receipt' => [
                 'required',
                 'image',
                 'mimes:jpg,jpeg,png,webp',
-                'max:10240',
+                'max:5120', // batas bucket receipts: 5 MB
             ],
         ]);
 
@@ -48,18 +48,15 @@ class ReceiptScanController extends Controller
         ]);
 
         try {
-            $path = $storage->upload(
-                $file->get(),
-                $file->getMimeType(),
-                $userId,
-                $scan->id,
-                $accessToken
+            $path = $supabase->uploadHouseholdPhoto(
+                $accessToken,
+                'receipts',
+                (int) SupabaseSession::household()['id'],
+                $file
             );
 
-            $signedUrl = $storage->createSignedURL(
-                $path,
-                $accessToken,
-            );
+            // 1 jam: job antrean bisa tertunda dan dicoba ulang sebelum mengunduh foto.
+            $signedUrl = $supabase->createSignedUrl($accessToken, 'receipts', $path, 3600);
 
             $scan->update([
                 'image_path' => $path,
