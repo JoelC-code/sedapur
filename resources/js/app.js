@@ -1,7 +1,5 @@
 import "./bootstrap";
 
-console.log('APP.JS UPDATED VERSION LOADED');
-
 // Buka/tutup <dialog> lewat atribut data-open="id" dan data-close.
 document.addEventListener("click", (event) => {
     const opener = event.target.closest("[data-open]");
@@ -22,58 +20,7 @@ document.addEventListener("click", (event) => {
     }
 });
 
-// Setelah foto dipilih dari kamera, lanjut ke layar "scan diproses".
-// document.addEventListener("change", async (event) => {
-//     const input = event.target;
-//     if (!input.matches("input[data-scan]") || !input.files?.length) {
-//         return;
-//     }
-
-//     const file = input.files[0];
-//     const csrfMeta = document.head.querySelector('meta[name="csrf-token"]');
-//     const csrfToken = csrfMeta?.getAttribute("content");
-
-//     console.log("CSRF meta element:", csrfMeta);
-//     console.log("CSRF token:", csrfToken);
-
-//     if (!csrfToken) {
-//         alert("CSRF token tidak ditemukan.");
-//         return;
-//     }
-
-//     const formData = new FormData();
-//     formData.append("image", file);
-
-//     try {
-//         input.disabled = true;
-
-//         const response = await fetch(input.dataset.scan, {
-//             method: "POST",
-//             headers: {
-//                 "X-CSRF-TOKEN": csrfToken,
-//                 Accept: "application/json",
-//             },
-//             body: formData,
-//         });
-
-//         const data = await response.json();
-
-//         if (data.redirect) {
-//             window.location.href = data.redirect;
-//             return;
-//         }
-
-//         if (!response.ok) {
-//             throw new Error(data.message || "Gagal mengunggah struk.");
-//         }
-//     } catch (error) {
-//         console.error("Receipt upload error:", error);
-//         alert(error.message || "Terjadi kesalahan saat mengunggah struk.");
-//         input.disabled = false;
-//         input.value = "";
-//     }
-// });
-
+// Setelah foto struk dipilih dari kamera, unggah lalu lanjut ke layar "scan diproses".
 document.addEventListener('change', async (event) => {
     const input = event.target;
 
@@ -81,28 +28,15 @@ document.addEventListener('change', async (event) => {
         return;
     }
 
-    console.log('[Receipt] File selected:', input.files[0].name);
-
-    const csrfMeta = document.head.querySelector('meta[name="csrf-token"]');
-    const csrfToken = csrfMeta?.getAttribute('content');
-
-    console.log('[Receipt] CSRF meta:', csrfMeta);
-    console.log('[Receipt] CSRF token exists:', Boolean(csrfToken));
+    const csrfToken = document.head.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
 
     if (!csrfToken) {
         alert('CSRF token tidak ditemukan.');
         return;
     }
 
-    const file = input.files[0];
-
-    console.log('[Receipt] File size:', file.size);
-    console.log('[Receipt] File type:', file.type);
-
     const formData = new FormData();
-    formData.append('receipt', file);
-
-    console.log('[Receipt] Starting POST request...');
+    formData.append('receipt', input.files[0]);
 
     try {
         input.disabled = true;
@@ -116,11 +50,7 @@ document.addEventListener('change', async (event) => {
             body: formData,
         });
 
-        console.log('[Receipt] Response status:', response.status);
-
         const data = await response.json();
-
-        console.log('[Receipt] Response data:', data);
 
         if (data.redirect) {
             window.location.href = data.redirect;
