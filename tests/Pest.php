@@ -15,7 +15,7 @@ use Tests\TestCase;
 
 pest()->extend(TestCase::class)
  // ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
-    ->beforeEach(function() {
+    ->beforeEach(function () {
         $this->withoutVite();
     })->in('Feature');
 
@@ -61,5 +61,7 @@ function supabaseSession(?array $household = ['id' => 1, 'name' => 'Kos Melati',
             'user' => ['id' => '00000000-0000-4000-8000-00000000000a', 'email' => 'hans@contoh.com', 'name' => 'Hans Vere Liem'],
         ],
         'household' => $household,
+        // Sudah dicatat baru saja, supaya tes tidak ikut memanggil RPC touch_last_seen.
+        'last_seen_touched_at' => time(),
     ]);
 }

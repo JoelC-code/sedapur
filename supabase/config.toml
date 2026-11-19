@@ -1,0 +1,6 @@
+# Hanya pengaturan Edge Function yang di-deploy dari repo ini.
+project_id = "sedapur"
+
+[functions.daily-reminder]
+# Dipanggil pg_cron, bukan user login. Pengaman: header x-cron-secret (lihat index.ts).
+verify_jwt = false

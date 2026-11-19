@@ -22,3 +22,6 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Supabase CLI (state lokal per laptop)
+/supabase/.temp

@@ -19,6 +19,10 @@ class EnsureSupabaseSession
     /** Perbarui token jika sisa umurnya kurang dari ini (detik). */
     private const REFRESH_MARGIN_SECONDS = 60;
 
+    private const LAST_SEEN_KEY = 'last_seen_touched_at';
+
+    private const LAST_SEEN_INTERVAL_SECONDS = 3600;
+
     public function __construct(private SupabaseService $supabase) {}
 
     public function handle(Request $request, Closure $next): Response
@@ -38,8 +42,29 @@ class EnsureSupabaseSession
             }
         }
 
+        $this->touchLastSeen();
+
         View::share('authUser', SupabaseSession::user());
 
         return $next($request);
+    }
+
+    /**
+     * Catat kapan user terakhir membuka aplikasi (untuk pengingat "belum mencatat 2 hari"),
+     * paling sering sekali per jam per session. Gagal dicatat tidak menghalangi halaman.
+     */
+    private function touchLastSeen(): void
+    {
+        if (time() - (int) session(self::LAST_SEEN_KEY, 0) < self::LAST_SEEN_INTERVAL_SECONDS) {
+            return;
+        }
+
+        session()->put(self::LAST_SEEN_KEY, time());
+
+        try {
+            $this->supabase->rpc((string) SupabaseSession::accessToken(), 'touch_last_seen', []);
+        } catch (SupabaseException) {
+            // Hanya data pendukung pengingat; dicoba lagi satu jam kemudian.
+        }
     }
 }
