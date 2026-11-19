@@ -9,6 +9,7 @@ use App\Services\FoodItemService;
 use App\Services\ShoppingListService;
 use App\Support\SupabaseSession;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 /**
@@ -21,12 +22,34 @@ class ShoppingListController extends Controller
     public function index(): View
     {
         try {
-            $items = $this->shoppingList->forHousehold((string) SupabaseSession::accessToken(), SupabaseSession::household()['id']);
+            $items = collect($this->shoppingList->forHousehold((string) SupabaseSession::accessToken(), SupabaseSession::household()['id']));
+            $loadFailed = false;
         } catch (SupabaseException) {
-            return view('shopping.index', ['items' => collect(), 'units' => FoodItemService::UNITS, 'loadFailed' => true]);
+            [$items, $loadFailed] = [collect(), true];
         }
 
-        return view('shopping.index', ['items' => collect($items), 'units' => FoodItemService::UNITS, 'loadFailed' => false]);
+        return view('shopping.index', [
+            'items' => $items,
+            'units' => FoodItemService::UNITS,
+            'loadFailed' => $loadFailed,
+            // Untuk filter Realtime di browser. Access token diambil browser sendiri lewat /sesi/token.
+            'householdId' => SupabaseSession::household()['id'],
+        ]);
+    }
+
+    /**
+     * Isi daftar saja (tanpa layout), dimuat ulang oleh Realtime di browser saat ada perubahan.
+     */
+    public function list(): Response
+    {
+        try {
+            $items = $this->shoppingList->forHousehold((string) SupabaseSession::accessToken(), SupabaseSession::household()['id']);
+        } catch (SupabaseException) {
+            return response('', 503);
+        }
+
+        return response()->view('shopping._list', ['items' => collect($items), 'loadFailed' => false])
+            ->header('Cache-Control', 'no-store, private');
     }
 
     public function store(StoreShoppingItemRequest $request): RedirectResponse

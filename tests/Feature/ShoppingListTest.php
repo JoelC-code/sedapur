@@ -103,3 +103,36 @@ it('returns 404 when RLS lets no row change', function () {
     $this->withSession(supabaseSession())->patch('/belanja/99', ['is_checked' => '1'])->assertNotFound();
     $this->withSession(supabaseSession())->delete('/belanja/99')->assertNotFound();
 });
+
+it('returns only the list partial for Realtime reloads', function () {
+    fakeShoppingList([Http::response([
+        ['id' => 4, 'name' => 'Bawang merah', 'quantity' => 1.5, 'unit' => 'kg', 'is_checked' => false, 'created_at' => '2026-11-19T08:00:00+00:00'],
+    ])]);
+
+    $this->withSession(supabaseSession())->get(route('shopping.list'))
+        ->assertOk()
+        ->assertSee('Bawang merah')
+        ->assertSee('data-item-id="4"', false)
+        ->assertDontSee('<html', false)
+        ->assertHeader('Cache-Control', 'no-store, private');
+});
+
+it('answers 503 when the list partial cannot be loaded', function () {
+    fakeShoppingList([Http::response(['message' => 'boom'], 500)]);
+
+    $this->withSession(supabaseSession())->get(route('shopping.list'))->assertStatus(503);
+});
+
+it('gives the browser only safe Realtime settings', function () {
+    config(['services.supabase.secret_key' => 'sb_secret_should_never_reach_the_browser']);
+    fakeShoppingList([Http::response([])]);
+
+    $this->withSession(supabaseSession())->get('/belanja')
+        ->assertOk()
+        ->assertSee('data-supabase-url="https://test.supabase.co"', false)
+        ->assertSee('data-supabase-key="sb_publishable_test"', false)
+        ->assertSee('data-household-id="1"', false)
+        ->assertDontSee('user-access-token')
+        ->assertDontSee('sb_secret_should_never_reach_the_browser')
+        ->assertDontSee('user-refresh-token');
+});

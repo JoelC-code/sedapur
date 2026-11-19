@@ -46,6 +46,7 @@ Route::middleware('supabase.auth')->group(function () {
 
         Route::controller(ShoppingListController::class)->group(function () {
             Route::get('/belanja', 'index')->name('shopping.index');
+            Route::get('/belanja/daftar', 'list')->name('shopping.list');
             Route::post('/belanja', 'store')->name('shopping.store');
             Route::patch('/belanja/{item}', 'update')->whereNumber('item')->name('shopping.update');
             Route::delete('/belanja/{item}', 'destroy')->whereNumber('item')->name('shopping.destroy');

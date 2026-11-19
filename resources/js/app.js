@@ -1,5 +1,8 @@
 import "./bootstrap";
 
+// supabase-js hanya dimuat di halaman daftar belanja.
+if (document.querySelector("[data-shopping-list]")) import("./shopping-realtime");
+
 // Buka/tutup <dialog> lewat atribut data-open="id" dan data-close.
 document.addEventListener("click", (event) => {
     const opener = event.target.closest("[data-open]");
