@@ -21,7 +21,7 @@
         <div class="mt-auto space-y-2 pt-8">
             <label class="btn-primary w-full cursor-pointer">
                 <x-icon name="camera" class="size-4" /> Foto ulang
-                <input type="file" accept="image/*" capture="environment" class="sr-only" data-scan="{{ route('scan.processing', $scan) }}">
+                <input type="file" accept="image/*" capture="environment" class="sr-only" data-scan="{{ route('scan.upload') }}">
             </label>
             <a href="{{ route('scan.manual') }}" class="btn-ghost w-full">Input manual saja</a>
         </div>

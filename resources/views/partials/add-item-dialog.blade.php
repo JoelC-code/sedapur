@@ -11,21 +11,25 @@
         </div>
 
         <div class="mt-4 space-y-2">
-            @foreach ([
-                ['receipt', 'Scan struk belanja', 'Nama, jumlah, harga, dan umur simpan langsung terbaca', 'struk'],
-                ['camera', 'Scan isi kulkas', 'Untuk belanja di pasar atau pertama kali pakai', 'kulkas'],
-            ] as [$icon, $label, $desc, $jenis])
-                <label class="flex cursor-pointer items-center gap-3 rounded-2xl bg-sand p-3 hover:bg-sand-dark">
-                    <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-white text-olive-700"><x-icon :name="$icon" /></span>
-                    <span class="min-w-0 flex-1">
-                        <span class="flex items-center gap-2 text-sm font-semibold">{{ $label }} <span class="badge bg-ai-soft text-ai">AI</span></span>
-                        <span class="block text-xs text-muted">{{ $desc }}</span>
-                    </span>
-                    <x-icon name="chevron-right" class="size-4 text-muted" />
-                    {{-- Kamera HP langsung dari browser --}}
-                    <input type="file" name="receipt" accept="image/*" capture="environment" class="sr-only" data-scan="{{ route('scan.upload') }}">
-                </label>
-            @endforeach
+            <label class="flex cursor-pointer items-center gap-3 rounded-2xl bg-sand p-3 hover:bg-sand-dark">
+                <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-white text-olive-700"><x-icon name="receipt" /></span>
+                <span class="min-w-0 flex-1">
+                    <span class="flex items-center gap-2 text-sm font-semibold">Scan struk belanja <span class="badge bg-ai-soft text-ai">AI</span></span>
+                    <span class="block text-xs text-muted">Nama, jumlah, harga, dan umur simpan langsung terbaca</span>
+                </span>
+                <x-icon name="chevron-right" class="size-4 text-muted" />
+                {{-- Kamera HP langsung dari browser --}}
+                <input type="file" name="receipt" accept="image/*" capture="environment" class="sr-only" data-scan="{{ route('scan.upload') }}">
+            </label>
+
+            {{-- Scan kulkas belum punya backend; jangan kirim ke alur struk --}}
+            <div class="flex items-center gap-3 rounded-2xl bg-sand p-3 opacity-60" aria-disabled="true">
+                <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-white text-olive-700"><x-icon name="camera" /></span>
+                <span class="min-w-0 flex-1">
+                    <span class="flex items-center gap-2 text-sm font-semibold">Scan isi kulkas <span class="badge bg-sand-dark text-muted">Segera hadir</span></span>
+                    <span class="block text-xs text-muted">Untuk belanja di pasar atau pertama kali pakai</span>
+                </span>
+            </div>
 
             <a href="{{ route('scan.manual') }}" class="flex items-center gap-3 rounded-2xl bg-sand p-3 hover:bg-sand-dark">
                 <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-white text-olive-700"><x-icon name="keyboard" /></span>

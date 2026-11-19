@@ -59,21 +59,6 @@ class PageController extends Controller
         ]);
     }
 
-    public function scanProcessing(Request $request): View
-    {
-        return view('scan.processing', ['jenis' => $request->query('jenis', 'struk')]);
-    }
-
-    public function scanFailed(): View
-    {
-        return view('scan.failed');
-    }
-
-    public function scanReview(): View
-    {
-        return view('scan.review', ['rows' => DemoData::scanResult(), 'categories' => DemoData::CATEGORIES]);
-    }
-
     public function manualInput(): View
     {
         return view('scan.manual', ['categories' => DemoData::CATEGORIES]);
