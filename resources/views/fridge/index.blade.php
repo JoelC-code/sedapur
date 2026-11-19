@@ -99,8 +99,9 @@
                         <h1 class="text-2xl font-extrabold">{{ $selected['nama'] }}</h1>
                         <div class="mt-1 flex gap-1.5">
                             <span class="badge bg-sand text-muted">{{ $categories[$selected['kategori']]['label'] }}</span>
-                            <span class="badge {{ $cls }}">{{ $selected['sisa_hari'] >= 0 ? $label.' lagi' : $label }}</span>
+                            <span class="badge {{ $cls }}">{{ $label }}</span>
                         </div>
+                        <p class="mt-1 text-xs text-muted">{{ match (true) { $selected['sisa_hari'] < 0 => 'Lewat '.abs($selected['sisa_hari']).' hari', $selected['sisa_hari'] === 0 => 'Kedaluwarsa hari ini', default => $selected['sisa_hari'].' hari lagi' } }}</p>
                 </div>
 
                 <dl class="card-sand mt-4 grid grid-cols-2 gap-x-4 gap-y-3">
