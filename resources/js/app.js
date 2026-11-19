@@ -1,4 +1,5 @@
 import "./bootstrap";
+import "./receipt-review";
 
 // Buka/tutup <dialog> lewat atribut data-open="id" dan data-close.
 document.addEventListener("click", (event) => {
