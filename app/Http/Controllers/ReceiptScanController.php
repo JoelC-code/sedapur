@@ -140,6 +140,7 @@ class ReceiptScanController extends Controller
             'scan' => $scan,
             'result' => $result,
             'rows' => $rows,
+            // Satuan, kategori dan umur simpan dari sumber yang sama dengan Input manual, agar pilihan di kartu scan selalu cocok dengan validasi save().
             'units' => FoodItemService::UNITS,
             'categories' => DemoData::CATEGORIES,
             'shelfDays' => FoodItemService::SHELF_DAYS,
@@ -222,6 +223,7 @@ class ReceiptScanController extends Controller
             $expiresAt = $this->validDate($submitted['expires_at'] ?? null);
 
             if ($expiresAt && $purchasedAt && $expiresAt < $purchasedAt) {
+                // withInput(): isian kartu yang sudah diedit user tidak hilang saat validasi gagal.
                 return back()->withErrors([
                     'items' => 'Tanggal kedaluwarsa tidak boleh sebelum tanggal beli.',
                 ])->withInput();
@@ -273,11 +275,13 @@ class ReceiptScanController extends Controller
                 ? 'Pilih setidaknya satu bahan makanan untuk disimpan.'
                 : 'Bahan tidak dapat disimpan. Periksa kembali kategori, satuan, dan tanggal.';
 
+            // Sama: kembalikan isian user.
             return back()->withErrors([
                 'items' => $detail,
             ])->withInput();
         }
 
+        // 'status' dibaca partials.status di halaman kulkas, jadi pesan sukses benar-benar tampil.
         return redirect()->route('fridge.index')->with(
             'status',
             $saved.' bahan berhasil disimpan ke kulkas.'
