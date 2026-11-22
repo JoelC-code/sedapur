@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<meta name="theme-color" content="#4c610d">
+<meta name="theme-color" content="#9a3412">
 <meta name="description" content="Kelola kulkas bersama, habiskan bahan sebelum kedaluwarsa, dan lihat berapa makanan serta uang yang terbuang.">
 <title>{{ $title ? $title.' · ' : '' }}{{ config('app.name') }}</title>
 
