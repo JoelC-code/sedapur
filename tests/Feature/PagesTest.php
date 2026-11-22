@@ -11,6 +11,7 @@ beforeEach(function () {
         ]),
         'test.supabase.co/rest/v1/food_items*' => Http::response([]),
         'test.supabase.co/rest/v1/activity_logs*' => Http::response([]),
+        'test.supabase.co/rest/v1/food_waste*' => Http::response([]),
         'test.supabase.co/rest/v1/shopping_list_items*' => Http::response([]),
     ]);
 });

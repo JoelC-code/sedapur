@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\SupabaseException;
 use App\Services\ActivityLogService;
 use App\Services\FoodItemService;
+use App\Services\FoodWasteService;
 use App\Support\DemoData;
 use App\Support\HouseholdMembers;
 use App\Support\SupabaseSession;
@@ -23,7 +24,7 @@ class PageController extends Controller
     {
         $items = $this->availableItems();
         $expiring = $items->filter(fn ($i) => $i['sisa_hari'] !== null && $i['sisa_hari'] <= 3)->values();
-        $waste = DemoData::waste();
+        $waste = $this->wasteSummary();
 
         return view('dashboard', [
             'user' => $this->currentUser(),
@@ -82,7 +83,8 @@ class PageController extends Controller
 
     public function waste(): View
     {
-        return view('waste.index', ['w' => DemoData::waste()]);
+        // shortcut: ringkasan AI masih contoh dari DemoData, ganti saat GeminiService punya ringkasan food waste.
+        return view('waste.index', ['w' => $this->wasteSummary(), 'ai' => DemoData::waste()]);
     }
 
     public function activity(Request $request): View
@@ -125,6 +127,22 @@ class PageController extends Controller
             ));
         } catch (SupabaseException) {
             return collect();
+        }
+    }
+
+    /**
+     * Analitik food waste rumah aktif. Bila Supabase bermasalah, angka ditampilkan nol.
+     *
+     * @return array<string, mixed>
+     */
+    private function wasteSummary(): array
+    {
+        $service = app(FoodWasteService::class);
+
+        try {
+            return $service->summary((string) SupabaseSession::accessToken(), SupabaseSession::household()['id']);
+        } catch (SupabaseException) {
+            return $service->empty();
         }
     }
 

@@ -25,6 +25,7 @@ it('loads the household of a returning member through the Data API with their to
         ]),
         'test.supabase.co/rest/v1/food_items*' => Http::response([]),
         'test.supabase.co/rest/v1/activity_logs*' => Http::response([]),
+        'test.supabase.co/rest/v1/food_waste*' => Http::response([]),
     ]);
 
     $this->withSession(supabaseSession(household: null))->get('/')

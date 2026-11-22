@@ -1,7 +1,7 @@
 @php use App\Support\DemoData as D; @endphp
 <x-layouts.app title="Analitik food waste" active="waste.index">
     <x-page-header title="Food waste" subtitle="Bahan yang dibuang × harga beli di struk" :back="route('dashboard')">
-        <span class="chip">{{ $w['bulan'] }} {{ now()->year }} ▾</span>
+        <span class="chip">{{ $w['bulan'] }} {{ now('Asia/Jakarta')->year }}</span>
     </x-page-header>
 
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_360px]">
@@ -11,13 +11,16 @@
                     <p class="text-[10px] font-bold tracking-[.07em] text-white/70 uppercase">Uang terbuang bulan ini</p>
                     <p class="mt-1 text-3xl font-extrabold">{{ D::rupiah($w['terbuang']) }}</p>
                     <p class="mt-2 flex items-center gap-2 text-xs text-white/80">
-                        <span class="badge bg-olive-200 text-olive-700">{{ $w['perubahan'] }}%</span> dibanding September ({{ D::rupiah($w['bulan_lalu']) }})
+                        @if ($w['perubahan'] !== null)
+                            <span class="badge bg-olive-200 text-olive-700">{{ $w['perubahan'] > 0 ? '+' : '' }}{{ $w['perubahan'] }}%</span>
+                        @endif
+                        dibanding {{ $w['bulan_lalu_nama'] }} ({{ D::rupiah($w['bulan_lalu']) }})
                     </p>
                 </section>
                 <div class="grid grid-cols-3 gap-3 lg:contents">
                     <div class="card-sand"><p class="text-2xl font-extrabold">{{ $w['dimasak'] }}</p><p class="stat-label">Bahan dimasak</p></div>
                     <div class="card-sand"><p class="text-2xl font-extrabold text-danger">{{ $w['dibuang'] }}</p><p class="stat-label">Bahan dibuang</p></div>
-                    <div class="card-sand"><p class="text-2xl font-extrabold text-olive-700">{{ $w['terpakai'] }}%</p><p class="stat-label">Bahan terpakai</p></div>
+                    <div class="card-sand"><p class="text-2xl font-extrabold text-olive-700">{{ $w['terpakai'] !== null ? $w['terpakai'].'%' : '–' }}</p><p class="stat-label">Bahan terpakai</p></div>
                 </div>
             </div>
 
@@ -34,20 +37,22 @@
             <section class="card">
                 <h2 class="mb-1 font-bold">Paling banyak terbuang</h2>
                 <ul class="divide-y divide-line">
-                    @foreach ($w['terbanyak'] as [$nama, , $kali, $rp])
+                    @forelse ($w['terbanyak'] as [$nama, $kali, $rp])
                         <li class="flex items-center gap-3 py-2.5 text-sm">
                             <span class="flex-1"><b>{{ $nama }}</b> <span class="text-xs text-muted">· {{ $kali }}×</span></span>
                             <b>{{ D::rupiah($rp) }}</b>
                         </li>
-                    @endforeach
+                    @empty
+                        <li class="py-2.5 text-sm text-muted">Belum ada bahan yang dibuang bulan ini.</li>
+                    @endforelse
                 </ul>
             </section>
 
             <section class="rounded-[20px] bg-olive-100 p-4">
                 <p class="flex items-center gap-2 text-sm font-bold"><x-icon name="sparkles" class="size-4 text-ai" /> Ringkasan AI · {{ $w['bulan'] }}</p>
-                <p class="mt-2 text-sm leading-relaxed">{{ $w['ringkasan'] }}</p>
+                <p class="mt-2 text-sm leading-relaxed">{{ $ai['ringkasan'] }}</p>
                 <ul class="mt-2 list-inside list-disc space-y-0.5 text-sm">
-                    @foreach ($w['saran'] as $s)
+                    @foreach ($ai['saran'] as $s)
                         <li>{{ $s }}</li>
                     @endforeach
                 </ul>
