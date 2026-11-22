@@ -22,7 +22,7 @@
                         <p class="stat-label">Rumah</p>
                         <p class="font-bold">{{ $household['nama'] }}</p>
                     </div>
-                    <span @class(['badge', 'bg-ok-soft text-olive-700' => $user['role'] === 'owner', 'bg-white text-muted' => $user['role'] !== 'owner'])>{{ ucfirst($user['role']) }}</span>
+                    <span @class(['badge', 'bg-ok-soft text-brand-dark' => $user['role'] === 'owner', 'bg-white text-muted' => $user['role'] !== 'owner'])>{{ ucfirst($user['role']) }}</span>
                 </div>
                 @if ($user['role'] === 'owner' && $household['kode_undangan'])
                     <p class="stat-label mt-3">Kode undangan</p>
@@ -56,7 +56,7 @@
                                 <span class="block text-sm font-bold">{{ $m['lengkap'] }}</span>
                                 <span class="text-[11px] text-muted">Gabung {{ $m['joined_at'] }}</span>
                             </span>
-                            <span @class(['badge', 'bg-ok-soft text-olive-700' => $m['role'] === 'owner', 'bg-sand text-muted' => $m['role'] !== 'owner'])>{{ ucfirst($m['role']) }}</span>
+                            <span @class(['badge', 'bg-ok-soft text-brand-dark' => $m['role'] === 'owner', 'bg-sand text-muted' => $m['role'] !== 'owner'])>{{ ucfirst($m['role']) }}</span>
                             @if ($user['role'] === 'owner' && ! $m['is_self'])
                                 <form method="POST" action="{{ route('household.members.destroy', $m['user_id']) }}" data-confirm="Keluarkan {{ $m['nama'] }} dari rumah ini?">
                                     @csrf

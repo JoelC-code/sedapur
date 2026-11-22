@@ -1,6 +1,6 @@
 @php
     $badge = [
-        'ditambah' => ['Ditambah', 'bg-ok-soft text-olive-700'],
+        'ditambah' => ['Ditambah', 'bg-ok-soft text-brand-dark'],
         'dipakai' => ['Dipakai', 'bg-brand-soft text-brand-dark'],
         'diubah' => ['Diubah', 'bg-info-soft text-info'],
         'dimasak' => ['Dimasak', 'bg-warn-soft text-warn'],

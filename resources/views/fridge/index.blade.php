@@ -145,7 +145,7 @@
                         ['Berat', $selected['berat_gram'] ? D::number($selected['berat_gram']).' g' : '—', ''],
                         ['Harga', D::rupiah($selected['harga']), ''],
                         ['Dibeli', $selected['tgl_beli']?->translatedFormat('j M Y') ?? '—', ''],
-                        ['Kedaluwarsa', $selected['tgl_kedaluwarsa']?->translatedFormat('j M Y') ?? '—', 'text-brand'],
+                        ['Kedaluwarsa', $selected['tgl_kedaluwarsa']?->translatedFormat('j M Y') ?? '—', 'text-warn'],
                         ['Sumber', $selected['sumber'], ''],
                     ] as [$k, $v, $c])
                         <div>

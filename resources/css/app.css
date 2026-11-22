@@ -80,7 +80,7 @@
 }
 
 @utility btn-danger {
-    @apply btn border-[1.5px] border-[#f0c9c4] bg-white text-danger hover:bg-danger-soft;
+    @apply btn border-[1.5px] border-danger/30 bg-white text-danger hover:bg-danger-soft;
 }
 
 @utility input {

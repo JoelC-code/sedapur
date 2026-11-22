@@ -26,7 +26,7 @@
             <div class="grid grid-cols-3 gap-2.5 lg:grid-cols-4 lg:gap-3">
                 @foreach ([
                     ['box', $stats['total'], 'Total bahan', ''],
-                    ['clock', $stats['segera'], 'Segera kedaluwarsa', 'text-brand'],
+                    ['clock', $stats['segera'], 'Segera kedaluwarsa', 'text-warn'],
                     ['x', $stats['lewat'], 'Sudah kedaluwarsa', 'text-danger', 'hidden lg:block'],
                     ['receipt', $stats['terbuang_short'], 'Terbuang '.$waste['bulan'], ''],
                 ] as $s)
@@ -46,7 +46,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="stat-label">Perlu perhatian</p>
-                        <h2 class="text-lg font-bold"><span class="text-brand">{{ $expiring->count() }} bahan</span> segera kedaluwarsa</h2>
+                        <h2 class="text-lg font-bold"><span class="text-warn">{{ $expiring->count() }} bahan</span> segera kedaluwarsa</h2>
                     </div>
                     <a href="{{ route('fridge.index') }}" class="text-xs font-semibold text-brand">Lihat semua</a>
                 </div>
