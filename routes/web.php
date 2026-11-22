@@ -71,6 +71,9 @@ Route::middleware('supabase.auth')->group(function () {
             Route::get('/scan/{scan}/hasil', 'review')
                 ->name('scan.review');
 
+            Route::post('/scan/{scan}/simpan', 'save')
+                ->name('scan.save');
+
             Route::get('/scan/{scan}/gagal', 'failed')
                 ->name('scan.failed');
         });

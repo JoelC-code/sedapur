@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\ReceiptScan;
 use App\Services\GeminiReceiptService;
 use App\Services\NutritionLookupService;
+use App\Support\ReceiptPriceNormalizer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -48,10 +49,19 @@ class ProcessReceiptScan implements ShouldQueue
             throw new \RuntimeException('No receipt items detected.');
         }
 
+        $result['total'] = ReceiptPriceNormalizer::receiptTotal($result['total'] ?? 0);
+
         foreach($result['items'] as &$item) {
             if(!is_array($item)) {
                 continue;
             }
+
+            $quantity = is_numeric($item['quantity'] ?? null) ? (float) $item['quantity'] : 1;
+            $unitPrice = ReceiptPriceNormalizer::unitPrice($item['unit_price'] ?? 0);
+            $item['quantity'] = $quantity;
+            $item['unit'] = ReceiptPriceNormalizer::unit($item['unit'] ?? 'buah');
+            $item['unit_price'] = $unitPrice;
+            $item['total_price'] = ReceiptPriceNormalizer::lineTotal($quantity, $unitPrice);
 
             if (($item['is_food'] ?? false) !== true) {
                 $item['nutrition'] = null;

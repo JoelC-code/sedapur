@@ -1,4 +1,5 @@
 import "./bootstrap";
+import "./receipt-review";
 
 // supabase-js hanya dimuat di halaman daftar belanja.
 if (document.querySelector("[data-shopping-list]")) import("./shopping-realtime");
