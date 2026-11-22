@@ -2,7 +2,7 @@ import "./bootstrap";
 import "./receipt-review";
 
 // supabase-js hanya dimuat di halaman daftar belanja.
-if (document.querySelector("[data-shopping-list]")) import("./shopping-realtime");
+if (document.querySelector("[data-realtime-table]")) import("./realtime-list");
 
 // Buka/tutup <dialog> lewat atribut data-open="id" dan data-close.
 document.addEventListener("click", (event) => {

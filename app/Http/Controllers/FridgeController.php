@@ -39,6 +39,7 @@ class FridgeController extends Controller
             return view('fridge.index', [
                 'items' => collect(), 'status' => $status, 'kategori' => $kategori, 'selected' => null,
                 'categories' => DemoData::CATEGORIES, 'loadFailed' => true,
+                'householdId' => $householdId,
             ]);
         }
 
@@ -55,6 +56,7 @@ class FridgeController extends Controller
             'selected' => $selected,
             'categories' => DemoData::CATEGORIES,
             'loadFailed' => false,
+            'householdId' => $householdId,
         ]);
     }
 

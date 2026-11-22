@@ -51,6 +51,19 @@ it('lists the household fridge from the Data API as the user', function () {
         && $request['name'] === 'ilike.*susu*');
 });
 
+it('subscribes the fridge list to Realtime with only the publishable key', function () {
+    config(['services.supabase.secret_key' => 'sb_secret_test']);
+    fakeMembersAnd([Http::response([fridgeRow()])]);
+
+    $this->withSession(supabaseSession())->get('/kulkas')
+        ->assertOk()
+        ->assertSee('data-realtime-table="food_items"', false)
+        ->assertSee('data-household-id="1"', false)
+        ->assertSee('sb_publishable_test')
+        ->assertDontSee('sb_secret_test')
+        ->assertDontSee('user-access-token');
+});
+
 it('shows an item without an expiry date', function () {
     fakeMembersAnd([Http::response([]), Http::response([fridgeRow(['expires_at' => null])])]);
 

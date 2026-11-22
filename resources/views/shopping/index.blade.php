@@ -35,8 +35,8 @@
                 @error('unit') <p class="text-xs font-medium text-danger">{{ $message }}</p> @enderror
             </form>
 
-            {{-- Realtime memuat ulang isi elemen ini saat anggota lain mengubah daftar (resources/js/shopping-realtime.js). --}}
-            <div data-shopping-list
+            {{-- Realtime memuat ulang isi elemen ini saat anggota lain mengubah daftar (resources/js/realtime-list.js). --}}
+            <div data-realtime-table="shopping_list_items"
                 data-supabase-url="{{ config('services.supabase.url') }}"
                 data-supabase-key="{{ config('services.supabase.publishable_key') }}"
                 data-household-id="{{ $householdId }}"

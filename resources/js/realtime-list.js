@@ -1,12 +1,14 @@
-// Daftar belanja live: Supabase Realtime (postgres_changes) memberi tahu bahwa daftar rumah berubah,
-// lalu isi [data-shopping-list] dimuat ulang dari server (partial Blade, sudah di-escape).
+// Daftar live (belanja, kulkas): Supabase Realtime (postgres_changes) memberi tahu bahwa tabel
+// [data-realtime-table] milik rumah ini berubah, lalu isi elemen itu dimuat ulang dari server
+// (HTML Blade, sudah di-escape): dari data-list-url bila ada, kalau tidak dari halaman ini sendiri.
 // Browser hanya memegang publishable key dan access token user; RLS menentukan event yang boleh diterima.
 import { createClient } from "@supabase/supabase-js";
 
 const REFRESH_BEFORE_SECONDS = 60; // sama dengan REFRESH_MARGIN_SECONDS di middleware supabase.auth
 const RELOAD_DEBOUNCE_MS = 300;
 
-const root = document.querySelector("[data-shopping-list]");
+const root = document.querySelector("[data-realtime-table]");
+const table = root.dataset.realtimeTable;
 const status = document.querySelector("[data-realtime-status]");
 
 // Token tidak ditulis di HTML: diambil dari /sesi/token saat connect pertama, lalu diperbarui bila hampir habis.
@@ -50,13 +52,18 @@ async function accessToken() {
 }
 
 async function reloadList() {
-    const response = await fetch(root.dataset.listUrl, { credentials: "same-origin", headers }).catch(() => null);
+    const url = root.dataset.listUrl ?? location.href;
+    const response = await fetch(url, { credentials: "same-origin", headers }).catch(() => null);
     if (!response) return;
     if (sessionEnded(response)) {
         stop();
         return;
     }
-    if (response.ok) root.innerHTML = await response.text();
+    if (!response.ok) return;
+    const html = await response.text();
+    root.innerHTML = root.dataset.listUrl
+        ? html
+        : (new DOMParser().parseFromString(html, "text/html").querySelector("[data-realtime-table]")?.innerHTML ?? root.innerHTML);
 }
 
 const scheduleReload = () => {
@@ -69,14 +76,14 @@ const supabase = createClient(root.dataset.supabaseUrl, root.dataset.supabaseKey
 const householdId = Number(root.dataset.householdId);
 
 const channel = supabase
-    .channel(`shopping-list-${householdId}`, { config: { postgres_changes_options: { wait: true } } })
+    .channel(`${table}-${householdId}`, { config: { postgres_changes_options: { wait: true } } })
     .on(
         "postgres_changes",
-        { event: "*", schema: "public", table: "shopping_list_items", filter: `household_id=eq.${householdId}` },
+        { event: "*", schema: "public", table, filter: `household_id=eq.${householdId}` },
         scheduleReload,
     )
     // DELETE tidak bisa disaring per rumah dan hanya membawa old.id: muat ulang hanya bila item itu ada di sini.
-    .on("postgres_changes", { event: "DELETE", schema: "public", table: "shopping_list_items" }, (payload) => {
+    .on("postgres_changes", { event: "DELETE", schema: "public", table }, (payload) => {
         const id = Number(payload.old?.id);
         if (id && root.querySelector(`[data-item-id="${id}"]`)) scheduleReload();
     })

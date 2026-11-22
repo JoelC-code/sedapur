@@ -38,6 +38,12 @@
 
             <p class="mt-4 mb-2 text-xs text-muted lg:hidden">Urut: paling cepat kedaluwarsa</p>
 
+            {{-- Realtime memuat ulang isi elemen ini saat anggota lain mengubah isi kulkas (resources/js/realtime-list.js). --}}
+            <div data-realtime-table="food_items"
+                data-supabase-url="{{ config('services.supabase.url') }}"
+                data-supabase-key="{{ config('services.supabase.publishable_key') }}"
+                data-household-id="{{ $householdId }}"
+                data-token-url="{{ route('session.token') }}">
             @if ($items->isEmpty())
                 <div class="card-sand mt-4 py-10 text-center">
                     <span class="mx-auto grid size-12 place-items-center rounded-full bg-white text-olive-700"><x-icon name="fridge" class="size-5" /></span>
@@ -85,6 +91,7 @@
                     <p class="mt-3 text-xs text-muted">Menampilkan {{ $items->count() }} bahan</p>
                 </div>
             @endif
+            </div>
         </section>
 
         {{-- Detail bahan: halaman penuh di HP, panel kanan di desktop --}}
