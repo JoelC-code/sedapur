@@ -27,6 +27,7 @@ function completedScan(string $userId = '00000000-0000-4000-8000-00000000000a'):
 {
     return ReceiptScan::create([
         'user_id' => $userId,
+        'household_id' => 1,
         'status' => 'completed',
         'result' => [
             'store_name' => 'Toko Maju',

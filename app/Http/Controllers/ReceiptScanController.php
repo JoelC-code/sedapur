@@ -50,6 +50,7 @@ class ReceiptScanController extends Controller
         // included in the Supabase Storage path.
         $scan = ReceiptScan::create([
             'user_id' => $userId,
+            'household_id' => (int) SupabaseSession::household()['id'],
             'status' => 'processing',
         ]);
 

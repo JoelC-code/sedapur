@@ -61,7 +61,9 @@ it('stores a scanned receipt in the receipts bucket under the household folder',
         ->post(route('scan.upload'), ['receipt' => UploadedFile::fake()->image('struk.jpg')])
         ->assertOk();
 
-    expect(ReceiptScan::sole()->image_path)->toMatch('/^1\/[0-9a-f-]{36}\.jpg$/');
+    expect(ReceiptScan::sole())
+        ->image_path->toMatch('/^1\/[0-9a-f-]{36}\.jpg$/')
+        ->household_id->toBe(1);
     Queue::assertPushed(ProcessReceiptScan::class);
 });
 

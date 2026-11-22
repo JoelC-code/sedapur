@@ -8,6 +8,7 @@ class ReceiptScan extends Model
 {
     protected $fillable = [
         'user_id',
+        'household_id',
         'status',
         'image_path',
         'result',
