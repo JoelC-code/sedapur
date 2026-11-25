@@ -157,6 +157,7 @@ class FridgeScanController extends Controller
             'items.*.selected' => ['nullable', 'boolean'],
             'items.*.name' => ['nullable', 'string', 'max:120'],
             'items.*.quantity' => ['nullable', 'numeric', 'gt:0', 'max:99999999'],
+            'items.*.unit_price' => ['nullable', 'integer', 'min:0', 'max:2000000000'],
             'items.*.unit' => ['nullable', Rule::in(FoodItemService::UNITS)],
             'items.*.category' => ['nullable', Rule::in(array_keys(DemoData::CATEGORIES))],
             'items.*.weight_grams' => ['nullable', 'numeric', 'gt:0', 'max:99999999'],
@@ -192,6 +193,8 @@ class FridgeScanController extends Controller
                 continue;
             }
 
+            $unitPrice = (int) ($submitted['unit_price'] ?? $original['unit_price'] ?? 0);
+            $price = $unitPrice > 0 ? (int) round($quantity * $unitPrice) : null;
             $unit = ReceiptPriceNormalizer::unit((string) ($submitted['unit'] ?? $original['unit'] ?? 'buah'));
             $category = (string) ($submitted['category'] ?? $original['category'] ?? 'lainnya');
             $category = array_key_exists($category, DemoData::CATEGORIES) ? $category : 'lainnya';
@@ -217,7 +220,7 @@ class FridgeScanController extends Controller
                     'quantity' => $quantity,
                     'unit' => $unit,
                     'weight_grams' => $weight,
-                    'price' => null, // no prices in a fridge photo
+                    'price' => $price,
                     'purchased_at' => $purchasedAt,
                     'expires_at' => $expiresAt,
                     'input_source' => 'scan_kulkas',

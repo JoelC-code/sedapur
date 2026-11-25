@@ -49,9 +49,14 @@
         </div>
 
         <div class="mx-auto mt-auto w-full max-w-md space-y-2 pt-6">
-            <a href="{{ route('fridge.index') }}" class="btn-primary block w-full text-center">Coba lagi</a>
-            <a href="{{ route('scan.manual') }}"
-                class="btn block w-full bg-white/10 text-center text-white hover:bg-white/15">Input manual</a>
+            <label class="btn w-full cursor-pointer bg-white/10 text-white hover:bg-white/15">
+                Input lagi
+                <input type="file" accept="image/*" capture="environment" class="sr-only"
+                    name="{{ $isFridge ? 'photo' : 'receipt' }}"
+                    data-scan="{{ $isFridge ? route('fridge-scan.upload') : route('scan.upload') }}"
+                    @if ($isFridge) data-scan-field="photo" data-scan-label="foto kulkas" @endif>
+            </label>
+            <a href="{{ route('fridge.index') }}" class="btn-primary w-full">Kembali</a>
         </div>
     </div>
 </x-layouts.app>

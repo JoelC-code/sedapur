@@ -7,15 +7,15 @@
     $today = now('Asia/Jakarta')->toDateString();
     $rupiah = fn ($value) => 'Rp '.number_format((int) $value, 0, ',', '.');
 
-    $cards = collect($rows)->map(function ($row, $i) use ($hasOld, $today, $units, $categories, $shelfDays) {
+    $cards = collect($rows)->map(function ($row, $i) use ($hasOld, $today, $units, $categories, $shelfDays, $result) {
         $isFood = (bool) ($row['is_food'] ?? false);
         $category = old("items.$i.category", $row['category'] ?? 'lainnya');
         $category = array_key_exists($category, $categories) ? $category : 'lainnya';
         $unit = old("items.$i.unit", $row['unit'] ?? 'buah');
         $quantity = old("items.$i.quantity", $row['quantity'] ?? 1);
-        $unitPrice = old("items.$i.unit_price", $row['unit_price'] ?? 0);
+        $unitPrice = old("items.$i.unit_price", $isFridge ? '' : ($row['unit_price'] ?? 0));
         $total = is_numeric($quantity) && is_numeric($unitPrice) ? (int) round($quantity * $unitPrice) : 0;
-        $purchasedAt = old("items.$i.purchased_at", $today);
+        $purchasedAt = old("items.$i.purchased_at", $row['purchased_at'] ?? ($result['purchase_date'] ?? $today));
         $defaultExpiry = rescue(fn () => \Illuminate\Support\Carbon::parse($purchasedAt, 'Asia/Jakarta')->addDays($shelfDays[$category])->toDateString(), '', false);
         $expiresAt = old("items.$i.expires_at", $defaultExpiry);
 
@@ -122,26 +122,24 @@
                                 @if ($card['isFood']) data-receipt-required @required($card['selected']) @endif
                                 class="min-w-0 flex-1 rounded-md border-0 bg-transparent px-1 py-0.5 text-[15px] font-bold focus:bg-white focus:outline-2 focus:outline-olive-700"
                                 aria-label="Nama bahan">
-                            {{-- CHANGED: badge harga disembunyikan untuk kulkas (elemen tetap ada untuk JS) --}}
-                            <span data-receipt-total @class([
-                                'shrink-0 rounded-full bg-white px-2 py-1 text-[11px] font-bold text-olive-700',
-                                'hidden' => $isFridge,
-                            ])>
+                            <span data-receipt-total class="shrink-0 rounded-full bg-white px-2 py-1 text-[11px] font-bold text-olive-700">
                                 {{ $rupiah($card['total']) }}
                             </span>
                         </div>
 
                         @if ($card['isFood'])
-                            {{-- CHANGED: 4 kolom (struk) / 3 kolom (kulkas) --}}
-                            <div @class([
-                                'mt-2.5 grid grid-cols-2 gap-2',
-                                'lg:grid-cols-4' => ! $isFridge,
-                                'lg:grid-cols-3' => $isFridge,
-                            ])>
+                            <div class="mt-2.5 grid grid-cols-3 gap-2">
                                 <label class="{{ $field }}">
                                     <small class="{{ $fieldLabel }}">Jumlah</small>
                                     <input type="number" name="items[{{ $i }}][quantity]" value="{{ $card['quantity'] }}"
-                                        step="any" min="0.01" inputmode="decimal" data-receipt-qty class="{{ $control }}">
+                                        step="any" min="0.01" inputmode="decimal" data-receipt-qty
+                                        class="{{ $control }} min-w-0">
+                                </label>
+                                <label class="{{ $field }}">
+                                    <small class="{{ $fieldLabel }}">Harga satuan (Rp)</small>
+                                    <input type="number" name="items[{{ $i }}][unit_price]" value="{{ $card['unitPrice'] }}"
+                                        min="0" step="1" inputmode="numeric" data-receipt-price
+                                        class="{{ $control }} min-w-0">
                                 </label>
                                 <label class="{{ $field }}">
                                     <small class="{{ $fieldLabel }}">Satuan</small>
@@ -151,19 +149,7 @@
                                         @endforeach
                                     </select>
                                 </label>
-
-                                {{-- CHANGED: harga hanya tampil di struk; kulkas kirim 0 tersembunyi supaya JS tetap jalan --}}
-                                @if ($isFridge)
-                                    <input type="hidden" name="items[{{ $i }}][unit_price]" value="0" data-receipt-price>
-                                @else
-                                    <label class="{{ $field }}">
-                                        <small class="{{ $fieldLabel }}">Harga satuan (Rp)</small>
-                                        <input type="number" name="items[{{ $i }}][unit_price]" value="{{ $card['unitPrice'] }}"
-                                            min="0" step="1" inputmode="numeric" data-receipt-price class="{{ $control }}">
-                                    </label>
-                                @endif
-
-                                <label @class([$field, 'col-span-2 lg:col-span-1' => $isFridge])>
+                                <label class="{{ $field }} col-span-3">
                                     <small class="{{ $fieldLabel }}">Kedaluwarsa</small>
                                     <input type="date" name="items[{{ $i }}][expires_at]" value="{{ $card['expiresAt'] }}"
                                         data-receipt-expiry data-receipt-required @required($card['selected'])
@@ -173,14 +159,20 @@
                             </div>
 
                             <p data-receipt-warning @class(['mt-2 text-[11px] font-medium text-warn', 'hidden' => ! $card['warn']])>
-                                Angka ini terlihat tidak wajar, cek lagi jumlah{{ $isFridge ? '' : ' atau harga' }}.
+                                Angka ini terlihat tidak wajar, cek lagi jumlah atau harga.
                             </p>
 
-                            <details class="group mt-2">
-                                <summary class="flex cursor-pointer items-center gap-1 text-xs font-semibold text-olive-700">
-                                    <x-icon name="chevron-right" class="size-3.5 transition group-open:rotate-90" /> Detail lainnya
+                            <details class="group mt-3">
+                                <summary class="flex min-h-11 cursor-pointer items-center justify-between gap-2 rounded-xl border border-olive-700/15 bg-white px-3 py-2 text-sm font-bold text-olive-700 shadow-sm">
+                                    <span class="flex min-w-0 items-center gap-2">
+                                        <x-icon name="chevron-right" class="size-4 shrink-0 transition group-open:rotate-90" />
+                                        <span>Detail info</span>
+                                        <span class="hidden truncate text-xs font-medium text-muted sm:inline">Kategori, berat, tanggal beli</span>
+                                    </span>
+                                    <span class="shrink-0 text-xs font-semibold text-olive-700 group-open:hidden">Lihat</span>
+                                    <span class="hidden shrink-0 text-xs font-semibold text-olive-700 group-open:inline">Tutup</span>
                                 </summary>
-                                <div class="mt-2 grid grid-cols-2 gap-2 lg:grid-cols-3">
+                                <div class="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3">
                                     <label class="{{ $field }}">
                                         <small class="{{ $fieldLabel }}">Kategori</small>
                                         <select name="items[{{ $i }}][category]" data-receipt-category class="{{ $control }}">
@@ -195,7 +187,6 @@
                                             min="1" step="any" inputmode="decimal" class="{{ $control }}">
                                     </label>
                                     <label class="{{ $field }}">
-                                        {{-- CHANGED: label --}}
                                         <small class="{{ $fieldLabel }}">{{ $isFridge ? 'Tgl dicatat' : 'Tgl beli' }}</small>
                                         <input type="date" name="items[{{ $i }}][purchased_at]" value="{{ $card['purchasedAt'] }}"
                                             data-receipt-purchased class="{{ $control }}">
@@ -203,14 +194,16 @@
                                 </div>
                             </details>
 
-                            @if ($card['nutrition'])
-                                @php $nutrition = $card['nutrition']; @endphp
-                                <details class="group mt-2">
-                                    <summary class="flex cursor-pointer items-center gap-1 text-xs font-semibold text-olive-700">
-                                        <x-icon name="chevron-right" class="size-3.5 transition group-open:rotate-90" /> Informasi gizi
-                                        <span class="badge ml-1 bg-ok-soft text-olive-700">{{ strtoupper($nutrition['data_source'] ?? 'Sumber lain') }}</span>
-                                    </summary>
-                                    <div class="mt-2 rounded-xl bg-white p-3">
+                            <section class="mt-3 rounded-xl bg-white p-3 shadow-sm">
+                                <div class="flex items-center justify-between gap-2">
+                                    <h3 class="text-sm font-bold">Informasi Gizi</h3>
+                                    @if ($card['nutrition'])
+                                        <span class="badge bg-ok-soft text-olive-700">{{ strtoupper($card['nutrition']['data_source'] ?? 'Sumber lain') }}</span>
+                                    @endif
+                                </div>
+                                @if ($card['nutrition'])
+                                    @php $nutrition = $card['nutrition']; @endphp
+                                    <div class="mt-2">
                                         <p class="mb-3 text-xs text-muted">
                                             {{ $nutrition['name'] ?? $card['name'] }}
                                             · Per {{ $nutrition['metric_serving_amount'] ?? 100 }} {{ $nutrition['metric_serving_unit'] ?? 'g' }}
@@ -226,10 +219,12 @@
                                             @endforeach
                                         </div>
                                     </div>
-                                </details>
-                            @else
-                                <p class="mt-2 text-xs text-muted">Informasi gizi belum ditemukan.</p>
-                            @endif
+                                @else
+                                    <p class="grid min-h-20 place-items-center text-center text-sm text-muted">
+                                        Informasi Gizi tidak ditemukan
+                                    </p>
+                                @endif
+                            </section>
                         @else
                             <p class="mt-1 pl-7 text-[11px] text-muted">Bukan bahan makanan, tidak disimpan.</p>
                         @endif
