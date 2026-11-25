@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FridgeController;
+use App\Http\Controllers\FridgeScanController;
 use App\Http\Controllers\HouseholdController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ReceiptScanController;
@@ -76,6 +77,26 @@ Route::middleware('supabase.auth')->group(function () {
 
             Route::get('/scan/{scan}/gagal', 'failed')
                 ->name('scan.failed');
+        });
+
+        Route::controller(FridgeScanController::class)->group(function () {
+            Route::post('/fridge-scan', 'upload')
+                ->name('fridge-scan.upload');
+
+            Route::get('/fridge-scan/{scan}/processing', 'processing')
+                ->name('fridge-scan.processing');
+
+            Route::get('/fridge-scan/{scan}/status', 'status')
+                ->name('fridge-scan.status');
+
+            Route::get('/fridge-scan/{scan}/review', 'review')
+                ->name('fridge-scan.review');
+
+            Route::get('/fridge-scan/{scan}/failed', 'failed')
+                ->name('fridge-scan.failed');
+
+            Route::post('/fridge-scan/{scan}/save', 'save')
+                ->name('fridge-scan.save');
         });
 
         // Pratinjau email pengingat harian

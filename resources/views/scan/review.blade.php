@@ -1,4 +1,7 @@
 @php
+    $isFridge = $scan instanceof \App\Models\FridgeScan;
+    $routePrefix = $isFridge ? 'fridge-scan' : 'scan';
+
     // Nilai tiap kartu: hasil scan (sudah dinormalisasi job), ditimpa isian lama bila validasi gagal.
     $hasOld = session()->hasOldInput('items');
     $today = now('Asia/Jakarta')->toDateString();
@@ -29,7 +32,6 @@
             'weight' => old("items.$i.weight_grams", $row['weight_grams'] ?? ''),
             'purchasedAt' => $purchasedAt,
             'expiresAt' => $expiresAt,
-            // Tanggal yang sudah diubah user tidak ditimpa lagi saat kategori/tgl beli berubah.
             'expiryTouched' => $expiresAt !== $defaultExpiry,
             'nutrition' => $row['nutrition']['data'] ?? null,
         ];
@@ -41,32 +43,52 @@
     $control = 'w-full border-0 bg-transparent p-0 text-[13px] font-bold focus:outline-none';
 @endphp
 <x-layouts.app title="Cek hasil scan" active="fridge.index" bare>
+    {{-- CHANGED: subtitle --}}
     <x-page-header title="Cek hasil scan"
-        subtitle="{{ count($rows) }} item terdeteksi · {{ $result['store_name'] ?? 'Toko' }}" :back="route('fridge.index')" />
+        subtitle="{{ $isFridge ? count($rows).' bahan terdeteksi di kulkas' : count($rows).' item terdeteksi · '.($result['store_name'] ?? 'Toko') }}"
+        :back="route('fridge.index')" />
 
     <div class="lg:grid lg:grid-cols-[320px_1fr] lg:gap-8">
-        {{-- Foto struk (desktop) --}}
+        {{-- CHANGED: panel kiri (desktop) berbeda per jenis scan --}}
         <div class="hidden lg:block">
             <div class="sticky top-6 grid place-items-center rounded-3xl bg-sand p-8">
-                <div class="w-[230px] -rotate-2 rounded-md bg-white px-[18px] py-4 font-mono text-[11px] leading-[1.7] text-ink shadow-lg">
-                    <p class="text-center font-bold">{{ $result['store_name'] ?? 'Toko' }}</p>
-                    <hr class="my-1.5 border-dashed border-ink/30">
-                    @foreach ($rows as $row)
-                        <p class="flex justify-between gap-2">
-                            <span class="truncate">{{ $row['name'] ?? 'Barang' }}</span>
-                            <span class="shrink-0">{{ $rupiah($row['total_price'] ?? 0) }}</span>
+                @if ($isFridge)
+                    <div class="w-full rounded-2xl bg-white p-4 text-sm shadow-lg">
+                        <p class="mb-2 flex items-center gap-2 font-bold">
+                            <x-icon name="camera" class="size-4 text-olive-700" /> Terdeteksi di kulkas
                         </p>
-                    @endforeach
-                    <hr class="my-1.5 border-dashed border-ink/30">
-                    <p class="flex justify-between font-bold">
-                        <span>TOTAL</span><span>{{ $rupiah($result['total'] ?? 0) }}</span>
-                    </p>
-                </div>
-                <p class="mt-6 text-xs text-muted">Foto tersimpan di bucket privat</p>
+                        <ul class="space-y-1 text-xs">
+                            @foreach ($rows as $row)
+                                <li class="flex justify-between gap-2">
+                                    <span class="truncate">{{ $row['name'] ?? 'Bahan' }}</span>
+                                    <span class="shrink-0 text-muted">{{ $row['quantity'] ?? 1 }} {{ $row['unit'] ?? '' }}</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <p class="mt-6 text-xs text-muted">Foto tersimpan di bucket privat</p>
+                @else
+                    <div class="w-[230px] -rotate-2 rounded-md bg-white px-[18px] py-4 font-mono text-[11px] leading-[1.7] text-ink shadow-lg">
+                        <p class="text-center font-bold">{{ $result['store_name'] ?? 'Toko' }}</p>
+                        <hr class="my-1.5 border-dashed border-ink/30">
+                        @foreach ($rows as $row)
+                            <p class="flex justify-between gap-2">
+                                <span class="truncate">{{ $row['name'] ?? 'Barang' }}</span>
+                                <span class="shrink-0">{{ $rupiah($row['total_price'] ?? 0) }}</span>
+                            </p>
+                        @endforeach
+                        <hr class="my-1.5 border-dashed border-ink/30">
+                        <p class="flex justify-between font-bold">
+                            <span>TOTAL</span><span>{{ $rupiah($result['total'] ?? 0) }}</span>
+                        </p>
+                    </div>
+                    <p class="mt-6 text-xs text-muted">Foto tersimpan di bucket privat</p>
+                @endif
             </div>
         </div>
 
-        <form method="POST" action="{{ route('scan.save', $scan) }}" data-receipt-review data-shelf-days='@json($shelfDays)'>
+        {{-- CHANGED: action mengikuti jenis scan --}}
+        <form method="POST" action="{{ route($routePrefix.'.save', $scan) }}" data-receipt-review data-shelf-days='@json($shelfDays)'>
             @csrf
             @if ($errors->any())
                 <p role="alert" class="mb-3 rounded-2xl bg-danger-soft p-3 text-xs font-medium text-danger">
@@ -75,7 +97,12 @@
             @endif
             <p class="flex gap-2 rounded-2xl bg-olive-100 p-3 text-xs">
                 <x-icon name="sparkles" class="size-4 shrink-0 text-ai" />
-                Ubah yang salah sebelum disimpan. Tanggal kedaluwarsa dari AI adalah perkiraan.
+                {{-- CHANGED --}}
+                @if ($isFridge)
+                    Ubah yang salah sebelum disimpan. Jumlah dihitung dari foto, dan tanggal kedaluwarsa hanya perkiraan dari hari ini, jadi cek kemasan.
+                @else
+                    Ubah yang salah sebelum disimpan. Tanggal kedaluwarsa dari AI adalah perkiraan.
+                @endif
             </p>
 
             <div class="mt-3 space-y-2.5">
@@ -95,13 +122,22 @@
                                 @if ($card['isFood']) data-receipt-required @required($card['selected']) @endif
                                 class="min-w-0 flex-1 rounded-md border-0 bg-transparent px-1 py-0.5 text-[15px] font-bold focus:bg-white focus:outline-2 focus:outline-olive-700"
                                 aria-label="Nama bahan">
-                            <span data-receipt-total class="shrink-0 rounded-full bg-white px-2 py-1 text-[11px] font-bold text-olive-700">
+                            {{-- CHANGED: badge harga disembunyikan untuk kulkas (elemen tetap ada untuk JS) --}}
+                            <span data-receipt-total @class([
+                                'shrink-0 rounded-full bg-white px-2 py-1 text-[11px] font-bold text-olive-700',
+                                'hidden' => $isFridge,
+                            ])>
                                 {{ $rupiah($card['total']) }}
                             </span>
                         </div>
 
                         @if ($card['isFood'])
-                            <div class="mt-2.5 grid grid-cols-2 gap-2 lg:grid-cols-4">
+                            {{-- CHANGED: 4 kolom (struk) / 3 kolom (kulkas) --}}
+                            <div @class([
+                                'mt-2.5 grid grid-cols-2 gap-2',
+                                'lg:grid-cols-4' => ! $isFridge,
+                                'lg:grid-cols-3' => $isFridge,
+                            ])>
                                 <label class="{{ $field }}">
                                     <small class="{{ $fieldLabel }}">Jumlah</small>
                                     <input type="number" name="items[{{ $i }}][quantity]" value="{{ $card['quantity'] }}"
@@ -115,12 +151,19 @@
                                         @endforeach
                                     </select>
                                 </label>
-                                <label class="{{ $field }}">
-                                    <small class="{{ $fieldLabel }}">Harga satuan (Rp)</small>
-                                    <input type="number" name="items[{{ $i }}][unit_price]" value="{{ $card['unitPrice'] }}"
-                                        min="0" step="1" inputmode="numeric" data-receipt-price class="{{ $control }}">
-                                </label>
-                                <label class="{{ $field }}">
+
+                                {{-- CHANGED: harga hanya tampil di struk; kulkas kirim 0 tersembunyi supaya JS tetap jalan --}}
+                                @if ($isFridge)
+                                    <input type="hidden" name="items[{{ $i }}][unit_price]" value="0" data-receipt-price>
+                                @else
+                                    <label class="{{ $field }}">
+                                        <small class="{{ $fieldLabel }}">Harga satuan (Rp)</small>
+                                        <input type="number" name="items[{{ $i }}][unit_price]" value="{{ $card['unitPrice'] }}"
+                                            min="0" step="1" inputmode="numeric" data-receipt-price class="{{ $control }}">
+                                    </label>
+                                @endif
+
+                                <label @class([$field, 'col-span-2 lg:col-span-1' => $isFridge])>
                                     <small class="{{ $fieldLabel }}">Kedaluwarsa</small>
                                     <input type="date" name="items[{{ $i }}][expires_at]" value="{{ $card['expiresAt'] }}"
                                         data-receipt-expiry data-receipt-required @required($card['selected'])
@@ -130,7 +173,7 @@
                             </div>
 
                             <p data-receipt-warning @class(['mt-2 text-[11px] font-medium text-warn', 'hidden' => ! $card['warn']])>
-                                Angka ini terlihat tidak wajar, cek lagi jumlah atau harga.
+                                Angka ini terlihat tidak wajar, cek lagi jumlah{{ $isFridge ? '' : ' atau harga' }}.
                             </p>
 
                             <details class="group mt-2">
@@ -152,7 +195,8 @@
                                             min="1" step="any" inputmode="decimal" class="{{ $control }}">
                                     </label>
                                     <label class="{{ $field }}">
-                                        <small class="{{ $fieldLabel }}">Tgl beli</small>
+                                        {{-- CHANGED: label --}}
+                                        <small class="{{ $fieldLabel }}">{{ $isFridge ? 'Tgl dicatat' : 'Tgl beli' }}</small>
                                         <input type="date" name="items[{{ $i }}][purchased_at]" value="{{ $card['purchasedAt'] }}"
                                             data-receipt-purchased class="{{ $control }}">
                                     </label>
@@ -193,11 +237,13 @@
                 @endforeach
             </div>
 
-            {{-- Halaman "bare" tanpa bottom nav, jadi footer ini aman menempel di bawah layar HP. --}}
             <div class="sticky bottom-0 -mx-5 mt-6 border-t border-line bg-white px-5 pt-3 pb-5 lg:static lg:mx-0 lg:border-0 lg:px-0">
-                <div class="mb-3 flex justify-between text-sm">
-                    <span class="text-muted">Total belanja</span>
-                    <b data-receipt-sum>{{ $rupiah($selected->sum('total')) }}</b>
+                {{-- CHANGED: wrapper supaya "hidden" tidak bentrok dengan "flex" --}}
+                <div @class(['hidden' => $isFridge])>
+                    <div class="mb-3 flex justify-between text-sm">
+                        <span class="text-muted">Total belanja</span>
+                        <b data-receipt-sum>{{ $rupiah($selected->sum('total')) }}</b>
+                    </div>
                 </div>
                 <button data-receipt-submit class="btn-primary w-full" @disabled($selected->isEmpty())>
                     <span>Simpan <span data-receipt-count>{{ $selected->count() }}</span> bahan ke kulkas</span>

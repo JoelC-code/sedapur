@@ -1,18 +1,40 @@
-<x-layouts.app title="Scan diproses" active="fridge.index" bare>
+@php
+    $isFridge = $scan instanceof \App\Models\FridgeScan;
+    $routePrefix = $isFridge ? 'fridge-scan' : 'scan';
+
+    $ui = $isFridge
+        ? [
+            'title' => 'Scan Kulkas',
+            'icon' => 'camera',
+            'analyzing' => 'Menganalisis isi kulkas...',
+            'heading' => 'Mengenali Isi Kulkas',
+            'desc' => 'Gemini sedang mengenali bahan makanan dan menghitung jumlahnya dari foto, kemudian mencocokkan informasi gizinya.',
+            'step' => 'Mengenali bahan',
+        ]
+        : [
+            'title' => 'Scan Struk',
+            'icon' => 'receipt-text',
+            'analyzing' => 'Menganalisis struk...',
+            'heading' => 'Membaca Struk',
+            'desc' => 'Gemini sedang mengambil nama item dan jumlah dari struk, kemudian mencocokkan informasi gizinya.',
+            'step' => 'Membaca item',
+        ];
+@endphp
+<x-layouts.app :title="$ui['title'].' diproses'" active="fridge.index" bare>
     <div
         class="-mx-5 -mt-5 flex min-h-dvh flex-col bg-[#1d2010] px-5 pt-5 pb-8 text-white lg:mx-0 lg:mt-6 lg:min-h-[calc(100dvh-3rem)] lg:rounded-3xl">
         <div class="flex items-center">
             <a href="{{ route('fridge.index') }}" class="grid size-10 place-items-center rounded-full bg-white/10"
                 aria-label="Tutup"><x-icon name="x" class="size-4" /></a>
-            <p class="flex-1 text-center font-bold">Scan Struk</p>
+            <p class="flex-1 text-center font-bold">{{ $ui['title'] }}</p>
             <span class="size-10"></span>
         </div>
 
         <div class="relative mx-auto mt-10 flex w-full max-w-md justify-center">
             <div class="grid h-64 w-64 place-items-center rounded-3xl bg-white/5">
                 <div class="flex flex-col items-center gap-3 text-white/70">
-                    <x-icon name="receipt-text" class="size-20 text-olive-200" />
-                    <p class="text-sm font-medium">Menganalisis struk...</p>
+                    <x-icon :name="$ui['icon']" class="size-20 text-olive-200" />
+                    <p class="text-sm font-medium">{{ $ui['analyzing'] }}</p>
                 </div>
             </div>
 
@@ -23,12 +45,11 @@
 
         <div class="mx-auto mt-auto w-full max-w-md rounded-2xl bg-white/10 p-4">
             <p class="flex items-center gap-2 font-bold"><x-icon name="sparkles" class="size-4 text-olive-200" />
-                Membaca Struk</p>
-            <p class="mt-1 text-xs text-white/70">Gemini sedang mengambil nama item dan jumlah dari struk,
-                kemudian mencocokkan informasi gizinya.</p>
+                {{ $ui['heading'] }}</p>
+            <p class="mt-1 text-xs text-white/70">{{ $ui['desc'] }}</p>
             <ul class="mt-3 space-y-1.5 text-sm">
-                <li class="flex items-center gap-2"><x-icon name="check" class="size-4 text-olive-200" /> Membaca item
-                </li>
+                <li class="flex items-center gap-2"><x-icon name="check" class="size-4 text-olive-200" />
+                    {{ $ui['step'] }}</li>
                 <li class="flex items-center gap-2 text-white/50"><span
                         class="size-4 animate-spin rounded-full border-2 border-white/30 border-t-white"></span>
                     Mencocokkan data gizi</li>
@@ -40,14 +61,12 @@
     </div>
 
     <script>
-        const statusUrl = @json(route('scan.status', $scan));
+        const statusUrl = @json(route($routePrefix . '.status', $scan));
 
         async function checkStatus() {
             try {
                 const response = await fetch(statusUrl, {
-                    headers: {
-                        'Accept': 'application/json'
-                    }
+                    headers: { 'Accept': 'application/json' }
                 });
 
                 if (!response.ok) {
@@ -67,10 +86,8 @@
                 }
 
                 setTimeout(checkStatus, 2000);
-
             } catch (error) {
                 console.error(error);
-
                 setTimeout(checkStatus, 4000);
             }
         }
