@@ -210,3 +210,12 @@ document.addEventListener("change", (event) => {
         hint.textContent = `Tanggal kedaluwarsa diisi perkiraan sesuai kategori (${category.parentElement.textContent.trim()} ±${category.dataset.shelfDays} hari). Ubah bila kemasan menulis tanggal lain.`;
     }
 });
+
+// Daftarkan service worker untuk instalasi PWA, cache aset build, dan halaman offline.
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/sw.js").catch(() => {
+            // Diabaikan bila browser tidak mengizinkan SW (mis. HTTP non-localhost).
+        });
+    });
+}
