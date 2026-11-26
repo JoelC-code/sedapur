@@ -34,15 +34,15 @@ Every screen is built from the Figma design (phone and desktop layouts) with the
 | Part | Owner |
 | --- | --- |
 | Frontend: Laravel 12 Blade + Tailwind CSS v4, installable PWA (icons, manifest, Service Worker, offline page) | Hans |
-| Supabase PostgreSQL + Row Level Security (policies, private helper functions, column-level grants, triggers, security-invoker views) | Grevi, Hans (initial public-table RLS & `shopping_list_items`) |
-| Supabase Auth (email + password, session refresh, household middleware, browser session token endpoint) | Grevi (core Auth), Hans (auth UI & `/sesi/token`) |
-| Supabase Data API (REST + RPC with the user's access token, so RLS applies) | Joel, Grevi (fridge), Hans (shopping list) |
-| Supabase Realtime (`postgres_changes` via `@supabase/supabase-js` for live shopping list and fridge sync) | Hans (shopping list), Grevi (fridge) |
-| Supabase Storage (private household buckets `receipts` & `fridge-photos` with signed URLs) | Grevi, Joel |
+| Supabase PostgreSQL + Row Level Security (policies, private helper functions, column-level grants, triggers, security-invoker views) | Grevi |
+| Supabase Auth (email + password, session refresh, household middleware) | Grevi |
+| Supabase Data API (REST + RPC with the user's access token, so RLS applies) | Joel |
+| Supabase Realtime (`postgres_changes` via `@supabase/supabase-js` & `/sesi/token` for live shopping list and fridge sync) | Hans |
+| Supabase Storage (private household buckets `receipts` & `fridge-photos` with signed URLs) | Grevi |
 | Supabase Edge Functions + `pg_cron` (`daily-reminder` daily & weekly emails via Gmail SMTP) | Grevi |
-| Gemini API (Gemini 3.5 Flash-Lite) for receipt scanning via Laravel database queue | Joel, Hans (review UI) |
+| Gemini API (Gemini 3.5 Flash-Lite) for receipt scanning via Laravel database queue | Joel |
 | FatSecret Platform API + TKPI table (Kemenkes) for nutrition data | Joel |
-| CloudPanel + GitHub Actions CI/CD (`.github/workflows/deploy.yaml`) | Joel, Grevi |
+| CloudPanel + GitHub Actions CI/CD (`.github/workflows/deploy.yaml`) | Joel |
 
 ### Planned / Remaining
 
