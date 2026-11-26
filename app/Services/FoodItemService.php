@@ -178,4 +178,20 @@ class FoodItemService
 
         return array_values(array_filter($options, fn (array $option): bool => $option['amount'] > 0 && $option['amount'] < $quantity));
     }
+
+    /**
+    * Tampilan AI summary untuk makanan
+    *
+    * @return array{select: string, household_id: float, status: bool, and: string}
+    */ 
+    public function finished(string $accessToken, int $householdId, Carbon $from, Carbon $to): array
+    {
+        return $this->supabase->select($accessToken, 'food_items', [
+            'select' => 'name,category,quantity,initial_quantity,price,status,status_changed_at',
+            'household_id' => "eq.{$householdId}",
+            'status' => 'in.(dimasak,dibuang)',
+            'and' => '(status_changed_at.gte.'.$from->copy()->utc()->format('Y-m-d\TH:i:s\Z')
+                .',status_changed_at.lt.'.$to->copy()->utc()->format('Y-m-d\TH:i:s\Z').')',
+        ]);
+    }
 }
