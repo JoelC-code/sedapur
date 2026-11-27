@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\FridgeScan;
 use App\Models\ReceiptScan;
 use App\Services\FoodItemService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -31,10 +32,25 @@ function completedScan(string $userId = '00000000-0000-4000-8000-00000000000a'):
         'status' => 'completed',
         'result' => [
             'store_name' => 'Toko Maju',
+            'purchase_date' => '2026-11-19',
             'total' => 18000,
             'items' => [
                 ['name' => 'Bayam hijau', 'quantity' => 2, 'unit' => 'ikat', 'unit_price' => 3000, 'total_price' => 6000, 'is_food' => true, 'nutrition' => null],
                 ['name' => 'Sabun cuci', 'quantity' => 1, 'unit' => 'buah', 'unit_price' => 12000, 'total_price' => 12000, 'is_food' => false, 'nutrition' => null],
+            ],
+        ],
+    ]);
+}
+
+function completedFridgeScan(string $userId = '00000000-0000-4000-8000-00000000000a'): FridgeScan
+{
+    return FridgeScan::create([
+        'user_id' => $userId,
+        'household_id' => 1,
+        'status' => 'completed',
+        'result' => [
+            'items' => [
+                ['name' => 'Beras', 'quantity' => 2, 'unit' => 'kg', 'is_food' => true, 'nutrition' => null],
             ],
         ],
     ]);
@@ -54,11 +70,50 @@ it('shows scanned items with the unit list and marks non-food items', function (
     $response = $this->withSession(supabaseSession())->get(route('scan.review', completedScan()))
         ->assertOk()
         ->assertSee('value="Bayam hijau"', false)
+        ->assertSee('name="items[0][purchased_at]" value="2026-11-19"', false)
         ->assertSee('Bukan bahan makanan');
 
     foreach (FoodItemService::UNITS as $unit) {
         $response->assertSee('<option value="'.$unit.'"', false);
     }
+});
+
+it('shows price, expiry, details and an empty nutrition card for fridge scans', function () {
+    $this->withSession(supabaseSession())
+        ->get(route('fridge-scan.review', completedFridgeScan()))
+        ->assertOk()
+        ->assertSee('Jumlah')
+        ->assertSee('Harga satuan (Rp)')
+        ->assertSee('Satuan')
+        ->assertSee('Kedaluwarsa')
+        ->assertSee('Detail info')
+        ->assertSee('Informasi Gizi')
+        ->assertSee('Informasi Gizi tidak ditemukan');
+});
+
+it('saves the entered unit price and purchase date for fridge scans', function () {
+    $scan = completedFridgeScan();
+
+    $this->withSession(supabaseSession())
+        ->post(route('fridge-scan.save', $scan), ['items' => [[
+            'selected' => '1',
+            'name' => 'Beras',
+            'quantity' => '2',
+            'unit_price' => '2500',
+            'unit' => 'kg',
+            'category' => 'lainnya',
+            'purchased_at' => '2026-11-19',
+            'expires_at' => '2026-11-26',
+        ]]])
+        ->assertRedirect(route('fridge.index'))
+        ->assertSessionHas('status', '1 bahan berhasil disimpan ke kulkas.');
+
+    Http::assertSent(fn (Request $request) => $request->method() === 'POST'
+        && str_contains($request->url(), '/rest/v1/food_items')
+        && $request['name'] === 'Beras'
+        && $request['price'] === 5000
+        && $request['purchased_at'] === '2026-11-19'
+        && $request['input_source'] === 'scan_kulkas');
 });
 
 it('saves a checked food item to the household fridge as a scanned item', function () {

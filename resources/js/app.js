@@ -25,6 +25,7 @@ document.addEventListener("click", (event) => {
 });
 
 // Setelah foto struk dipilih dari kamera, unggah lalu lanjut ke layar "scan diproses".
+// Setelah foto dipilih dari kamera (struk atau kulkas), unggah lalu lanjut ke layar "scan diproses".
 document.addEventListener('change', async (event) => {
     const input = event.target;
 
@@ -39,8 +40,12 @@ document.addEventListener('change', async (event) => {
         return;
     }
 
+    // Default 'receipt' dan 'struk' supaya input struk lama tetap jalan.
+    const field = input.dataset.scanField || 'receipt';
+    const label = input.dataset.scanLabel || 'struk';
+
     const formData = new FormData();
-    formData.append('receipt', input.files[0]);
+    formData.append(field, input.files[0]);
 
     try {
         input.disabled = true;
@@ -62,13 +67,12 @@ document.addEventListener('change', async (event) => {
         }
 
         if (!response.ok) {
-            throw new Error(data.message || 'Gagal mengunggah struk.');
+            throw new Error(data.message || `Gagal mengunggah ${label}.`);
         }
-
     } catch (error) {
-        console.error('[Receipt] Upload error:', error);
+        console.error(`[Scan:${field}] Upload error:`, error);
 
-        alert(error.message || 'Terjadi kesalahan saat mengunggah struk.');
+        alert(error.message || `Terjadi kesalahan saat mengunggah ${label}.`);
 
         input.disabled = false;
         input.value = '';
