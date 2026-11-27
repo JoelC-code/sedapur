@@ -95,7 +95,8 @@ return [
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,
-            'search_path' => 'public',
+            // extensions: tempat pg_trgm (word_similarity untuk pencarian TKPI).
+            'search_path' => ['public', 'extensions'],
             'sslmode' => env('DB_SSLMODE', 'prefer'),
         ],
 
