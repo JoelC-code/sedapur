@@ -7,7 +7,7 @@
     $today = now('Asia/Jakarta')->toDateString();
     $rupiah = fn ($value) => 'Rp '.number_format((int) $value, 0, ',', '.');
 
-    $cards = collect($rows)->map(function ($row, $i) use ($hasOld, $today, $units, $categories, $shelfDays, $result) {
+    $cards = collect($rows)->map(function ($row, $i) use ($hasOld, $today, $units, $categories, $shelfDays, $result, $isFridge) {
         $isFood = (bool) ($row['is_food'] ?? false);
         $category = old("items.$i.category", $row['category'] ?? 'lainnya');
         $category = array_key_exists($category, $categories) ? $category : 'lainnya';
