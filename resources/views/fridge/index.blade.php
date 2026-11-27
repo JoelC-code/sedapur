@@ -157,7 +157,6 @@
                             </form>
                         @endif
                     </div>
-                    </div>
                 @endif
 
                 <dl class="card-sand mt-4 grid grid-cols-2 gap-x-4 gap-y-3">
