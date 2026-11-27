@@ -145,6 +145,7 @@ class FoodItemService
             'kategori' => $row['category'],
             'jumlah' => str_replace('.', ',', (string) $quantity),
             'jumlah_angka' => $quantity,
+            'jumlah_awal_angka' => $initial,
             'sisa_persen' => (int) round($quantity / $initial * 100),
             'pakai' => $this->useOptions($row['unit'], $quantity, $initial),
             'slider' => $this->useSlider($row['unit'], $quantity, $initial, $row['weight_grams'] !== null ? (float) $row['weight_grams'] : null),

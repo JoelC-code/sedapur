@@ -48,4 +48,42 @@ class NutritionLookupService
         # No data, will implement AI fallback later
         return null;
     }
+
+    /**
+     * Cari nilai gizi yang bisa dihitung dengan berat dalam gram.
+     *
+     * @return array<string, mixed>|null
+     */
+    public function searchPer100g(string $ingredientName): ?array
+    {
+        $result = $this->search($ingredientName);
+        $data = $result['data'] ?? null;
+
+        if (! is_array($data)) {
+            return null;
+        }
+
+        if (($data['data_source'] ?? null) === 'tkpi') {
+            return $data;
+        }
+
+        if (($data['data_source'] ?? null) !== 'fatsecret') {
+            return null;
+        }
+
+        if (preg_match('/^100\s*g$/i', (string) ($data['metric_serving_unit'] ?? ''))) {
+            return $data;
+        }
+
+        try {
+            return $this->tkpiService->searchNutrition($ingredientName);
+        } catch (\Throwable $e) {
+            Log::warning('TKPI per-100g lookup failed.', [
+                'query' => $ingredientName,
+                'error' => $e->getMessage(),
+            ]);
+
+            return null;
+        }
+    }
 }

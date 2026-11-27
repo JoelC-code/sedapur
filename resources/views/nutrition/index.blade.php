@@ -95,7 +95,7 @@
                 <p class="stat-label">Total isi kulkas · {{ $f['jumlah_bahan'] }} bahan</p>
                 <p class="mt-1 text-3xl font-extrabold">{{ D::number($f['total']) }} <span class="text-sm font-semibold text-muted">kkal</span></p>
                 <div class="mt-3 grid grid-cols-4 gap-2 text-center">
-                    @foreach ([[$f['protein'], 'protein'], [$f['karbo'], 'karbo'], [$f['lemak'], 'lemak'], [$f['berat'], 'berat']] as [$v, $l])
+                    @foreach ([[D::number($f['protein']).' g', 'protein'], [D::number($f['karbo']).' g', 'karbo'], [D::number($f['lemak']).' g', 'lemak'], [D::number($f['berat']).' g', 'berat']] as [$v, $l])
                         <div class="rounded-[14px] bg-white px-1 py-2"><b class="block text-sm font-extrabold">{{ $v }}</b><span class="text-[11px] text-muted">{{ $l }}</span></div>
                     @endforeach
                 </div>
@@ -103,11 +103,10 @@
 
             <section class="card">
                 <h2 class="font-bold">Sumber data gizi</h2>
-                @php $totalSrc = array_sum($f['sumber']); @endphp
+                @php $totalSrc = max(1, array_sum($f['sumber'])); @endphp
                 <div class="mt-3 flex h-2.5 overflow-hidden rounded-full">
                     <i class="bg-info" style="width: {{ $f['sumber']['fatsecret'] / $totalSrc * 100 }}%"></i>
                     <i class="bg-olive-700" style="width: {{ $f['sumber']['tkpi'] / $totalSrc * 100 }}%"></i>
-                    <i class="bg-ai" style="width: {{ $f['sumber']['estimasi_ai'] / $totalSrc * 100 }}%"></i>
                 </div>
                 <div class="mt-2 flex flex-wrap gap-2 text-[11px]">
                     @foreach ($f['sumber'] as $src => $count)
@@ -118,14 +117,34 @@
             </section>
 
             <section class="card">
+                <h2 class="mb-1 font-bold">Gizi menurut kategori</h2>
+                <ul class="divide-y divide-line">
+                    @forelse ($f['kategori'] as $category)
+                        <li class="py-2.5">
+                            <div class="flex items-center gap-2 text-sm">
+                                <span class="flex-1"><b>{{ $category['emoji'] }} {{ $category['label'] }}</b> <span class="text-xs text-muted">· {{ $category['jumlah_bahan'] }} bahan</span></span>
+                                <b>{{ D::number($category['kalori']) }} kkal</b>
+                            </div>
+                            <p class="mt-1 text-[11px] text-muted">Protein {{ D::number($category['protein']) }} g · Karbo {{ D::number($category['karbo']) }} g · Lemak {{ D::number($category['lemak']) }} g</p>
+                        </li>
+                    @empty
+                        <li class="py-2.5 text-sm text-muted">Belum ada bahan tersedia di kulkas.</li>
+                    @endforelse
+                </ul>
+                <p class="mt-2 text-[11px] text-muted">Gizi dihitung untuk bahan dengan berat dan data FatSecret/TKPI yang tersedia.</p>
+            </section>
+
+            <section class="card">
                 <h2 class="mb-1 font-bold">Penyumbang kalori terbesar</h2>
                 <ul class="divide-y divide-line">
-                    @foreach ($f['penyumbang'] as [$nama, , $berat, $kal])
+                    @forelse ($f['penyumbang'] as $item)
                         <li class="flex items-center gap-3 py-2.5 text-sm">
-                            <span class="flex-1"><b>{{ $nama }}</b> <span class="text-xs text-muted">· {{ $berat }}</span></span>
-                            <b>{{ D::number($kal) }} kkal</b>
+                            <span class="flex-1"><b>{{ $item['nama'] }}</b> <span class="text-xs text-muted">· {{ $item['berat'] }}</span></span>
+                            <b>{{ D::number($item['kalori']) }} kkal</b>
                         </li>
-                    @endforeach
+                    @empty
+                        <li class="py-2.5 text-sm text-muted">Belum ada bahan dengan data gizi dan berat yang bisa dihitung.</li>
+                    @endforelse
                 </ul>
                 <p class="mt-2 text-[11px] text-muted">Dihitung dari berat bahan × nilai gizi per 100 g.</p>
             </section>

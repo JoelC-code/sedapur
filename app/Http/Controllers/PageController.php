@@ -7,6 +7,7 @@ use App\Services\ActivityLogService;
 use App\Services\ConsumptionService;
 use App\Services\FoodItemService;
 use App\Services\FoodWasteService;
+use App\Services\FridgeNutritionService;
 use App\Services\WasteSummaryService;
 use App\Support\DemoData;
 use App\Support\HouseholdMembers;
@@ -144,8 +145,17 @@ class PageController extends Controller
             $consumption = ['hari_ini' => 0, 'target' => ConsumptionService::DAILY_TARGET_KCAL, 'protein' => 0, 'karbo' => 0, 'lemak' => 0, 'minggu' => array_map(fn (int $ago): array => [now('Asia/Jakarta')->subDays($ago)->translatedFormat('D'), 0], range(6, 0)), 'rata_rata' => 0, 'log' => []];
         }
 
-        // shortcut: tab "Isi kulkas" masih contoh dari DemoData, ganti saat gizi per bahan kulkas disimpan.
-        return ['konsumsi' => $consumption, 'kulkas' => DemoData::nutrition()['kulkas']];
+        try {
+            $fridge = app(FridgeNutritionService::class)->summary(
+                (string) SupabaseSession::accessToken(),
+                SupabaseSession::household()['id'],
+                array_column(HouseholdMembers::forCurrentHousehold(), 'nama', 'user_id'),
+            );
+        } catch (SupabaseException) {
+            $fridge = app(FridgeNutritionService::class)->empty();
+        }
+
+        return ['konsumsi' => $consumption, 'kulkas' => $fridge];
     }
 
     /**
