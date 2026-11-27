@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ConsumptionController;
 use App\Http\Controllers\FridgeController;
 use App\Http\Controllers\FridgeScanController;
 use App\Http\Controllers\HouseholdController;
@@ -53,6 +54,8 @@ Route::middleware('supabase.auth')->group(function () {
             Route::delete('/belanja/{item}', 'destroy')->whereNumber('item')->name('shopping.destroy');
         });
         Route::get('/gizi', 'nutrition')->name('nutrition.index');
+        Route::post('/gizi/konsumsi', [ConsumptionController::class, 'store'])->name('consumption.store');
+        Route::delete('/gizi/konsumsi/{log}', [ConsumptionController::class, 'destroy'])->whereNumber('log')->name('consumption.destroy');
         Route::get('/food-waste', 'waste')->name('waste.index');
         Route::get('/riwayat', 'activity')->name('activity.index');
         Route::get('/rumah', 'householdSettings')->name('household.settings');

@@ -96,6 +96,7 @@ it('refreshes an access token that is about to expire', function () {
         'test.supabase.co/rest/v1/food_items*' => Http::response([]),
         'test.supabase.co/rest/v1/activity_logs*' => Http::response([]),
         'test.supabase.co/rest/v1/food_waste*' => Http::response([]),
+        'test.supabase.co/rest/v1/consumption*' => Http::response([]),
     ]);
     $session = supabaseSession();
     $session['supabase']['expires_at'] = time() + 10;

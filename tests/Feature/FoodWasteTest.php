@@ -15,6 +15,7 @@ afterEach(fn () => Carbon::setTestNow());
 it('shows this month waste from the database views with the change from last month', function () {
     Http::fake([
         'test.supabase.co/rest/v1/household_members*' => Http::response([]),
+        'test.supabase.co/rest/v1/food_items*' => Http::response([]),
         'test.supabase.co/rest/v1/food_waste_monthly*' => Http::response([
             ['month' => '2026-11-01', 'cooked_count' => 6, 'wasted_count' => 2, 'wasted_value' => 15000],
             ['month' => '2026-10-01', 'cooked_count' => 3, 'wasted_count' => 4, 'wasted_value' => 30000],
@@ -40,6 +41,7 @@ it('shows this month waste from the database views with the change from last mon
 it('shows zeros instead of failing when there is no data or Supabase is down', function () {
     Http::fake([
         'test.supabase.co/rest/v1/household_members*' => Http::response([]),
+        'test.supabase.co/rest/v1/food_items*' => Http::response([]),
         'test.supabase.co/rest/v1/food_waste*' => Http::response(['message' => 'boom'], 500),
     ]);
 

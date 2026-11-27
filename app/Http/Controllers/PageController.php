@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\SupabaseException;
 use App\Services\ActivityLogService;
+use App\Services\ConsumptionService;
 use App\Services\FoodItemService;
 use App\Services\FoodWasteService;
+use App\Services\WasteSummaryService;
 use App\Support\DemoData;
 use App\Support\HouseholdMembers;
 use App\Support\SupabaseSession;
@@ -38,7 +40,7 @@ class PageController extends Controller
             ],
             'waste' => $waste,
             'todayMenu' => DemoData::todayMenu(),
-            'nutrition' => DemoData::nutrition(),
+            'nutrition' => $this->nutritionSummary(),
             'activities' => $this->recentActivities(null, 4),
         ]);
     }
@@ -78,13 +80,12 @@ class PageController extends Controller
 
     public function nutrition(Request $request): View
     {
-        return view('nutrition.index', ['tab' => $request->query('tab', 'saya'), 'n' => DemoData::nutrition()]);
+        return view('nutrition.index', ['tab' => $request->query('tab', 'saya'), 'n' => $this->nutritionSummary()]);
     }
 
     public function waste(): View
     {
-        // shortcut: ringkasan AI masih contoh dari DemoData, ganti saat GeminiService punya ringkasan food waste.
-        return view('waste.index', ['w' => $this->wasteSummary(), 'ai' => DemoData::waste()]);
+        return view('waste.index', ['w' => $this->wasteSummary(), 'ai' => app(WasteSummaryService::class)->forCurrentHousehold()]);
     }
 
     public function activity(Request $request): View
@@ -128,6 +129,23 @@ class PageController extends Controller
         } catch (SupabaseException) {
             return collect();
         }
+    }
+
+    /**
+     * Gizi untuk /gizi dan dashboard. Konsumsi saya dari Supabase; bila gagal, angka nol.
+     *
+     * @return array{konsumsi: array<string, mixed>, kulkas: array<string, mixed>}
+     */
+    private function nutritionSummary(): array
+    {
+        try {
+            $consumption = app(ConsumptionService::class)->summary((string) SupabaseSession::accessToken(), (string) SupabaseSession::user()['id']);
+        } catch (SupabaseException) {
+            $consumption = ['hari_ini' => 0, 'target' => ConsumptionService::DAILY_TARGET_KCAL, 'protein' => 0, 'karbo' => 0, 'lemak' => 0, 'minggu' => array_map(fn (int $ago): array => [now('Asia/Jakarta')->subDays($ago)->translatedFormat('D'), 0], range(6, 0)), 'rata_rata' => 0, 'log' => []];
+        }
+
+        // shortcut: tab "Isi kulkas" masih contoh dari DemoData, ganti saat gizi per bahan kulkas disimpan.
+        return ['konsumsi' => $consumption, 'kulkas' => DemoData::nutrition()['kulkas']];
     }
 
     /**

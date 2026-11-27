@@ -2,12 +2,16 @@
     use App\Support\DemoData as D;
     $k = $n['konsumsi'];
     $f = $n['kulkas'];
-    $macroTotal = $k['protein'] + $k['karbo'] + $k['lemak'];
+    $macroTotal = max(1, $k['protein'] + $k['karbo'] + $k['lemak']);
 @endphp
 <x-layouts.app title="Gizi & kalori" active="nutrition.index">
     <x-page-header title="Gizi & kalori" subtitle="Dihitung dari porsi yang dicatat dan data gizi per bahan" :back="route('dashboard')">
-        <span class="chip hidden lg:inline-flex">Minggu ini ▾</span>
+        <span class="chip hidden lg:inline-flex">Minggu ini</span>
     </x-page-header>
+
+    @if (session('status'))
+        <div class="mb-4">@include('partials.status')</div>
+    @endif
 
     <div class="seg mb-4 lg:hidden">
         <a href="{{ route('nutrition.index', ['tab' => 'saya']) }}" @class(['is-active' => $tab === 'saya'])>Konsumsi saya</a>
@@ -36,27 +40,51 @@
                 <section class="card">
                     <div class="mb-3 flex items-center justify-between">
                         <h2 class="font-bold">Minggu ini</h2>
-                        <span class="text-[11px] text-muted">rata-rata 1.700 kkal</span>
+                        <span class="text-[11px] text-muted">rata-rata {{ D::number($k['rata_rata']) }} kkal</span>
                     </div>
-                    @include('partials.bar-chart', ['bars' => $k['minggu'], 'highlight' => 3, 'height' => 'h-28'])
+                    @include('partials.bar-chart', ['bars' => $k['minggu'], 'height' => 'h-28'])
                 </section>
             </div>
 
             <section class="card">
-                <div class="mb-2 flex items-center justify-between">
-                    <h2 class="font-bold">Tercatat hari ini</h2>
-                    <a href="{{ route('recipes.index') }}" class="text-xs font-semibold text-brand">+ Catat porsi</a>
-                </div>
+                <h2 class="mb-2 font-bold">Tercatat hari ini</h2>
+
+                {{-- Cukup nama + berat: kalori dan makro dihitung server dari FatSecret/TKPI per 100 g. --}}
+                <form method="POST" action="{{ route('consumption.store') }}" class="mb-2 space-y-2">
+                    @csrf
+                    <div class="flex gap-2">
+                        <div class="min-w-0 flex-[2]">
+                            <label class="sr-only" for="consumption-name">Nama makanan</label>
+                            <input id="consumption-name" name="name" value="{{ old('name') }}" maxlength="120" required class="input" placeholder="Catat makan, mis. nasi putih">
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <label class="sr-only" for="consumption-grams">Berat (gram)</label>
+                            <input id="consumption-grams" name="grams" type="number" inputmode="decimal" step="any" min="1" max="5000" value="{{ old('grams') }}" required class="input" placeholder="gram">
+                        </div>
+                        <button class="grid size-[52px] shrink-0 place-items-center rounded-full bg-brand text-white hover:bg-brand-dark" aria-label="Catat porsi"><x-icon name="plus" /></button>
+                    </div>
+                    @error('name') <p class="text-xs font-medium text-danger">{{ $message }}</p> @enderror
+                    @error('grams') <p class="text-xs font-medium text-danger">{{ $message }}</p> @enderror
+                </form>
+
                 <ul class="divide-y divide-line">
-                    @foreach ($k['log'] as [$nama, , $porsi, $jam, $kal, $pro, $karbo, $lemak])
+                    @forelse ($k['log'] as $log)
+                        @php [$srcLabel, $srcClass] = D::sourceBadge($log['sumber']); @endphp
                         <li class="flex items-center gap-3 py-2.5">
                             <span class="min-w-0 flex-1">
-                                <span class="block truncate text-sm font-bold">{{ $nama }}</span>
-                                <span class="text-[11px] text-muted">{{ $porsi }} porsi · {{ $jam }} · P {{ $pro }} g · K {{ $karbo }} g · L {{ $lemak }} g</span>
+                                <span class="flex items-center gap-2"><span class="truncate text-sm font-bold">{{ $log['nama'] }}</span> <span class="badge {{ $srcClass }}">{{ $srcLabel }}</span></span>
+                                <span class="text-[11px] text-muted">{{ $log['gram'] }} g · {{ $log['jam'] }} · P {{ D::number($log['protein']) }} g · K {{ D::number($log['karbo']) }} g · L {{ D::number($log['lemak']) }} g</span>
                             </span>
-                            <b class="text-sm">{{ $kal }}</b>
+                            <b class="text-sm">{{ D::number($log['kalori']) }}</b>
+                            <form method="POST" action="{{ route('consumption.destroy', $log['id']) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button class="rounded-full p-1 text-muted hover:bg-sand hover:text-danger" aria-label="Hapus catatan {{ $log['nama'] }}"><x-icon name="x" class="size-4" /></button>
+                            </form>
                         </li>
-                    @endforeach
+                    @empty
+                        <li class="py-2.5 text-sm text-muted">Belum ada yang dicatat hari ini.</li>
+                    @endforelse
                 </ul>
             </section>
         </div>

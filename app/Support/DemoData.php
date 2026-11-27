@@ -240,23 +240,6 @@ class DemoData
         ];
     }
 
-    public static function waste(): array
-    {
-        return [
-            'bulan' => 'Oktober',
-            'terbuang' => 38500,
-            'perubahan' => -42,
-            'bulan_lalu' => 66000,
-            'dimasak' => 31,
-            'dibuang' => 5,
-            'terpakai' => 86,
-            'riwayat' => [['Mei', 52000], ['Jun', 71000], ['Jul', 48000], ['Agu', 64000], ['Sep', 66000], ['Okt', 38500]],
-            'terbanyak' => [['Susu UHT', '🥛', 1, 18500], ['Bayam', '🥬', 2, 12000], ['Tahu putih', '🧈', 1, 5000], ['Roti tawar', '🍞', 1, 3000]],
-            'ringkasan' => 'Pemborosan turun 42%. Bayam dan susu masih paling sering terbuang karena belanja terlalu banyak sekaligus.',
-            'saran' => ['Beli bayam 1 ikat per 2 hari.', 'Masukkan susu ke menu sarapan.'],
-        ];
-    }
-
     public static function scanResult(): array
     {
         return [
