@@ -60,24 +60,6 @@ class PageController extends Controller
         return view('menu.index', ['plan' => DemoData::weekPlan()]);
     }
 
-    public function recipes(): View
-    {
-        $recipes = DemoData::recipes();
-
-        return view('recipes.index', [
-            'fromFridge' => $recipes->where('dibuat_ai', true)->values(),
-            'saved' => $recipes->where('dibuat_ai', false)->values(),
-        ]);
-    }
-
-    public function recipe(int $recipe): View
-    {
-        $data = DemoData::recipe($recipe);
-        abort_unless($data, 404);
-
-        return view('recipes.show', ['recipe' => $data]);
-    }
-
     public function nutrition(Request $request): View
     {
         return view('nutrition.index', ['tab' => $request->query('tab', 'saya'), 'n' => $this->nutritionSummary()]);

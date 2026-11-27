@@ -7,6 +7,7 @@ use App\Http\Controllers\FridgeScanController;
 use App\Http\Controllers\HouseholdController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ReceiptScanController;
+use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\ShoppingListController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,8 +44,15 @@ Route::middleware('supabase.auth')->group(function () {
         });
 
         Route::get('/menu', 'menu')->name('menu.index');
-        Route::get('/resep', 'recipes')->name('recipes.index');
-        Route::get('/resep/{recipe}', 'recipe')->whereNumber('recipe')->name('recipes.show');
+        Route::controller(RecipeController::class)->group(function () {
+            Route::get('/resep', 'index')->name('recipes.index');
+            Route::post('/resep/buat', 'generate')->middleware('throttle:6,1')->name('recipes.generate');
+            Route::get('/resep/{recipe}', 'show')->whereNumber('recipe')->name('recipes.show');
+            Route::patch('/resep/{recipe}/simpan', 'updateSaved')->whereNumber('recipe')->name('recipes.save');
+            Route::delete('/resep/{recipe}', 'destroy')->whereNumber('recipe')->name('recipes.destroy');
+            Route::post('/resep/{recipe}/belanja', 'addMissingToShoppingList')->whereNumber('recipe')->name('recipes.shopping');
+            Route::post('/resep/{recipe}/konsumsi', 'logPortion')->whereNumber('recipe')->name('recipes.consume');
+        });
 
         Route::controller(ShoppingListController::class)->group(function () {
             Route::get('/belanja', 'index')->name('shopping.index');

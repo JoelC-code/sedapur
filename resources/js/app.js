@@ -217,6 +217,11 @@ document.addEventListener("submit", (event) => {
     }
     form.dataset.submitting = "1";
     form.setAttribute("aria-busy", "true");
+    const submitter = event.submitter ?? form.querySelector("button[data-loading-label]");
+    if (submitter?.dataset?.loadingLabel) {
+        submitter.dataset.originalLabel ??= submitter.textContent;
+        submitter.textContent = submitter.dataset.loadingLabel;
+    }
 });
 
 // Kembali lewat tombol Back (bfcache): form boleh dikirim lagi.
@@ -224,7 +229,35 @@ window.addEventListener("pageshow", () => {
     document.querySelectorAll("form[data-submitting]").forEach((form) => {
         delete form.dataset.submitting;
         form.removeAttribute("aria-busy");
+        form.querySelectorAll("button[data-original-label]").forEach((btn) => {
+            btn.textContent = btn.dataset.originalLabel;
+        });
     });
+});
+
+// Tab sederhana di HP ([data-tab-target="id-panel"]).
+document.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-tab-target]");
+    if (!button) return;
+    const targetId = button.dataset.tabTarget;
+    document.querySelectorAll("[data-tab-panel]").forEach((panel) => {
+        panel.classList.toggle("hidden", panel.id !== targetId);
+    });
+});
+
+// Pilihan porsi pada dialog catat konsumsi resep: hitung ulang kalori & makro secara langsung.
+document.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-portion-value]");
+    if (!button) return;
+    const form = button.closest("[data-portion-form]");
+    if (!form) return;
+    const portions = Number(button.dataset.portionValue);
+    form.elements.portions.value = String(portions);
+    const fmt = (val) => (Math.round(val * 10) / 10).toLocaleString("id-ID");
+    form.querySelector('[data-macro="calories"]').textContent = String(Math.round(Number(form.dataset.calories) * portions));
+    form.querySelector('[data-macro="protein"]').textContent = `${fmt(Number(form.dataset.protein) * portions)} g`;
+    form.querySelector('[data-macro="carbs"]').textContent = `${fmt(Number(form.dataset.carbs) * portions)} g`;
+    form.querySelector('[data-macro="fat"]').textContent = `${fmt(Number(form.dataset.fat) * portions)} g`;
 });
 
 // Form tambah bahan [data-shelf-life]: tanggal kedaluwarsa mengikuti perkiraan umur simpan kategori

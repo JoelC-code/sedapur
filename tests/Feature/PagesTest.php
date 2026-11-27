@@ -14,6 +14,24 @@ beforeEach(function () {
         'test.supabase.co/rest/v1/food_waste*' => Http::response([]),
         'test.supabase.co/rest/v1/consumption*' => Http::response([]),
         'test.supabase.co/rest/v1/shopping_list_items*' => Http::response([]),
+        'test.supabase.co/rest/v1/recipes*' => fn ($request) => ($request->data()['id'] ?? null) === 'eq.1'
+            ? Http::response([[
+                'id' => 1,
+                'name' => 'Telur dadar bayam',
+                'description' => 'Sarapan cepat.',
+                'steps' => ['Kocok telur.', 'Goreng hingga matang.'],
+                'servings' => 2,
+                'cook_minutes' => 15,
+                'calories_per_serving' => 320,
+                'protein_per_serving' => 18,
+                'carbs_per_serving' => 9,
+                'fat_per_serving' => 22,
+                'is_ai_generated' => true,
+                'is_saved' => false,
+                'created_at' => '2026-11-27T08:00:00+00:00',
+                'recipe_ingredients' => [],
+            ]])
+            : Http::response([]),
     ]);
 });
 
