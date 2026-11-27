@@ -110,7 +110,10 @@ class FridgeController extends Controller
             return back()->with('status', 'Pemakaian belum bisa dicatat. Coba lagi sebentar.');
         }
 
-        abort_unless($result, 404);
+        // Tidak ada baris berubah: bahan sudah habis/dibuang (mis. tombol terkirim dua kali) atau bukan milik rumah ini.
+        if (! $result) {
+            return redirect()->route('fridge.index')->with('status', 'Bahan ini sudah habis atau tidak ada lagi di kulkas.');
+        }
 
         return $result['status'] === 'tersedia'
             ? redirect()->route('fridge.show', $item)->with('status', 'Pemakaian dicatat.')

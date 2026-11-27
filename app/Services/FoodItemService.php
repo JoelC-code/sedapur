@@ -147,6 +147,7 @@ class FoodItemService
             'jumlah_angka' => $quantity,
             'sisa_persen' => (int) round($quantity / $initial * 100),
             'pakai' => $this->useOptions($row['unit'], $quantity, $initial),
+            'slider' => $this->useSlider($row['unit'], $quantity, $initial, $row['weight_grams'] !== null ? (float) $row['weight_grams'] : null),
             'satuan' => $row['unit'],
             'berat_gram' => $row['weight_grams'] !== null ? (float) $row['weight_grams'] : null,
             'harga' => $row['price'] !== null ? (int) $row['price'] : null,
@@ -162,11 +163,16 @@ class FoodItemService
     /**
      * Tombol "pakai": pecahan dari jumlah awal untuk satuan takaran (¼ kotak susu = 250 ml dari 1000 ml),
      * atau 1 untuk satuan hitungan (1 butir telur). Pilihan yang menghabiskan sisa digantikan tombol "Habis".
+     * Pecahan yang hasilnya tidak bulat (¼ dari 330 ml = 82,5 ml) tidak dijadikan tombol; pakai slider.
      *
      * @return list<array{label: string, amount: float}>
      */
     private function useOptions(string $unit, float $quantity, float $initial): array
     {
+        // Bulat dalam satuan terkecil: 0,25 kg = 250 g bulat, 82,5 ml tidak.
+        $baseFactor = in_array($unit, ['kg', 'l'], true) ? 1000 : 1;
+        $isRound = fn (float $amount): bool => abs($amount * $baseFactor - round($amount * $baseFactor)) < 0.001;
+
         $fraction = fn (string $label, float $amount): array => [
             'label' => $label.' ('.str_replace('.', ',', (string) round($amount, 2)).' '.$unit.')',
             'amount' => round($amount, 2),
@@ -176,7 +182,38 @@ class FoodItemService
             ? [$fraction('¼', $initial / 4), $fraction('½', $initial / 2), $fraction('¾', $initial * 3 / 4)]
             : [['label' => '1 '.$unit, 'amount' => 1.0]];
 
-        return array_values(array_filter($options, fn (array $option): bool => $option['amount'] > 0 && $option['amount'] < $quantity));
+        return array_values(array_filter($options, fn (array $option): bool => $option['amount'] > 0
+            && $option['amount'] < $quantity
+            && $isRound($option['amount'])));
+    }
+
+    /**
+     * Slider "pakai": dari satu langkah sampai seluruh sisa (sisa penuh = habis).
+     * Langkah 1 g/ml, 0,01 kg/l, 1 butir (telur tidak dipakai setengah), atau 0,05 untuk satuan
+     * hitungan lain, supaya "1 kotak susu" bisa dipakai sebagian. Bila berat bahan diisi,
+     * gram per satuan ikut dikirim agar label slider menampilkan perkiraan gram.
+     *
+     * @return array{min: float, max: float, step: float, value: float, grams_per_unit: float|null}|null
+     */
+    private function useSlider(string $unit, float $quantity, float $initial, ?float $weightGrams): ?array
+    {
+        $step = match (true) {
+            in_array($unit, ['g', 'ml'], true), $unit === 'butir' => 1.0,
+            in_array($unit, ['kg', 'l'], true) => 0.01,
+            default => 0.05,
+        };
+
+        if ($quantity <= $step) {
+            return null;
+        }
+
+        return [
+            'min' => $step,
+            'max' => $quantity,
+            'step' => $step,
+            'value' => max($step, round($quantity / 2 / $step) * $step),
+            'grams_per_unit' => $weightGrams && ! in_array($unit, self::MEASURED_UNITS, true) ? $weightGrams / $initial : null,
+        ];
     }
 
     /**

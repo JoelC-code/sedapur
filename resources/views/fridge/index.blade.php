@@ -26,7 +26,7 @@
                         <a href="{{ route('fridge.index', ['status' => $key]) }}" @class(['is-active' => $status === $key])>{{ $label }}</a>
                     @endforeach
                 </div>
-                <p class="hidden flex-1 text-right text-xs text-muted lg:block">Urut: paling cepat kedaluwarsa ▾</p>
+                <p class="hidden flex-1 text-right text-xs text-muted lg:block">Urut: paling cepat kedaluwarsa</p>
             </div>
 
             <div class="no-scrollbar -mx-5 mt-3 flex gap-2 overflow-x-auto px-5 lg:mx-0 lg:flex-wrap lg:px-0">
@@ -143,6 +143,20 @@
                                 <button name="status" value="dimasak" class="chip bg-white">Habis</button>
                             </form>
                         </div>
+
+                        @if ($slider = $selected['slider'])
+                            {{-- Jumlah tidak bulat: geser sesuai yang dipakai. Geser sampai ujung = bahan habis. --}}
+                            <form method="POST" action="{{ route('fridge.use', $selected['id']) }}" class="mt-3 flex items-center gap-3">
+                                @csrf
+                                <label class="min-w-0 flex-1">
+                                    <span class="sr-only">Jumlah yang dipakai ({{ $selected['satuan'] }})</span>
+                                    <input type="range" name="amount" min="{{ $slider['min'] }}" max="{{ $slider['max'] }}" step="{{ $slider['step'] }}" value="{{ $slider['value'] }}"
+                                        data-range-output="use-amount" data-unit="{{ $selected['satuan'] }}" data-grams-per-unit="{{ $slider['grams_per_unit'] }}" class="w-full accent-brand">
+                                </label>
+                                <button class="chip bg-white whitespace-nowrap">Pakai <output id="use-amount">{{ str_replace('.', ',', (string) (float) $slider['value']) }} {{ $selected['satuan'] }}@if ($slider['grams_per_unit']) ≈ {{ round($slider['value'] * $slider['grams_per_unit']) }} g @endif</output></button>
+                            </form>
+                        @endif
+                    </div>
                     </div>
                 @endif
 

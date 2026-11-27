@@ -64,6 +64,32 @@ it('subscribes the fridge list to Realtime with only the publishable key', funct
         ->assertDontSee('user-access-token');
 });
 
+it('offers fraction buttons only for round amounts and a slider for any amount', function (array $row, array $see, array $dontSee) {
+    fakeMembersAnd([Http::response([]), Http::response([fridgeRow($row)])]);
+
+    $response = $this->withSession(supabaseSession())->get('/kulkas/3')->assertOk();
+
+    foreach ($see as $text) {
+        $response->assertSee($text, false);
+    }
+    foreach ($dontSee as $text) {
+        $response->assertDontSee($text, false);
+    }
+})->with([
+    'susu 1 l: tombol bulat + slider' => [['quantity' => 1000, 'initial_quantity' => 1000], ['Pakai ¼ (250 ml)', 'Pakai ½ (500 ml)', 'type="range"', 'max="1000"'], []],
+    'kaleng 330 ml: ½ bulat, ¼ dan ¾ lewat slider' => [['quantity' => 330, 'initial_quantity' => 330], ['Pakai ½ (165 ml)', 'type="range"', 'max="330"'], ['Pakai ¼', 'Pakai ¾']],
+    'telur: tombol 1 butir, slider per butir' => [['quantity' => 6, 'initial_quantity' => 10, 'unit' => 'butir'], ['Pakai 1 butir', 'step="1"'], []],
+    'susu 1 buah 500 g: slider sebagian dengan gram' => [['quantity' => 1, 'initial_quantity' => 1, 'unit' => 'buah', 'weight_grams' => 500], ['type="range"', 'step="0.05"', '0,5 buah ≈ 250 g'], ['Pakai 1 buah']],
+]);
+
+it('sends the user back to the fridge when the item was already used up', function () {
+    Http::fake(['test.supabase.co/rest/v1/rpc/use_food_item' => Http::response([])]);
+
+    $this->withSession(supabaseSession())->post('/kulkas/10/pakai', ['amount' => 0.5])
+        ->assertRedirect(route('fridge.index'))
+        ->assertSessionHas('status', 'Bahan ini sudah habis atau tidak ada lagi di kulkas.');
+});
+
 it('shows an item without an expiry date', function () {
     fakeMembersAnd([Http::response([]), Http::response([fridgeRow(['expires_at' => null])])]);
 

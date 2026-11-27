@@ -47,6 +47,21 @@ document.addEventListener('change', async (event) => {
     const formData = new FormData();
     formData.append(field, input.files[0]);
 
+    // Layar "memproses": upload + baca AI bisa belasan detik. Dialog <dialog> ada di top layer,
+    // jadi ditutup dulu supaya layar ini terlihat di atasnya.
+    input.closest('dialog')?.close();
+    const loading = document.createElement('div');
+    loading.setAttribute('role', 'status');
+    loading.setAttribute('aria-live', 'polite');
+    loading.className = 'fixed inset-0 z-50 grid place-items-center bg-ink/60 p-6';
+    loading.innerHTML = `
+        <div class="w-full max-w-xs rounded-3xl bg-white p-6 text-center shadow-lg">
+            <span class="mx-auto block size-10 animate-spin rounded-full border-4 border-sand-dark border-t-brand" aria-hidden="true"></span>
+            <p class="mt-4 font-bold">Memproses foto ${label}…</p>
+            <p class="mt-1 text-sm text-muted">Mengunggah lalu membaca isinya dengan AI. Biasanya 10–30 detik, jangan tutup halaman ini.</p>
+        </div>`;
+    document.body.append(loading);
+
     try {
         input.disabled = true;
 
@@ -72,6 +87,7 @@ document.addEventListener('change', async (event) => {
     } catch (error) {
         console.error(`[Scan:${field}] Upload error:`, error);
 
+        loading.remove();
         alert(error.message || `Terjadi kesalahan saat mengunggah ${label}.`);
 
         input.disabled = false;
@@ -185,9 +201,30 @@ document.addEventListener("click", async (event) => {
 });
 
 // Form dengan [data-confirm] minta konfirmasi dulu (mis. mengeluarkan anggota).
+// Form POST hanya terkirim sekali sampai halaman berganti: klik ganda pada "Pakai" tidak memakai dua kali.
+// (Tombol tidak di-disable, karena tombol disabled tidak ikut mengirim name/value-nya.)
 document.addEventListener("submit", (event) => {
-    const message = event.target.dataset?.confirm;
-    if (message && !window.confirm(message)) event.preventDefault();
+    const form = event.target;
+    const message = form.dataset?.confirm;
+    if (message && !window.confirm(message)) {
+        event.preventDefault();
+        return;
+    }
+    if (form.method !== "post") return;
+    if (form.dataset.submitting) {
+        event.preventDefault();
+        return;
+    }
+    form.dataset.submitting = "1";
+    form.setAttribute("aria-busy", "true");
+});
+
+// Kembali lewat tombol Back (bfcache): form boleh dikirim lagi.
+window.addEventListener("pageshow", () => {
+    document.querySelectorAll("form[data-submitting]").forEach((form) => {
+        delete form.dataset.submitting;
+        form.removeAttribute("aria-busy");
+    });
 });
 
 // Form tambah bahan [data-shelf-life]: tanggal kedaluwarsa mengikuti perkiraan umur simpan kategori
@@ -213,6 +250,16 @@ document.addEventListener("change", (event) => {
     if (hint) {
         hint.textContent = `Tanggal kedaluwarsa diisi perkiraan sesuai kategori (${category.parentElement.textContent.trim()} ±${category.dataset.shelfDays} hari). Ubah bila kemasan menulis tanggal lain.`;
     }
+});
+
+// Slider "pakai" bahan [data-range-output]: tampilkan jumlah terpilih (koma desimal), "habis" di ujung kanan.
+document.addEventListener("input", (event) => {
+    const range = event.target.closest("input[type=range][data-range-output]");
+    if (!range) return;
+    const output = document.getElementById(range.dataset.rangeOutput);
+    const grams = Number(range.dataset.gramsPerUnit) * Number(range.value);
+    const amount = `${Number(range.value).toLocaleString("id-ID")} ${range.dataset.unit}${grams ? ` ≈ ${Math.round(grams).toLocaleString("id-ID")} g` : ""}`;
+    output.textContent = range.value === range.max ? `${amount} (habis)` : amount;
 });
 
 // Daftarkan service worker untuk instalasi PWA, cache aset build, dan halaman offline.
