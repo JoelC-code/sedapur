@@ -1,8 +1,8 @@
 @php $missing = collect($recipe['bahan'])->where('ada', false); @endphp
 <x-layouts.app :title="$recipe['nama']" active="menu.index" bare>
     <x-page-header :title="$recipe['nama']" subtitle="Menu & resep · {{ $recipe['dibuat_ai'] ? 'Dibuat AI' : 'Resep tersimpan' }}" :back="route('recipes.index')" class="hidden lg:flex">
-        <button type="button" class="btn-ghost btn-sm"><x-icon name="cart" class="size-4" /> +{{ $missing->count() }} ke belanja</button>
-        <button type="button" data-open="log-portion" class="btn-primary btn-sm">Catat porsi dimakan</button>
+        <button type="button" disabled class="btn-ghost btn-sm disabled:cursor-not-allowed disabled:opacity-60"><x-icon name="cart" class="size-4" /> +{{ $missing->count() }} ke belanja</button>
+        <button type="button" disabled class="btn-primary btn-sm disabled:cursor-not-allowed disabled:opacity-60">Catat porsi dimakan <span class="badge bg-sand-dark text-muted">Segera hadir</span></button>
     </x-page-header>
 
     <div class="lg:grid lg:grid-cols-[1fr_380px] lg:gap-8">
@@ -71,8 +71,8 @@
     </div>
 
     <div class="sticky bottom-0 -mx-5 mt-6 grid grid-cols-[auto_1fr] gap-2 border-t border-line bg-white px-5 pt-3 pb-5 lg:hidden">
-        <button type="button" class="btn-ghost">+{{ $missing->count() }} ke belanja</button>
-        <button type="button" data-open="log-portion" class="btn-primary">Catat porsi</button>
+        <button type="button" disabled class="btn-ghost disabled:cursor-not-allowed disabled:opacity-60">+{{ $missing->count() }} ke belanja</button>
+        <button type="button" disabled class="btn-primary disabled:cursor-not-allowed disabled:opacity-60">Catat porsi <span class="badge bg-sand-dark text-muted">Segera hadir</span></button>
     </div>
 
     @push('dialogs')

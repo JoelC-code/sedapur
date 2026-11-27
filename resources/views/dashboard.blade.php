@@ -4,7 +4,7 @@
     <header class="mb-5 flex items-center gap-3 lg:-mx-8 lg:mb-7 lg:h-[76px] lg:gap-4 lg:border-b lg:border-line lg:px-8">
         <span class="grid size-11 place-items-center rounded-full bg-olive-700 text-lg font-extrabold text-white lg:hidden">{{ mb_substr($user['nama'], 0, 1) }}</span>
         <div class="min-w-0 flex-1">
-            <button type="button" class="flex items-center gap-1 text-xs text-muted lg:hidden">{{ $household['nama'] }} <x-icon name="chevron-down" class="size-3" /></button>
+            <a href="{{ route('household.settings') }}" class="flex items-center gap-1 text-xs text-muted lg:hidden">{{ $household['nama'] }} <x-icon name="chevron-right" class="size-3" /></a>
             <h1 class="text-xl font-extrabold lg:text-[22px]">Halo, {{ $user['panggilan'] }}</h1>
             <p class="hidden text-[13px] text-muted lg:block">{{ now()->translatedFormat('l, j F Y') }} · Semua makanan di kulkasmu</p>
         </div>

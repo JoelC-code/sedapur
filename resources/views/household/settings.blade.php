@@ -13,7 +13,7 @@
                     <p class="font-bold">{{ $user['nama'] }}</p>
                     <p class="text-xs text-muted">{{ $user['email'] }}</p>
                 </div>
-                <button class="grid size-10 place-items-center rounded-full bg-white" aria-label="Ubah profil"><x-icon name="edit" class="size-4" /></button>
+                <button type="button" disabled title="Segera hadir" class="grid size-10 place-items-center rounded-full bg-white disabled:cursor-not-allowed disabled:opacity-60" aria-label="Ubah profil (segera hadir)"><x-icon name="edit" class="size-4" /></button>
             </section>
 
             <section class="card-sand">

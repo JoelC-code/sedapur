@@ -31,14 +31,14 @@
             <x-icon name="leaf" class="size-6 text-olive-200" /> {{ config('app.name') }}
         </a>
 
-        <button type="button" class="mb-3.5 flex w-full items-center gap-2.5 rounded-[14px] bg-white/10 px-3 py-2.5 text-left hover:bg-white/15">
+        <a href="{{ route('household.settings') }}" class="mb-3.5 flex w-full items-center gap-2.5 rounded-[14px] bg-white/10 px-3 py-2.5 text-left hover:bg-white/15">
             <span class="grid size-8 place-items-center rounded-full bg-olive-200 text-olive-700"><x-icon name="home" class="size-4" /></span>
             <span class="min-w-0 flex-1">
                 <span class="block text-[11px] text-white/60">Rumah</span>
                 <span class="block truncate text-sm font-bold">{{ $household['nama'] }}</span>
             </span>
-            <x-icon name="chevron-down" class="size-4 text-white/60" />
-        </button>
+            <x-icon name="chevron-right" class="size-4 text-white/60" />
+        </a>
 
         <button type="button" data-open="add-item" class="relative mb-4 flex h-12 w-full items-center justify-center rounded-full bg-olive-200 px-12 text-sm font-extrabold text-olive-700 hover:bg-olive-300">
             <x-icon name="plus" class="absolute left-5 size-4" /> Tambah bahan

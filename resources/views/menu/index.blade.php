@@ -19,15 +19,15 @@
     <div class="flex items-center gap-3">
         <div class="flex-1">
             <div class="flex items-center gap-2">
-                <button class="hidden size-8 place-items-center rounded-full bg-sand lg:grid" aria-label="Minggu sebelumnya"><x-icon name="chevron-left" class="size-4" /></button>
+                <button type="button" disabled class="hidden size-8 place-items-center rounded-full bg-sand lg:grid disabled:cursor-not-allowed disabled:opacity-60" aria-label="Minggu sebelumnya (segera hadir)"><x-icon name="chevron-left" class="size-4" /></button>
                 <h2 class="text-xl font-extrabold lg:text-2xl">{{ $range }}</h2>
-                <button class="hidden size-8 place-items-center rounded-full bg-sand lg:grid" aria-label="Minggu berikutnya"><x-icon name="chevron-right" class="size-4" /></button>
+                <button type="button" disabled class="hidden size-8 place-items-center rounded-full bg-sand lg:grid disabled:cursor-not-allowed disabled:opacity-60" aria-label="Minggu berikutnya (segera hadir)"><x-icon name="chevron-right" class="size-4" /></button>
             </div>
             <p class="mt-1 flex items-center gap-2 text-xs text-muted"><span class="badge bg-ai-soft text-ai">✦ AI</span> Dibuat Senin pagi · 1.770 kkal/hari</p>
         </div>
         <p class="hidden items-center gap-2 rounded-full bg-olive-100 px-3 py-2 text-xs lg:flex"><x-icon name="clock" class="size-3.5 text-olive-700" /> Mendahulukan 3 bahan hampir kedaluwarsa</p>
-        <button class="btn-soft btn-sm hidden lg:inline-flex"><x-icon name="sparkles" class="size-4" /> Buat ulang dengan AI</button>
-        <button class="grid size-10 place-items-center rounded-full bg-sand lg:hidden" aria-label="Buat ulang"><x-icon name="refresh" class="size-4" /></button>
+        <button type="button" disabled class="btn-soft btn-sm hidden lg:inline-flex disabled:cursor-not-allowed disabled:opacity-60"><x-icon name="sparkles" class="size-4" /> Buat ulang dengan AI <span class="badge bg-sand-dark text-muted">Segera hadir</span></button>
+        <button type="button" disabled class="grid size-10 place-items-center rounded-full bg-sand lg:hidden disabled:cursor-not-allowed disabled:opacity-60" aria-label="Buat ulang (segera hadir)"><x-icon name="refresh" class="size-4" /></button>
     </div>
 
     {{-- HP: strip hari + kartu menu --}}
@@ -63,7 +63,7 @@
             @endforeach
         </div>
 
-        <button class="btn-soft mt-4 w-full"><x-icon name="sparkles" class="size-4" /> Buat ulang menu dengan AI</button>
+        <button type="button" disabled class="btn-soft mt-4 w-full disabled:cursor-not-allowed disabled:opacity-60"><x-icon name="sparkles" class="size-4" /> Buat ulang menu dengan AI <span class="badge bg-sand-dark text-muted">Segera hadir</span></button>
     </div>
 
     {{-- Desktop: kalender 7 hari × pagi/siang/malam --}}

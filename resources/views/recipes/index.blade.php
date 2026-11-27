@@ -42,5 +42,5 @@
         @endforeach
     </div>
 
-    <button class="btn-primary fixed right-5 bottom-28 z-20 shadow-lg lg:static lg:mt-6"><x-icon name="sparkles" class="size-4" /> Buat resep</button>
+    <button type="button" disabled class="btn-primary fixed right-5 bottom-28 z-20 shadow-lg lg:static lg:mt-6 disabled:cursor-not-allowed disabled:opacity-60"><x-icon name="sparkles" class="size-4" /> Buat resep <span class="badge bg-sand-dark text-muted">Segera hadir</span></button>
 </x-layouts.app>
